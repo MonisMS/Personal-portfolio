@@ -7,7 +7,7 @@ export function HeroSection() {
         <section id="home" className="flex min-h-screen flex-col items-center justify-center bg-black text-white px-4">
             <div className="flex flex-col items-center gap-8 text-center max-w-3xl">
                 {/* Avatar */}
-                <div className="h-28 w-28 rounded-full overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-indigo-700 shadow-lg" />
+                <div className="h-28 w-28 rounded-full overflow-hidden bg-linear-to-br from-orange-500 via-red-500 to-indigo-700 shadow-lg" />
 
                 {/* Heading */}
                 <div className="space-y-4">
