@@ -35,39 +35,46 @@ const experiences: Experience[] = [
 
 export function ExperienceSection() {
   return (
-    <section id="about" className="bg-black px-4 py-24 text-white">
+    <section id="about" className="bg-bg-primary px-4 py-24">
       <div className="mx-auto max-w-3xl">
         {/* Section Header */}
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+        <div className="mb-12 text-center">
+          <p className="text-sm uppercase tracking-widest text-accent mb-3">Journey</p>
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-text-primary">
             Experience
           </h2>
-          <p className="mt-3 text-neutral-400">
+          <p className="mt-3 text-text-secondary">
             Where I&apos;ve been and what I&apos;ve done.
           </p>
         </div>
 
         {/* Timeline */}
-        <div className="relative space-y-8 before:absolute before:left-[7px] before:top-2 before:h-[calc(100%-16px)] before:w-[2px] before:bg-neutral-800">
+        <div className="relative space-y-6 before:absolute before:left-[7px] before:top-3 before:h-[calc(100%-24px)] before:w-px before:bg-accent/30">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8">
+            <div 
+              key={index} 
+              className="relative pl-8 animate-fade-up"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               {/* Dot */}
               <div
-                className={`absolute left-0 top-2 h-4 w-4 rounded-full border-2 ${
+                className={`absolute left-0 top-3 h-4 w-4 rounded-full border-2 transition-colors duration-300 ${
                   exp.current
-                    ? "border-emerald-500 bg-emerald-500/20"
-                    : "border-neutral-600 bg-neutral-900"
+                    ? "border-accent bg-accent/20"
+                    : "border-border bg-bg-primary"
                 }`}
               />
 
               {/* Content */}
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-5 transition-colors hover:border-neutral-700">
+              <div className="group rounded-xl border border-border bg-bg-card p-5 transition-all duration-300 hover:border-accent/50 hover:bg-bg-hover">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="font-semibold text-white">{exp.role}</h3>
-                  <span className="text-xs text-neutral-500">{exp.period}</span>
+                  <h3 className="font-semibold text-text-primary group-hover:text-accent transition-colors duration-300">
+                    {exp.role}
+                  </h3>
+                  <span className="text-xs text-accent font-medium">{exp.period}</span>
                 </div>
-                <p className="mt-1 text-sm text-neutral-400">{exp.company}</p>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-300">
+                <p className="mt-1 text-sm text-text-muted">{exp.company}</p>
+                <p className="mt-3 text-sm leading-relaxed text-text-secondary">
                   {exp.description}
                 </p>
               </div>
