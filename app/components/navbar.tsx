@@ -33,15 +33,14 @@ export function Navbar() {
   return (
     <>
       <nav className={cn(
-        "fixed top-0 left-0 right-0 z-40 px-4 md:px-12 lg:px-20 py-4 transition-all mt-2",
-        scrolled && "py-3 bg-bg-primary/50 backdrop-blur-md"
+        "fixed top-0 left-0 right-0 z-40 px-4 md:px-12 lg:px-20 py-3 transition-all mt-2",
+        scrolled && "py-2 bg-bg-primary/50 backdrop-blur-md"
       )}>
         <div className="relative flex items-center justify-between">
           
           {/* Logo */}
-          <a href="#home" className="group flex items-center gap-0.5">
-            <span className="text-xl font-bold text-text-primary tracking-tight">MS</span>
-            <span className="text-xl font-bold text-accent">.</span>
+          <a href="#home" className="text-lg font-semibold text-text-primary tracking-tight">
+            MS
           </a>
 
           {/* Center: Nav Pill */}
@@ -56,7 +55,7 @@ export function Navbar() {
                     className={cn(
                       "relative px-4 py-1.5 text-sm cursor-pointer rounded-full transition-all",
                       isActive 
-                        ? "text-white font-medium bg-white/[0.1]" 
+                        ? "text-white font-medium bg-white/1" 
                         : "text-white/50 hover:text-white/80"
                     )}
                   >
@@ -72,15 +71,15 @@ export function Navbar() {
                 );
               })}
               
-              {/* Get in Touch - decisive CTA */}
+              {/* CTA */}
               <button
                 onClick={() => handleClick("contact")}
-                className="relative ml-1 px-4 py-1.5 text-sm font-medium rounded-full bg-white/[0.12] text-white hover:bg-white/[0.18] cursor-pointer transition-all group"
+                className="relative ml-1 px-4 py-1.5 text-sm font-medium rounded-full bg-white/12 text-white hover:bg-white/18 cursor-pointer transition-all group"
               >
-                <span className="relative z-10">Get in Touch</span>
+                <span className="relative z-10">Let&apos;s Talk</span>
                 {/* Subtle bottom glow */}
-                <span className="absolute inset-x-2 -bottom-px h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-              </button>
+                  <span className="absolute inset-x-2 -bottom-px h-px bg-linera-to-r from-transparent via-white/50 to-transparent" />
+                </button>
             </div>
           </div>
 
