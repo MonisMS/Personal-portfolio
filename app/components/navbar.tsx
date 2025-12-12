@@ -50,16 +50,13 @@ export function Navbar() {
               key={item.id}
               onClick={() => handleClick(item.id)}
               className={cn(
-                "relative px-4 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer",
-                isActive
-                  ? "text-text-primary"
-                  : "text-text-secondary hover:text-text-primary"
+                "relative px-4 py-2 text-sm font-medium cursor-pointer",
+                isActive ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
               )}
             >
               {item.label}
-              {/* Crimson underline indicator */}
               <span className={cn(
-                "absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 bg-accent transition-all duration-300",
+                "absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 bg-accent",
                 isActive ? "w-4" : "w-0"
               )} />
             </button>

@@ -41,32 +41,21 @@ const skills: Skill[] = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="bg-bg-primary px-4 py-24">
+    <section id="skills" className="bg-bg-primary px-4 py-20">
       <div className="mx-auto max-w-3xl">
-        {/* Section Header */}
-        <div className="mb-12 text-center">
-          <p className="text-sm uppercase tracking-widest text-accent mb-3">Technologies</p>
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl text-text-primary">
-            Skills & Stack
-          </h2>
-          <p className="mt-3 text-text-secondary">
-            Tech I use to bring ideas to life.
-          </p>
+        <div className="mb-10">
+          <h2 className="text-2xl font-semibold text-text-primary">Stack</h2>
+          <p className="mt-2 text-text-secondary">Tools I work with.</p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="flex flex-wrap justify-center gap-3 stagger-children">
+        <div className="flex flex-wrap gap-2">
           {skills.map((skill) => (
             <div
               key={skill.name}
-              className="group flex items-center gap-2.5 rounded-full border border-border bg-bg-card px-4 py-2.5 transition-all duration-300 hover:border-accent/50 hover:bg-bg-hover"
+              className="flex items-center gap-2 rounded-full border border-border bg-bg-card px-4 py-2 hover:border-accent/50"
             >
-              <span className="text-lg text-text-secondary group-hover:text-accent transition-colors duration-300">
-                {skill.icon}
-              </span>
-              <span className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors duration-300">
-                {skill.name}
-              </span>
+              <span className="text-base text-text-muted">{skill.icon}</span>
+              <span className="text-sm text-text-secondary">{skill.name}</span>
             </div>
           ))}
         </div>
