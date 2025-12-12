@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Command } from "lucide-react";
+import { CommandMenu } from "./command-menu";
 
 const navItems = [
   { label: "Home", id: "home" },
-  { label: "Projects", id: "projects" },
-  { label: "Skills", id: "skills" },
-  { label: "Experience", id: "about" },
-  { label: "Contact", id: "contact" },
+  { label: "About", id: "about" },
+  { label: "Work", id: "projects" },
+  { label: "Blog", id: "blog" },
 ];
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [commandOpen, setCommandOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,44 +27,76 @@ export function Navbar() {
 
   const handleClick = (id: string) => {
     setActiveSection(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className={cn(
-      "fixed top-6 left-1/2 z-40 -translate-x-1/2 transition-all duration-300",
-      scrolled && "top-4"
-    )}>
-      <div className={cn(
-        "flex items-center gap-1 rounded-full border px-3 py-2 transition-all duration-300",
-        scrolled 
-          ? "border-border bg-bg-primary/90 backdrop-blur-md" 
-          : "border-border bg-bg-primary/60 backdrop-blur-sm"
+    <>
+      <nav className={cn(
+        "fixed top-0 left-0 right-0 z-40 px-4 md:px-12 lg:px-20 py-4 transition-all mt-2",
+        scrolled && "py-3 bg-bg-primary/50 backdrop-blur-md"
       )}>
-        {navItems.map((item) => {
-          const isActive = activeSection === item.id;
+        <div className="relative flex items-center justify-between">
+          
+          {/* Logo */}
+          <a href="#home" className="group flex items-center gap-0.5">
+            <span className="text-xl font-bold text-text-primary tracking-tight">MS</span>
+            <span className="text-xl font-bold text-accent">.</span>
+          </a>
 
-          return (
-            <button
-              key={item.id}
-              onClick={() => handleClick(item.id)}
-              className={cn(
-                "relative px-4 py-2 text-sm font-medium cursor-pointer",
-                isActive ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
-              )}
-            >
-              {item.label}
-              <span className={cn(
-                "absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 bg-accent",
-                isActive ? "w-4" : "w-0"
-              )} />
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+          {/* Center: Nav Pill */}
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <div className="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl px-1.5 py-1">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleClick(item.id)}
+                    className={cn(
+                      "relative px-4 py-1.5 text-sm cursor-pointer rounded-full transition-all",
+                      isActive 
+                        ? "text-white font-medium bg-white/[0.1]" 
+                        : "text-white/50 hover:text-white/80"
+                    )}
+                  >
+                    {item.label}
+                    {/* Active glow indicator */}
+                    {isActive && (
+                      <>
+                        <span className="absolute -top-[5px] left-1/2 -translate-x-1/2 h-[2px] w-6 rounded-full bg-accent" />
+                        <span className="absolute -top-[8px] left-1/2 -translate-x-1/2 h-4 w-8 rounded-full bg-accent/30 blur-md" />
+                      </>
+                    )}
+                  </button>
+                );
+              })}
+              
+              {/* Get in Touch - decisive CTA */}
+              <button
+                onClick={() => handleClick("contact")}
+                className="relative ml-1 px-4 py-1.5 text-sm font-medium rounded-full bg-white/[0.12] text-white hover:bg-white/[0.18] cursor-pointer transition-all group"
+              >
+                <span className="relative z-10">Get in Touch</span>
+                {/* Subtle bottom glow */}
+                <span className="absolute inset-x-2 -bottom-px h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right: Command palette trigger - interactive, not decorative */}
+          <button
+            onClick={() => setCommandOpen(true)}
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 text-xs text-white/40 border border-white/[0.08] rounded-lg bg-white/[0.03] hover:bg-white/[0.06] hover:text-white/60 hover:border-white/[0.12] cursor-pointer transition-all group"
+          >
+            <Command size={14} className="text-white/30 group-hover:text-white/50" />
+            <span className="font-medium tracking-wide">Ctrl K</span>
+          </button>
+
+        </div>
+      </nav>
+
+      <CommandMenu open={commandOpen} setOpen={setCommandOpen} />
+    </>
   );
 }
