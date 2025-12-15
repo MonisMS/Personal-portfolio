@@ -1,112 +1,97 @@
 "use client";
 
-import { Github, Linkedin, Mail, Twitter, FileText } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, FileText, Send, Briefcase } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen bg-bg-primary px-4 pt-28 pb-16 md:pt-32">
+    <section id="home" className="relative min-h-screen bg-bg-primary px-4 pt-28 pb-16 md:pt-36">
       <div className="grain" />
       
-      <div className="mx-auto max-w-4xl">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
-          <div className="flex-1 space-y-5">
-            <div>
-              <p className="text-text-secondary text-lg mb-2">
-                Hey, I&apos;m Monis —
-              </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary leading-tight">
-                Full Stack <span className="text-accent">Developer</span>
-              </h1>
+      <div className="mx-auto max-w-3xl">
+        {/* Avatar */}
+        <div className="mb-10">
+          <div className="relative inline-block">
+            <div className="w-20 h-20 rounded-full bg-bg-card border-2 border-border overflow-hidden flex items-center justify-center">
+              <span className="text-2xl font-bold text-text-primary">MS</span>
             </div>
-
-            <p className="text-text-secondary leading-relaxed max-w-lg">
-              I build web apps with{" "}
-              <a href="https://typescriptlang.org/" target="_blank" rel="noopener noreferrer" className="text-text-primary hover:text-accent underline decoration-border hover:decoration-accent underline-offset-2">TypeScript</a>,{" "}
-              <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" className="text-text-primary hover:text-accent underline decoration-border hover:decoration-accent underline-offset-2">React</a>,{" "}
-              <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" className="text-text-primary hover:text-accent underline decoration-border hover:decoration-accent underline-offset-2">Next.js</a>, and{" "}
-              <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer" className="text-text-primary hover:text-accent underline decoration-border hover:decoration-accent underline-offset-2">Node</a>.
-              Currently looking for full-time opportunities.
-            </p>
-
-            <div className="flex flex-wrap gap-3 pt-1">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-border text-text-primary hover:border-accent hover:text-accent"
-              >
-                <FileText size={16} />
-                Resume
-              </a>
-              <a
-                href="#contact"
-                className="px-5 py-2.5 text-sm font-medium rounded-lg bg-accent text-text-primary hover:bg-accent-dark"
-              >
-                Contact
-              </a>
-            </div>
-
-            <div className="flex gap-2 pt-1">
-              <a href="https://github.com/MonisMS" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg border border-border text-text-muted hover:border-accent hover:text-accent" aria-label="GitHub"><Github size={18} /></a>
-              <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg border border-border text-text-muted hover:border-accent hover:text-accent" aria-label="LinkedIn"><Linkedin size={18} /></a>
-              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg border border-border text-text-muted hover:border-accent hover:text-accent" aria-label="Twitter"><Twitter size={18} /></a>
-              <a href="mailto:monissms16@gmail.com" className="p-2.5 rounded-lg border border-border text-text-muted hover:border-accent hover:text-accent" aria-label="Email"><Mail size={18} /></a>
-            </div>
-          </div>
-
-          <div className="lg:w-64">
-            <div className="rounded-xl border border-border bg-bg-card p-5 space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="text-sm text-text-secondary">Open to work</span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-lg bg-bg-hover p-3 text-center">
-                  <div className="text-lg font-bold text-accent">3+</div>
-                  <div className="text-xs text-text-muted">Projects</div>
-                </div>
-                <div className="rounded-lg bg-bg-hover p-3 text-center">
-                  <div className="text-lg font-bold text-accent">1yr</div>
-                  <div className="text-xs text-text-muted">Experience</div>
-                </div>
-              </div>
-
-              <p className="text-sm text-text-muted">Based in India</p>
-            </div>
+            <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-5 w-5 bg-emerald-500 border-[3px] border-bg-primary"></span>
+            </span>
           </div>
         </div>
 
-        <div className="mt-14">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-text-muted">Recent work</span>
-            <a href="#projects" className="text-xs text-accent hover:underline">All projects →</a>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-3">
-            <a href="#projects" className="group rounded-lg border border-border bg-bg-card p-4 hover:border-accent/50">
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-medium text-text-primary group-hover:text-accent">AskAI</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500">Live</span>
-              </div>
-              <p className="text-xs text-text-muted">AI meeting assistant</p>
-            </a>
-            <a href="#projects" className="group rounded-lg border border-border bg-bg-card p-4 hover:border-accent/50">
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-medium text-text-primary group-hover:text-accent">Folder Organizer</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500">WIP</span>
-              </div>
-              <p className="text-xs text-text-muted">File automation tool</p>
-            </a>
-            <a href="#projects" className="group rounded-lg border border-border bg-bg-card p-4 hover:border-accent/50">
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-medium text-text-primary group-hover:text-accent">Tunes Generator</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500">Live</span>
-              </div>
-              <p className="text-xs text-text-muted">Music player</p>
-            </a>
-          </div>
+        {/* Headline */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
+          <span className="text-text-primary">Hi, I&apos;m Monis</span>
+          <span className="text-text-primary"> — </span>
+          <span className="text-text-secondary">I build modern full-stack web applications.</span>
+        </h1>
+
+        {/* Tech paragraph with inline badges */}
+        <div className="space-y-1 mb-10 text-base sm:text-lg text-text-secondary leading-relaxed">
+          <p className="flex flex-wrap items-center gap-1.5">
+            <span>I work with</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#3178C6]/10 border border-[#3178C6]/20 text-[#3178C6]">
+              <span className="text-xs font-bold">TS</span>
+              TypeScript
+            </span>
+            <span>,</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#61DAFB]/10 border border-[#61DAFB]/20 text-[#61DAFB]">
+              <span className="text-xs">⚛</span>
+              React
+            </span>
+            <span>,</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-white/5 border border-white/10 text-text-primary">
+              <span className="text-xs font-bold">N</span>
+              Next.js
+            </span>
+            <span>,</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#339933]/10 border border-[#339933]/20 text-[#339933]">
+              <span className="text-xs">⬢</span>
+              Node.js
+            </span>
+            <span>, and</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#4169E1]/10 border border-[#4169E1]/20 text-[#4169E1]">
+              <span className="text-xs">🐘</span>
+              PostgreSQL
+            </span>
+            <span>, focusing on clean architecture, performance, and building systems that scale well in production.</span>
+          </p>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
+          <a
+            href="/resume"
+            className="inline-flex justify-center items-center gap-2 px-6 py-3 text-base font-medium rounded-full border border-border bg-bg-card text-text-primary hover:border-emerald-500/50 hover:bg-bg-card/80 transition-all duration-300"
+          >
+            <FileText size={18} />
+            Resume
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex justify-center items-center gap-2 px-6 py-3 text-base font-medium rounded-full bg-white text-black hover:bg-gray-200 shadow-lg shadow-white/10 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <Send size={18} />
+            Get in touch
+          </a>
+        </div>
+
+        {/* Social icons */}
+        <div className="flex items-center gap-0.5 mb-12">
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="Twitter">
+            <Twitter size={20} />
+          </a>
+          <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="LinkedIn">
+            <Linkedin size={20} />
+          </a>
+          <a href="https://github.com/MonisMS" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="GitHub">
+            <Github size={20} />
+          </a>
+          <a href="mailto:monissms16@gmail.com" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="Email">
+            <Mail size={20} />
+          </a>
         </div>
       </div>
     </section>
