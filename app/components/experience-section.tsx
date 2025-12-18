@@ -10,36 +10,30 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    role: "Full Stack Developer",
-    company: "Freelance",
+    role: "CS Student",
+    company: "University",
     period: "2024 - Present",
     description:
-      "Building web applications for clients using React, Next.js, and Node.js. Delivering end-to-end solutions from design to deployment.",
+      "Pursuing Computer Science, diving deep into algorithms, system design, and software engineering fundamentals.",
     current: true,
   },
   {
-    role: "Open Source Contributor",
-    company: "GitHub",
-    period: "2023 - Present",
+    role: "Full Stack Developer",
+    company: "Personal Work",
+    period: "2025 - Present",
     description:
-      "Contributing to open source projects, learning from the community, and building in public.",
-  },
-  {
-    role: "CS Student",
-    company: "University",
-    period: "2022 - Present",
-    description:
-      "Pursuing Computer Science, diving deep into algorithms, system design, and software engineering fundamentals.",
+      "Building web applications, experimenting with new technologies, and shipping side projects.",
+    current: true,
   },
 ];
 
 export function ExperienceSection() {
   return (
     <section id="about" className="bg-bg-primary px-4 py-20">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-4xl">
         <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-text-primary">Experience</h2>
-          <p className="mt-2 text-text-secondary">What I&apos;ve been up to.</p>
+          <h2 className="text-2xl font-semibold text-text-primary">Background</h2>
+          <p className="mt-2 text-text-secondary">Where I&apos;m at right now.</p>
         </div>
 
         <div className="relative space-y-4 before:absolute before:left-[7px] before:top-3 before:h-[calc(100%-24px)] before:w-px before:bg-border">
