@@ -37,13 +37,27 @@ const projects: Project[] = [
 ];
 
 function ProjectCard({ project }: { project: Project }) {
+  const mainUrl = project.liveUrl || project.githubUrl;
+
   return (
-    <div className="group relative rounded-xl border border-border bg-bg-card p-5 hover:border-accent/50">
+    <div className="group relative rounded-xl border border-border bg-bg-card p-5 hover:border-accent/50 transition-colors">
+      {/* Main Link covering the card */}
+      {mainUrl && (
+        <a 
+          href={mainUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="absolute inset-0 z-10"
+          aria-label={`View ${project.title}`}
+        />
+      )}
+
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent">
           {project.title}
         </h3>
-        <div className="flex gap-1">
+        {/* Icons must be above the main link */}
+        <div className="relative z-20 flex gap-1">
           {project.githubUrl && (
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-text-muted hover:text-accent" aria-label="GitHub">
               <Github size={18} />
@@ -85,6 +99,24 @@ export function ProjectsSection() {
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
+
+          {/* Coming Soon Card */}
+          <a 
+            href="https://github.com/MonisMS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex flex-col justify-center items-center text-center rounded-xl border border-dashed border-border bg-bg-card/50 p-8 hover:border-accent/50 hover:bg-bg-card transition-all"
+          >
+            <div className="mb-4 rounded-full bg-bg-hover p-4 text-text-muted group-hover:text-accent transition-colors">
+              <Github size={28} />
+            </div>
+            <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent">
+              More projects coming soon
+            </h3>
+            <p className="mt-2 text-sm text-text-secondary max-w-[250px]">
+              Visit my GitHub to see what I&apos;m currently working on.
+            </p>
+          </a>
         </div>
       </div>
     </section>
