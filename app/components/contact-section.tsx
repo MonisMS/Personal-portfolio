@@ -16,12 +16,12 @@ const socials = [
   {
     name: "LinkedIn",
     icon: <Linkedin size={20} />,
-    href: "https://linkedin.com/in/",
+    href: "https://www.linkedin.com/in/syed-monis-sarwar-sms47/",
   },
   {
     name: "Twitter",
     icon: <Twitter size={20} />,
-    href: "https://twitter.com/",
+    href: "https://x.com/SMSarwar47",
   },
 ];
 

@@ -104,10 +104,9 @@ export function HeroSection() {
         {/* Socials */}
         <div className="flex items-center gap-6 text-text-muted mt-2">
           <SocialLink href="https://github.com/MonisMS" icon={<Github size={22} />} label="GitHub" />
-          <SocialLink href="https://linkedin.com/in/" icon={<Linkedin size={22} />} label="LinkedIn" />
-          <SocialLink href="https://twitter.com/" icon={<Twitter size={22} />} label="X (Twitter)" />
-          <SocialLink href="https://instagram.com/" icon={<Instagram size={22} />} label="Instagram" />
-          <SocialLink href="https://medium.com/" icon={<SiMedium size={22} />} label="Medium" />
+          <SocialLink href="https://www.linkedin.com/in/syed-monis-sarwar-sms47/" icon={<Linkedin size={22} />} label="LinkedIn" />
+          <SocialLink href="https://x.com/SMSarwar47" icon={<Twitter size={22} />} label="X (Twitter)" />
+          <SocialLink href="https://www.instagram.com/monis_sarwar/" icon={<Instagram size={22} />} label="Instagram" />
           <SocialLink href="mailto:monissms16@gmail.com" icon={<Mail size={22} />} label="Email" />
         </div>
 

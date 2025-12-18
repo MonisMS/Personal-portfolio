@@ -86,14 +86,14 @@ const socialItems = [
     label: "LinkedIn",
     description: "Connect on LinkedIn",
     shortcut: "L",
-    action: () => window.open("https://linkedin.com/in/", "_blank")
+    action: () => window.open("https://www.linkedin.com/in/syed-monis-sarwar-sms47/", "_blank")
   },
   {
     icon: <Twitter size={18} />,
     label: "Twitter",
     description: "Follow on Twitter",
     shortcut: "T",
-    action: () => window.open("https://twitter.com/", "_blank")
+    action: () => window.open("https://x.com/SMSarwar47", "_blank")
   },
   {
     icon: <Mail size={18} />,
