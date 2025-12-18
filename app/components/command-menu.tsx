@@ -31,15 +31,15 @@ const navigationItems = [
   },
   { 
     icon: <Briefcase size={18} />, 
-    label: "Go to Experience", 
-    description: "View work experience and history",
+    label: "Go to Background", 
+    description: "View background and history",
     shortcut: "W",
     action: () => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
   },
   { 
     icon: <FileText size={18} />, 
-    label: "Go to Blog", 
-    description: "Browse all blog posts",
+    label: "Go to Writing", 
+    description: "Browse all articles and writing",
     shortcut: "B",
     action: () => document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" })
   },

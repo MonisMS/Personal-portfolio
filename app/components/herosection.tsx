@@ -97,7 +97,7 @@ export function HeroSection() {
             className="inline-flex h-10 items-center justify-center rounded-full border border-border bg-bg-card px-8 text-sm font-medium text-text-primary shadow-sm transition-colors hover:bg-bg-secondary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
             <FileText className="mr-2 h-4 w-4" />
-            View Experience
+            Resume
           </a>
         </div>
 

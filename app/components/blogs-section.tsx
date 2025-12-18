@@ -2,32 +2,43 @@ import { ArrowUpRight } from "lucide-react";
 
 const blogs = [
   {
-    title: "How I Built My Portfolio with Next.js 15",
-    description: "A look at the tech stack, design decisions, and lessons learned.",
+    title: "How to Explain Web3 to Your Friends Without Sounding Like a Scammer",
+    description: "A guide to explaining Web3 concepts simply and effectively.",
     date: "Dec 2024",
-    url: "#",
+    url: "https://monisdev.hashnode.dev/how-to-explain-web3-to-your-friends-without-sounding-like-a-scammer",
   },
   {
-    title: "Understanding TypeScript Generics",
-    description: "Breaking down generics with practical examples.",
+    title: "Smart Contracts 101: The Digital Agreements of the Crypto World",
+    description: "Understanding the fundamentals of smart contracts and how they work.",
     date: "Nov 2024",
-    url: "#",
+    url: "https://monisdev.hashnode.dev/smart-contracts-101-the-digital-agreements-of-the-crypto-world",
   },
   {
-    title: "My Developer Setup in 2024",
-    description: "Tools, extensions, and workflows I use daily.",
+    title: "The Ultimate Beginner's Guide to Alternative Chains",
+    description: "Exploring different blockchain networks beyond Ethereum and Bitcoin.",
     date: "Oct 2024",
-    url: "#",
+    url: "https://monisdev.hashnode.dev/the-ultimate-beginners-guide-to-alternative-chains",
   },
 ];
 
 export function BlogsSection() {
   return (
     <section id="blog" className="bg-bg-primary px-4 py-20">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-4xl">
         <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-text-primary">Blog</h2>
-          <p className="mt-2 text-text-secondary">Writing about code and things I learn.</p>
+          <h2 className="text-2xl font-semibold text-text-primary">Writing</h2>
+          <p className="mt-2 text-text-secondary">
+            Thoughts, learnings, and tutorials published on{" "}
+            <a
+              href="https://monisdev.hashnode.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              Hashnode
+            </a>
+            .
+          </p>
         </div>
 
         <div className="space-y-3">
@@ -35,6 +46,8 @@ export function BlogsSection() {
             <a
               key={i}
               href={blog.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-bg-card p-5 hover:border-accent/50"
             >
               <div className="flex-1">
