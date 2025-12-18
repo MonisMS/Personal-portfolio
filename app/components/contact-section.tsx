@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, Calendar } from "lucide-react";
 
 const socials = [
   {
@@ -34,13 +34,24 @@ export function ContactSection() {
           Have a project or opportunity? Reach out.
         </p>
 
-        <a
-          href="mailto:monissms16@gmail.com"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-text-primary hover:bg-accent-dark"
-        >
-          <Mail size={18} />
-          monissms16@gmail.com
-        </a>
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="mailto:monissms16@gmail.com"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-text-primary hover:bg-accent-dark"
+          >
+            <Mail size={18} />
+            monissms16@gmail.com
+          </a>
+          <a
+            href="https://cal.com/monis-sarwar-vvbnfn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-medium hover:bg-gray-200 transition-colors"
+          >
+            <Calendar size={18} />
+            Book a call
+          </a>
+        </div>
 
         <div className="mt-8 flex justify-center gap-3">
           {socials.map((social) => (

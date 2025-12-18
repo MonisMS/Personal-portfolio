@@ -86,10 +86,12 @@ export function HeroSection() {
         {/* Actions */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
           <a
-            href="#contact"
+            href="https://cal.com/monis-sarwar-vvbnfn"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-10 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black shadow transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
-            Let&apos;s Talk
+            Book a call
             <ArrowRight className="ml-2 h-4 w-4" />
           </a>
           <a
