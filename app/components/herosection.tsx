@@ -1,99 +1,131 @@
 "use client";
 
-import { Github, Linkedin, Mail, Twitter, FileText, Send, Briefcase } from "lucide-react";
+import Image from "next/image";
+import { Github, Linkedin, Mail, FileText, ArrowRight, Twitter, Instagram } from "lucide-react";
+import { SiTypescript, SiNodedotjs, SiNextdotjs, SiPostgresql, SiMedium } from "react-icons/si";
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen bg-bg-primary px-4 pt-28 pb-16 md:pt-36">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-10 overflow-hidden">
       <div className="grain" />
       
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-4xl px-6 flex flex-col items-center text-center gap-8">
+        
         {/* Avatar */}
-        <div className="mb-10">
-          <div className="relative inline-block">
-            <div className="w-20 h-20 rounded-full bg-bg-card border-2 border-border overflow-hidden flex items-center justify-center">
-              <span className="text-2xl font-bold text-text-primary">MS</span>
+        <div className="relative">
+          <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border border-border bg-bg-card p-1 shadow-2xl shadow-emerald-500/10">
+            <div className="relative h-full w-full overflow-hidden rounded-full">
+              <Image 
+                src="/profile-pic.jpg" 
+                alt="Monis" 
+                fill 
+                className="object-cover"
+                priority
+              />
             </div>
-            <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-5 w-5 bg-emerald-500 border-[3px] border-bg-primary"></span>
-            </span>
+          </div>
+          {/* Status Indicator */}
+          <div className="absolute bottom-2 right-2 h-5 w-5 rounded-full border-[3px] border-bg-primary bg-emerald-500">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
           </div>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
-          <span className="text-text-primary">Hi, I&apos;m Monis</span>
-          <span className="text-text-primary"> — </span>
-          <span className="text-text-secondary">I build modern full-stack web applications.</span>
-        </h1>
-
-        {/* Tech paragraph with inline badges */}
-        <div className="space-y-1 mb-10 text-base sm:text-lg text-text-secondary leading-relaxed">
-          <p className="flex flex-wrap items-center gap-1.5">
-            <span>I work with</span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#3178C6]/10 border border-[#3178C6]/20 text-[#3178C6]">
-              <span className="text-xs font-bold">TS</span>
-              TypeScript
-            </span>
-            <span>,</span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#61DAFB]/10 border border-[#61DAFB]/20 text-[#61DAFB]">
-              <span className="text-xs">⚛</span>
-              React
-            </span>
-            <span>,</span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-white/5 border border-white/10 text-text-primary">
-              <span className="text-xs font-bold">N</span>
-              Next.js
-            </span>
-            <span>,</span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#339933]/10 border border-[#339933]/20 text-[#339933]">
-              <span className="text-xs">⬢</span>
-              Node.js
-            </span>
-            <span>, and</span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-medium bg-[#4169E1]/10 border border-[#4169E1]/20 text-[#4169E1]">
-              <span className="text-xs">🐘</span>
-              PostgreSQL
-            </span>
-            <span>, focusing on clean architecture, performance, and building systems that scale well in production.</span>
-          </p>
+        {/* Text Content */}
+        <div className="space-y-6 max-w-2xl">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary">
+            Hi, I&apos;m Monis <span className="text-text-secondary hidden sm:inline">—</span> <span className="block sm:inline text-text-secondary">a full-stack web developer.</span>
+          </h1>
+          
+          <div className="text-lg md:text-xl text-text-muted leading-relaxed">
+            <p className="inline leading-loose">
+              I build scalable web applications using 
+              <a 
+                href="https://www.typescriptlang.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-2.5 py-1 mx-1.5 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition-all align-middle no-underline"
+              >
+                <SiTypescript className="text-[#3178C6]" />
+                TypeScript
+              </a>
+              ,
+              <a 
+                href="https://nodejs.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-2.5 py-1 mx-1.5 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition-all align-middle no-underline"
+              >
+                <SiNodedotjs className="text-[#339933]" />
+                Node.js
+              </a>
+              ,
+              <a 
+                href="https://nextjs.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-2.5 py-1 mx-1.5 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition-all align-middle no-underline"
+              >
+                <SiNextdotjs className="text-white" />
+                Next.js
+              </a>
+              , and
+              <a 
+                href="https://www.postgresql.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-2.5 py-1 mx-1.5 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition-all align-middle no-underline"
+              >
+                <SiPostgresql className="text-[#4169E1]" />
+                PostgreSQL
+              </a>
+              , with a strong focus on <span className="text-text-primary font-semibold">backend architecture</span> and <span className="text-text-primary font-semibold">database design</span>. I care about <span className="text-text-primary font-semibold">system performance</span> and building software that actually holds up in production.
+            </p>
+          </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
-          <a
-            href="/resume"
-            className="inline-flex justify-center items-center gap-2 px-6 py-3 text-base font-medium rounded-full border border-border bg-bg-card text-text-primary hover:border-emerald-500/50 hover:bg-bg-card/80 transition-all duration-300"
-          >
-            <FileText size={18} />
-            Resume
-          </a>
+        {/* Actions */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
           <a
             href="#contact"
-            className="inline-flex justify-center items-center gap-2 px-6 py-3 text-base font-medium rounded-full bg-white text-black hover:bg-gray-200 shadow-lg shadow-white/10 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex h-10 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black shadow transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
-            <Send size={18} />
-            Get in touch
+            Let&apos;s Talk
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </a>
+          <a
+            href="/resume"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-border bg-bg-card px-8 text-sm font-medium text-text-primary shadow-sm transition-colors hover:bg-bg-secondary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          >
+            <FileText className="mr-2 h-4 w-4" />
+            View Experience
           </a>
         </div>
 
-        {/* Social icons */}
-        <div className="flex items-center gap-0.5 mb-12">
-          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="Twitter">
-            <Twitter size={20} />
-          </a>
-          <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="LinkedIn">
-            <Linkedin size={20} />
-          </a>
-          <a href="https://github.com/MonisMS" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="GitHub">
-            <Github size={20} />
-          </a>
-          <a href="mailto:monissms16@gmail.com" className="p-2.5 rounded-lg text-text-muted hover:text-text-primary transition-colors" aria-label="Email">
-            <Mail size={20} />
-          </a>
+        {/* Socials */}
+        <div className="flex items-center gap-6 text-text-muted mt-2">
+          <SocialLink href="https://github.com/MonisMS" icon={<Github size={22} />} label="GitHub" />
+          <SocialLink href="https://linkedin.com/in/" icon={<Linkedin size={22} />} label="LinkedIn" />
+          <SocialLink href="https://twitter.com/" icon={<Twitter size={22} />} label="X (Twitter)" />
+          <SocialLink href="https://instagram.com/" icon={<Instagram size={22} />} label="Instagram" />
+          <SocialLink href="https://medium.com/" icon={<SiMedium size={22} />} label="Medium" />
+          <SocialLink href="mailto:monissms16@gmail.com" icon={<Mail size={22} />} label="Email" />
         </div>
+
       </div>
     </section>
+  );
+}
+
+function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+  return (
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="hover:text-text-primary transition-colors hover:scale-110 transform duration-200"
+    >
+      {icon}
+    </a>
   );
 }
