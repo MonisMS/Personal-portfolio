@@ -8,6 +8,7 @@ interface Project {
   tech: string[];
   liveUrl?: string;
   githubUrl?: string;
+  isBuilding?: boolean;
 }
 
 const projects: Project[] = [
@@ -25,6 +26,7 @@ const projects: Project[] = [
       "A monorepo file organization tool with undo functionality, job queues, and Redis integration. Automates folder structure management with a clean dashboard UI.",
     tech: ["TypeScript", "Redis", "Docker", "Monorepo"],
     githubUrl: "https://github.com/MonisMS/folder-organizer",
+    isBuilding: true,
   },
   {
     title: "Tunes Generator",
@@ -53,9 +55,16 @@ function ProjectCard({ project }: { project: Project }) {
       )}
 
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent">
-          {project.title}
-        </h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent">
+            {project.title}
+          </h3>
+          {project.isBuilding && (
+            <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-500">
+              Building
+            </span>
+          )}
+        </div>
         {/* Icons must be above the main link */}
         <div className="relative z-20 flex gap-1">
           {project.githubUrl && (

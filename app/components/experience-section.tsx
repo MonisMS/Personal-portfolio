@@ -9,20 +9,21 @@ interface Experience {
 }
 
 const experiences: Experience[] = [
-  {
-    role: "CS Student",
-    company: "University",
-    period: "2024 - Present",
-    description:
-      "Pursuing Computer Science, diving deep into algorithms, system design, and software engineering fundamentals.",
-    current: true,
-  },
+  
   {
     role: "Full Stack Developer",
     company: "Personal Work",
     period: "2025 - Present",
     description:
       "Building web applications, experimenting with new technologies, and shipping side projects.",
+    current: true,
+  },
+  {
+    role: "CS Student",
+    company: "University",
+    period: "2024 - Present",
+    description:
+      "Pursuing Computer Science, diving deep into algorithms, system design, and software engineering fundamentals.",
     current: true,
   },
 ];
