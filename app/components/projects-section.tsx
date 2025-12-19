@@ -1,6 +1,18 @@
 "use client";
 
-import { Github, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { Github, ExternalLink, ArrowRight, Globe } from "lucide-react";
+import { 
+  SiTypescript, 
+  SiNextdotjs, 
+  SiOpenai, 
+  SiReact, 
+  SiTailwindcss, 
+  SiVite, 
+  SiRedis, 
+  SiDocker,
+  SiPostgresql
+} from "react-icons/si";
 
 interface Project {
   title: string;
@@ -9,6 +21,7 @@ interface Project {
   liveUrl?: string;
   githubUrl?: string;
   isBuilding?: boolean;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -16,17 +29,19 @@ const projects: Project[] = [
     title: "AskAI",
     description:
       "An AI-powered platform with real-time OpenAI integration, meeting processing, and summarization features. Built with Next.js, Drizzle ORM, and Inngest for background jobs.",
-    tech: ["Next.js", "TypeScript", "OpenAI", "Drizzle", "Inngest"],
+    tech: ["Next.js", "TypeScript", "OpenAI", "PostgreSQL"],
     liveUrl: "https://askai-nu.vercel.app/",
     githubUrl: "https://github.com/MonisMS/askai",
+    image: "/projects/askai.png"
   },
   {
     title: "Folder Organizer",
     description:
       "A monorepo file organization tool with undo functionality, job queues, and Redis integration. Automates folder structure management with a clean dashboard UI.",
-    tech: ["TypeScript", "Redis", "Docker", "Monorepo"],
+    tech: ["TypeScript", "Redis", "Docker"],
     githubUrl: "https://github.com/MonisMS/folder-organizer",
     isBuilding: true,
+    image: "/folder-mage.png"
   },
   {
     title: "Tunes Generator",
@@ -35,61 +50,121 @@ const projects: Project[] = [
     tech: ["React", "TypeScript", "Vite", "Tailwind"],
     liveUrl: "https://tunes-generator.vercel.app/",
     githubUrl: "https://github.com/MonisMS/Tunes-generator-",
+    image: "/tunes-generator-image (2).png"
   },
 ];
+
+const TechIcon = ({ name }: { name: string }) => {
+  const iconClass = "w-5 h-5 text-text-muted hover:text-text-primary transition-colors";
+  
+  switch (name) {
+    case "Next.js": return <SiNextdotjs className={iconClass} />;
+    case "TypeScript": return <SiTypescript className={iconClass} />;
+    case "OpenAI": return <SiOpenai className={iconClass} />;
+    case "React": return <SiReact className={iconClass} />;
+    case "Tailwind": return <SiTailwindcss className={iconClass} />;
+    case "Vite": return <SiVite className={iconClass} />;
+    case "Redis": return <SiRedis className={iconClass} />;
+    case "Docker": return <SiDocker className={iconClass} />;
+    case "PostgreSQL": return <SiPostgresql className={iconClass} />;
+    default: return null;
+  }
+};
 
 function ProjectCard({ project }: { project: Project }) {
   const mainUrl = project.liveUrl || project.githubUrl;
 
   return (
-    <div className="group relative rounded-xl border border-border bg-bg-card p-5 hover:border-accent/50 transition-colors">
-      {/* Main Link covering the card */}
-      {mainUrl && (
-        <a 
-          href={mainUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="absolute inset-0 z-10"
-          aria-label={`View ${project.title}`}
-        />
-      )}
-
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent">
-            {project.title}
-          </h3>
-          {project.isBuilding && (
-            <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-500">
-              Building
-            </span>
-          )}
-        </div>
-        {/* Icons must be above the main link */}
-        <div className="relative z-20 flex gap-1">
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-text-muted hover:text-accent" aria-label="GitHub">
-              <Github size={18} />
-            </a>
-          )}
-          {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-text-muted hover:text-accent" aria-label="Live">
-              <ExternalLink size={18} />
-            </a>
-          )}
-        </div>
+    <div className="group flex flex-col rounded-2xl border border-border bg-bg-card overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5">
+      {/* Image Area */}
+      <div className="relative aspect-video w-full overflow-hidden bg-bg-secondary group-hover:scale-[1.02] transition-transform duration-500">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900" />
+        )}
+        
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent opacity-80" />
       </div>
 
-      <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-        {project.description}
-      </p>
+      {/* Content Area */}
+      <div className="flex flex-col flex-1 p-6 -mt-6 relative z-10">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-3 mt-3">
+          <h3 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors">
+            {project.title}
+          </h3>
+          <div className="flex gap-3">
+            {project.liveUrl && (
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-text-muted hover:text-accent transition-colors"
+                aria-label="Live Demo"
+              >
+                <Globe size={18} />
+              </a>
+            )}
+            {project.githubUrl && (
+              <a 
+                href={project.githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-text-muted hover:text-accent transition-colors"
+                aria-label="GitHub Repo"
+              >
+                <Github size={18} />
+              </a>
+            )}
+          </div>
+        </div>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {project.tech.map((t) => (
-          <span key={t} className="rounded-full bg-bg-hover px-3 py-1 text-xs text-text-muted">
-            {t}
-          </span>
-        ))}
+        {/* Description */}
+        <p className="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3">
+          {project.description}
+        </p>
+
+        {/* Tech Stack & Footer */}
+        <div className="mt-auto space-y-4">
+          {/* Tech Icons */}
+          <div className="flex items-center gap-3">
+            {project.tech.map((t) => (
+              <div key={t} title={t}>
+                <TechIcon name={t} />
+              </div>
+            ))}
+          </div>
+
+          {/* Status Bar */}
+          <div className="flex items-center justify-between pt-4 border-t border-border/50">
+            <div className={`flex items-center gap-2 text-xs font-medium ${project.isBuilding ? 'text-amber-500' : 'text-emerald-500'}`}>
+              <span className="relative flex h-2 w-2">
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${project.isBuilding ? 'bg-amber-400' : 'bg-emerald-400'}`}></span>
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${project.isBuilding ? 'bg-amber-500' : 'bg-emerald-500'}`}></span>
+              </span>
+              {project.isBuilding ? "In Development" : "All Systems Operational"}
+            </div>
+            
+            {mainUrl && (
+              <a 
+                href={mainUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs font-medium text-text-muted hover:text-accent transition-colors group/link"
+              >
+                View Details 
+                <ArrowRight size={12} className="transition-transform group-hover/link:translate-x-0.5" />
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
