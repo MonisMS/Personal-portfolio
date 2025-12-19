@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Command } from "lucide-react";
 import { CommandMenu } from "./command-menu";
+import { motion } from "framer-motion";
 
 const navItems = [
   { label: "Home", id: "home" },
@@ -64,20 +65,20 @@ export function Navbar() {
                     key={item.id}
                     onClick={() => handleClick(item.id)}
                     className={cn(
-                      "relative px-4 py-1.5 text-sm cursor-pointer rounded-full transition-all",
+                      "relative px-4 py-1.5 text-sm cursor-pointer rounded-full transition-colors",
                       isActive 
-                        ? "text-white font-medium bg-white/[0.1]" 
+                        ? "text-white font-medium" 
                         : "text-white/50 hover:text-white/80"
                     )}
                   >
-                    {item.label}
-                    {/* Active glow indicator */}
                     {isActive && (
-                      <>
-                        <span className="absolute -top-[5px] left-1/2 -translate-x-1/2 h-[2px] w-6 rounded-full bg-accent" />
-                        <span className="absolute -top-[8px] left-1/2 -translate-x-1/2 h-4 w-8 rounded-full bg-accent/30 blur-md" />
-                      </>
+                      <motion.div
+                        layoutId="active-pill"
+                        className="absolute inset-0 rounded-full bg-white/[0.1]"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
                     )}
+                    <span className="relative z-10">{item.label}</span>
                   </button>
                 );
               })}

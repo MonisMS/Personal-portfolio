@@ -18,6 +18,7 @@ import {
   SiGraphql,
   SiDrizzle,
   SiBun,
+  SiFramer
 } from "react-icons/si";
 import { RiStackLine } from "react-icons/ri"; // For TanStack
 import { TbPolaroid } from "react-icons/tb"; // Placeholder for Polar.sh if not available, or use text
@@ -46,6 +47,7 @@ const skills: Skill[] = [
   { name: "GitHub", icon: <SiGithub /> },
   { name: "Docker", icon: <SiDocker /> },
   { name: "Vercel", icon: <SiVercel /> },
+  { name: "Framer Motion", icon: <SiFramer /> },
   { name: "Polar", icon: <TbPolaroid /> },
 ];
 
