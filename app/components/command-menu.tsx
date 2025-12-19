@@ -177,6 +177,7 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
               <path d="m21 21-4.3-4.3"/>
             </svg>
             <Command.Input 
+              autoFocus
               placeholder="Type a command or search..."
               className="flex-1 bg-transparent py-4 text-sm text-text-primary placeholder:text-text-muted outline-none"
             />

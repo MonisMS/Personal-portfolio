@@ -6,7 +6,7 @@ import { SiTypescript, SiNodedotjs, SiNextdotjs, SiPostgresql, SiMedium } from "
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-10 overflow-hidden">
+    <section id="home" className="relative min-h-[80vh] flex items-center justify-center pt-20 pb-12 overflow-hidden">
       <div className="grain" />
       
       <div className="mx-auto max-w-4xl px-6 flex flex-col items-center text-center gap-8">
@@ -14,7 +14,7 @@ export function HeroSection() {
         {/* Avatar */}
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
-            <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border border-border bg-bg-card p-1 shadow-2xl shadow-emerald-500/10">
+            <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border border-border bg-bg-card p-1 shadow-2xl shadow-accent/10">
               <div className="relative h-full w-full overflow-hidden rounded-full">
                 <Image 
                   src="/profile-pic-1.jpeg" 
@@ -38,7 +38,7 @@ export function HeroSection() {
         {/* Text Content */}
         <div className="space-y-6 max-w-2xl">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary">
-            Hi, I&apos;m Monis <span className="text-text-secondary hidden sm:inline">—</span> <span className="block sm:inline text-text-secondary">a full-stack web developer.</span>
+            Hi, I&apos;m <span className="text-accent">Monis</span> <span className="text-text-secondary hidden sm:inline">—</span> <span className="block sm:inline text-text-secondary">a full-stack web developer.</span>
           </h1>
           
           <div className="text-lg md:text-xl text-text-muted leading-relaxed">
@@ -94,14 +94,14 @@ export function HeroSection() {
             href="https://cal.com/monis-sarwar-vvbnfn"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black shadow transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            className="inline-flex h-10 items-center justify-center rounded-full bg-accent px-8 text-sm font-medium text-white shadow transition-transform hover:scale-105 hover:bg-accent-dark focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
             Book a call
             <ArrowRight className="ml-2 h-4 w-4" />
           </a>
           <a
             href="/resume"
-            className="inline-flex h-10 items-center justify-center rounded-full border border-border bg-bg-card px-8 text-sm font-medium text-text-primary shadow-sm transition-colors hover:bg-bg-secondary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-border bg-bg-card px-8 text-sm font-medium text-text-primary shadow-sm transition-colors hover:bg-bg-secondary hover:border-accent/50 hover:text-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
             <FileText className="mr-2 h-4 w-4" />
             Resume
@@ -129,7 +129,7 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
       target="_blank" 
       rel="noopener noreferrer"
       aria-label={label}
-      className="hover:text-text-primary transition-colors hover:scale-110 transform duration-200"
+      className="hover:text-accent transition-colors hover:scale-110 transform duration-200"
     >
       {icon}
     </a>

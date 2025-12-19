@@ -7,8 +7,9 @@ import { CommandMenu } from "./command-menu";
 
 const navItems = [
   { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Work", id: "projects" },
+  { label: "Projects", id: "projects" },
+  { label: "Skills", id: "skills" },
+  { label: "Experience", id: "experience" },
   { label: "Blog", id: "blog" },
 ];
 

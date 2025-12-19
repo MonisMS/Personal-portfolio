@@ -97,11 +97,19 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="bg-bg-primary px-4 py-20">
+    <section id="projects" className="relative bg-bg-primary px-4 pt-16 pb-20">
+      {/* Soft Divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
+
       <div className="mx-auto max-w-4xl">
-        <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-text-primary">Projects</h2>
-          <p className="mt-2 text-text-secondary">Some things I&apos;ve built.</p>
+        <div className="mb-12 flex flex-col gap-3">
+          
+          <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+            Projects
+          </h2>
+          <p className="text-text-secondary max-w-lg">
+            Some things I&apos;ve built.
+          </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
