@@ -86,11 +86,11 @@ function ProjectCard({ project }: { project: Project }) {
             className="object-cover"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900" />
+          <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-900" />
         )}
         
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-linear-to-t from-bg-card via-transparent to-transparent opacity-80" />
       </div>
 
       {/* Content Area */}
