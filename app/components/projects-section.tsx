@@ -28,25 +28,25 @@ const projects: Project[] = [
   {
     title: "AskAI",
     description:
-      "An AI-powered platform with real-time OpenAI integration, meeting processing, and summarization features. Built with Next.js, Drizzle ORM, and Inngest for background jobs.",
+      "Your personal AI assistant that answers questions, processes meetings, and summarizes content in real-time. Upload recordings or documents, and let AI extract key insights and action items for you.",
     tech: ["Next.js", "TypeScript", "OpenAI", "PostgreSQL"],
     liveUrl: "https://askai-nu.vercel.app/",
     githubUrl: "https://github.com/MonisMS/askai",
     image: "/ask-ai.png"
   },
   {
-    title: "Folder Organizer",
+    title: "FolderMage",
     description:
-      "A monorepo file organization tool with undo functionality, job queues, and Redis integration. Automates folder structure management with a clean dashboard UI.",
+      "A desktop app that transforms your messy Downloads and cluttered folders into organized bliss. Features smart auto-sorting, undo functionality, background job queues, and a clean dashboard to keep everything in order.",
     tech: ["TypeScript", "Redis", "Docker"],
     githubUrl: "https://github.com/MonisMS/folder-organizer",
     isBuilding: true,
     image: "/folder-mage.png"
   },
   {
-    title: "Tunes Generator",
+    title: "Beats Generator",
     description:
-      "A music player application with audio playback controls including pause, resume, and volume adjustment. Features a vinyl-inspired UI design.",
+      "An AI-powered music generator that creates unique tunes using the Gemini API. Just describe the vibe you want, and it generates beats for you. Features a vinyl-inspired UI with full playback controls.",
     tech: ["React", "TypeScript", "Vite", "Tailwind"],
     liveUrl: "https://tunes-generator.vercel.app/",
     githubUrl: "https://github.com/MonisMS/Tunes-generator-",
