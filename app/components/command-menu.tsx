@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import { 
   Home, 
@@ -21,92 +22,124 @@ interface CommandMenuProps {
   setOpen: (open: boolean) => void;
 }
 
-const navigationItems = [
-  { 
-    icon: <Home size={18} />, 
-    label: "Go to Home", 
-    description: "Navigate to the homepage",
-    shortcut: "H",
-    action: () => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })
-  },
-  { 
-    icon: <Briefcase size={18} />, 
-    label: "Go to Background", 
-    description: "View background and history",
-    shortcut: "W",
-    action: () => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-  },
-  { 
-    icon: <FileText size={18} />, 
-    label: "Go to Writing", 
-    description: "Browse all articles and writing",
-    shortcut: "B",
-    action: () => document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" })
-  },
-  { 
-    icon: <FolderOpen size={18} />, 
-    label: "Go to Projects", 
-    description: "View all projects and portfolio work",
-    shortcut: "P",
-    action: () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
-  },
-  { 
-    icon: <Download size={18} />, 
-    label: "Go to Resume", 
-    description: "View and download resume",
-    shortcut: "R",
-    action: () => window.open("/resume.pdf", "_blank")
-  },
-  { 
-    icon: <Wrench size={18} />, 
-    label: "Go to Skills", 
-    description: "View tech stack and skills",
-    shortcut: "S",
-    action: () => document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" })
-  },
-  { 
-    icon: <Mail size={18} />, 
-    label: "Go to Contact", 
-    description: "Get in touch",
-    shortcut: "C",
-    action: () => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-  },
-];
-
-const socialItems = [
-  {
-    icon: <Github size={18} />,
-    label: "GitHub",
-    description: "View GitHub profile",
-    shortcut: "G",
-    action: () => window.open("https://github.com/MonisMS", "_blank")
-  },
-  {
-    icon: <Linkedin size={18} />,
-    label: "LinkedIn",
-    description: "Connect on LinkedIn",
-    shortcut: "L",
-    action: () => window.open("https://www.linkedin.com/in/syed-monis-sarwar-sms47/", "_blank")
-  },
-  {
-    icon: <Twitter size={18} />,
-    label: "Twitter",
-    description: "Follow on Twitter",
-    shortcut: "T",
-    action: () => window.open("https://x.com/SMSarwar47", "_blank")
-  },
-  {
-    icon: <Mail size={18} />,
-    label: "Send Email",
-    description: "monissms16@gmail.com",
-    shortcut: "E",
-    action: () => window.open("mailto:monissms16@gmail.com")
-  },
-];
-
-const allItems = [...navigationItems, ...socialItems];
-
 export function CommandMenu({ open, setOpen }: CommandMenuProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const navigationItems = [
+    { 
+      icon: <Home size={18} />, 
+      label: "Go to Home", 
+      description: "Navigate to the homepage",
+      shortcut: "H",
+      action: () => {
+        if (pathname === "/") {
+          document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push("/#home");
+        }
+      }
+    },
+    { 
+      icon: <Briefcase size={18} />, 
+      label: "Go to Background", 
+      description: "View background and history",
+      shortcut: "W",
+      action: () => {
+        if (pathname === "/") {
+          document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push("/#about");
+        }
+      }
+    },
+    { 
+      icon: <FileText size={18} />, 
+      label: "Go to Writing", 
+      description: "Browse all articles and writing",
+      shortcut: "B",
+      action: () => router.push("/blog")
+    },
+    { 
+      icon: <FolderOpen size={18} />, 
+      label: "Go to Projects", 
+      description: "View all projects and portfolio work",
+      shortcut: "P",
+      action: () => {
+        if (pathname === "/") {
+          document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push("/#projects");
+        }
+      }
+    },
+    { 
+      icon: <Download size={18} />, 
+      label: "Go to Resume", 
+      description: "View and download resume",
+      shortcut: "R",
+      action: () => window.open("/resume.pdf", "_blank")
+    },
+    { 
+      icon: <Wrench size={18} />, 
+      label: "Go to Skills", 
+      description: "View tech stack and skills",
+      shortcut: "S",
+      action: () => {
+        if (pathname === "/") {
+          document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push("/#skills");
+        }
+      }
+    },
+    { 
+      icon: <Mail size={18} />, 
+      label: "Go to Contact", 
+      description: "Get in touch",
+      shortcut: "C",
+      action: () => {
+        if (pathname === "/") {
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push("/#contact");
+        }
+      }
+    },
+  ];
+
+  const socialItems = [
+    {
+      icon: <Github size={18} />,
+      label: "GitHub",
+      description: "View GitHub profile",
+      shortcut: "G",
+      action: () => window.open("https://github.com/MonisMS", "_blank")
+    },
+    {
+      icon: <Linkedin size={18} />,
+      label: "LinkedIn",
+      description: "Connect on LinkedIn",
+      shortcut: "L",
+      action: () => window.open("https://www.linkedin.com/in/syed-monis-sarwar-sms47/", "_blank")
+    },
+    {
+      icon: <Twitter size={18} />,
+      label: "Twitter",
+      description: "Follow on Twitter",
+      shortcut: "T",
+      action: () => window.open("https://x.com/SMSarwar47", "_blank")
+    },
+    {
+      icon: <Mail size={18} />,
+      label: "Send Email",
+      description: "monissms16@gmail.com",
+      shortcut: "E",
+      action: () => window.open("mailto:monissms16@gmail.com")
+    },
+  ];
+
+  const allItems = [...navigationItems, ...socialItems];
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       // Open/close with Ctrl+K

@@ -1,23 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Command } from "lucide-react";
 import { CommandMenu } from "./command-menu";
 import { motion } from "framer-motion";
 
 const navItems = [
-  { label: "Home", id: "home" },
-  { label: "Projects", id: "projects" },
-  { label: "Skills", id: "skills" },
-  { label: "Experience", id: "experience" },
-  { label: "Blog", id: "blog" },
+  { label: "Home", id: "home", href: "/#home" },
+  { label: "Projects", id: "projects", href: "/#projects" },
+  { label: "Skills", id: "skills", href: "/#skills" },
+  { label: "Experience", id: "experience", href: "/#experience" },
+  { label: "Blog", id: "blog", href: "/blog" },
 ];
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,9 +31,23 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClick = (id: string) => {
-    setActiveSection(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleClick = (id: string, href: string) => {
+    const isHomePage = pathname === "/";
+    const isSectionLink = href.startsWith("/#");
+
+    if (isSectionLink) {
+      if (isHomePage) {
+        // On home page, just scroll to section
+        setActiveSection(id);
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // On other page, navigate to home then scroll
+        router.push(href);
+      }
+    } else {
+      // External route like /blog
+      router.push(href);
+    }
   };
 
   return (
@@ -59,11 +77,14 @@ export function Navbar() {
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">
             <div className="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl px-1.5 py-1">
               {navItems.map((item) => {
-                const isActive = activeSection === item.id;
+                const isActive = pathname === "/" 
+                  ? activeSection === item.id 
+                  : pathname === item.href || pathname?.startsWith(item.href + "/");
+                
                 return (
                   <button
                     key={item.id}
-                    onClick={() => handleClick(item.id)}
+                    onClick={() => handleClick(item.id, item.href)}
                     className={cn(
                       "relative px-4 py-1.5 text-sm cursor-pointer rounded-full transition-colors",
                       isActive 
@@ -85,7 +106,7 @@ export function Navbar() {
               
               {/* CTA */}
               <button
-                onClick={() => handleClick("contact")}
+                onClick={() => handleClick("contact", "/#contact")}
                 className="relative ml-1 px-4 py-1.5 text-sm font-medium rounded-full bg-white/[0.12] text-white hover:bg-white/[0.18] cursor-pointer transition-all"
               >
                 Let&apos;s Talk
