@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "highlight.js/styles/github-dark.css";
 
 @theme {
   --color-bg-primary: #0A0A0A;
@@ -58,5 +59,295 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* Comprehensive prose styles for blog content - matching portfolio design system */
+.prose-invert {
+  color: var(--color-text-primary);
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* Typography Scale - Headings - Louder hierarchy */
+.prose-invert h1 {
+  color: var(--color-text-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose-invert h2 {
+  color: var(--color-text-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-invert h3 {
+  color: var(--color-text-primary);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-invert h4 {
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-invert h5 {
+  color: var(--color-text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-invert h6 {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs - Better line height */
+.prose-invert p {
+  color: var(--color-text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+
+.prose-invert p:first-child {
+  margin-top: 0;
+}
+
+.prose-invert p:last-child {
+  margin-bottom: 0;
+}
+
+/* Strong/Bold */
+.prose-invert strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* Emphasis */
+.prose-invert em {
+  color: var(--color-text-primary);
+  font-style: italic;
+}
+
+/* Links - Red accent committed */
+.prose-invert a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
+.prose-invert a:hover {
+  color: var(--color-accent-dark);
+  border-bottom-color: var(--color-accent-dark);
+  background-color: var(--color-accent)/10;
+}
+
+/* Blockquotes */
+.prose-invert blockquote {
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  font-style: italic;
+}
+
+.prose-invert blockquote p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.prose-invert blockquote p:first-child {
+  margin-top: 0;
+}
+
+.prose-invert blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lists */
+.prose-invert ul,
+.prose-invert ol {
+  color: var(--color-text-primary);
+  margin: 1.25rem 0;
+  padding-left: 1.75rem;
+}
+
+.prose-invert ul {
+  list-style-type: disc;
+}
+
+.prose-invert ol {
+  list-style-type: decimal;
+}
+
+.prose-invert li {
+  color: var(--color-text-primary);
+  margin: 0.5rem 0;
+  line-height: 1.75;
+}
+
+.prose-invert li::marker {
+  color: var(--color-text-muted);
+}
+
+.prose-invert ul ul,
+.prose-invert ol ol,
+.prose-invert ul ol,
+.prose-invert ol ul {
+  margin: 0.5rem 0;
+}
+
+/* Inline Code */
+.prose-invert code {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+}
+
+/* Code Blocks */
+.prose-invert pre {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose-invert pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+  font-weight: 400;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose-invert pre code.hljs {
+  background-color: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* Horizontal Rules */
+.prose-invert hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0;
+}
+
+/* Images */
+.prose-invert img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  border: 1px solid var(--color-border);
+}
+
+/* Tables */
+.prose-invert table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.prose-invert thead {
+  background-color: var(--color-bg-card);
+}
+
+.prose-invert th {
+  background-color: var(--color-bg-card);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose-invert td {
+  color: var(--color-text-primary);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose-invert tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose-invert tbody tr:hover {
+  background-color: var(--color-bg-hover);
+}
+
+/* Highlight.js custom styles for dark theme */
+.hljs {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.prose-invert pre {
+  background-color: var(--color-bg-secondary) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0.5rem !important;
+  padding: 1.25rem !important;
+}
+
+.prose-invert pre code.hljs {
+  background-color: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  color: inherit !important;
+}
+
+/* Ensure proper spacing for nested elements */
+.prose-invert > *:first-child {
+  margin-top: 0;
+}
+
+.prose-invert > *:last-child {
+  margin-bottom: 0;
 }
 
