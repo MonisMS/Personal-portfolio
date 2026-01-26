@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { Github, ArrowRight, Globe } from "lucide-react";
 import { 
-  SiTypescript, 
   SiNextdotjs, 
+  SiTypescript, 
   SiOpenai, 
   SiReact, 
   SiTailwindcss, 
@@ -13,46 +13,8 @@ import {
   SiDocker,
   SiPostgresql
 } from "react-icons/si";
-
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  isBuilding?: boolean;
-  image?: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "AskAI",
-    description:
-      "Your personal AI assistant that answers questions, processes meetings, and summarizes content in real-time. Upload recordings or documents, and let AI extract key insights and action items for you.",
-    tech: ["Next.js", "TypeScript", "OpenAI", "PostgreSQL"],
-    liveUrl: "https://askai-nu.vercel.app/",
-    githubUrl: "https://github.com/MonisMS/askai",
-    image: "/ask-ai.png"
-  },
-  {
-    title: "FolderMage",
-    description:
-      "A desktop app that transforms your messy Downloads and cluttered folders into organized bliss. Features smart auto-sorting, undo functionality, background job queues, and a clean dashboard to keep everything in order.",
-    tech: ["TypeScript", "Redis", "Docker"],
-    githubUrl: "https://github.com/MonisMS/folder-organizer",
-    isBuilding: true,
-    image: "/folder-mage.png"
-  },
-  {
-    title: "Beats Generator",
-    description:
-      "An AI-powered music generator that creates unique tunes using the Gemini API. Just describe the vibe you want, and it generates beats for you. Features a vinyl-inspired UI with full playback controls.",
-    tech: ["React", "TypeScript", "Vite", "Tailwind"],
-    liveUrl: "https://tunes-generator.vercel.app/",
-    githubUrl: "https://github.com/MonisMS/Tunes-generator-",
-    image: "/tunes-generator-image (2).png"
-  },
-];
+import { PROJECTS_DATA } from "@/lib/data";
+import { Project } from "@/lib/types";
 
 const TechIcon = ({ name }: { name: string }) => {
   const iconClass = "w-5 h-5 text-text-muted hover:text-text-primary transition-colors";
@@ -188,7 +150,7 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {projects.map((project) => (
+          {PROJECTS_DATA.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
 

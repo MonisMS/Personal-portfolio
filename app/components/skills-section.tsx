@@ -1,55 +1,6 @@
 "use client";
 
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiPostgresql,
-  SiGit,
-  SiGithub,
-  SiDocker,
-  SiVercel,
-  SiPrisma,
-  SiGraphql,
-  SiDrizzle,
-  SiBun,
-  SiFramer
-} from "react-icons/si";
-import { RiStackLine } from "react-icons/ri"; // For TanStack
-import { TbPolaroid } from "react-icons/tb"; // Placeholder for Polar.sh if not available, or use text
-
-interface Skill {
-  name: string;
-  icon: React.ReactNode;
-}
-
-const skills: Skill[] = [
-  { name: "React", icon: <SiReact /> },
-  { name: "Next.js", icon: <SiNextdotjs /> },
-  { name: "TypeScript", icon: <SiTypescript /> },
-  { name: "JavaScript", icon: <SiJavascript /> },
-  { name: "Tailwind", icon: <SiTailwindcss /> },
-  { name: "Node.js", icon: <SiNodedotjs /> },
-  { name: "Bun", icon: <SiBun /> },
-  { name: "Express", icon: <SiExpress /> },
-  { name: "GraphQL", icon: <SiGraphql /> },
-  { name: "MongoDB", icon: <SiMongodb /> },
-  { name: "PostgreSQL", icon: <SiPostgresql /> },
-  { name: "Prisma", icon: <SiPrisma /> },
-  { name: "Drizzle", icon: <SiDrizzle /> },
-  { name: "TanStack", icon: <RiStackLine /> },
-  { name: "Git", icon: <SiGit /> },
-  { name: "GitHub", icon: <SiGithub /> },
-  { name: "Docker", icon: <SiDocker /> },
-  { name: "Vercel", icon: <SiVercel /> },
-  { name: "Framer Motion", icon: <SiFramer /> },
-  { name: "Polar", icon: <TbPolaroid /> },
-];
+import { SKILLS_DATA } from "@/lib/data";
 
 export function SkillsSection() {
   return (
@@ -61,7 +12,7 @@ export function SkillsSection() {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          {skills.map((skill) => (
+          {SKILLS_DATA.map((skill) => (
             <div
               key={skill.name}
               className="group flex items-center gap-2 rounded-full border border-border bg-bg-card px-4 py-2 transition-all duration-300 hover:border-accent/50 hover:bg-bg-hover hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5"

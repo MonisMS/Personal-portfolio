@@ -1,32 +1,6 @@
 "use client";
 
-interface Experience {
-  role: string;
-  company: string;
-  period: string;
-  description: string;
-  current?: boolean;
-}
-
-const experiences: Experience[] = [
-  
-  {
-    role: "Full Stack Developer",
-    company: "Personal Work",
-    period: "2025 - Present",
-    description:
-      "Building web applications, experimenting with new technologies, and shipping side projects.",
-    current: true,
-  },
-  {
-    role: "CS Student",
-    company: "University",
-    period: "2024 - Present",
-    description:
-      "Pursuing Computer Science, diving deep into algorithms, system design, and software engineering fundamentals.",
-    current: true,
-  },
-];
+import { EXPERIENCE_DATA } from "@/lib/data";
 
 export function ExperienceSection() {
   return (
@@ -38,7 +12,7 @@ export function ExperienceSection() {
         </div>
 
         <div className="relative space-y-4 before:absolute before:left-[7px] before:top-3 before:h-[calc(100%-24px)] before:w-px before:bg-border">
-          {experiences.map((exp, index) => (
+          {EXPERIENCE_DATA.map((exp, index) => (
             <div key={index} className="relative pl-8">
               <div className={`absolute left-0 top-3 h-3.5 w-3.5 rounded-full border-2 ${exp.current ? "border-accent bg-accent/20" : "border-border bg-bg-primary"}`} />
               

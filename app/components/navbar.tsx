@@ -7,14 +7,7 @@ import { cn } from "@/lib/utils";
 import { Command } from "lucide-react";
 import { CommandMenu } from "./command-menu";
 import { motion } from "framer-motion";
-
-const navItems = [
-  { label: "Home", id: "home", href: "/#home" },
-  { label: "Projects", id: "projects", href: "/#projects" },
-  { label: "Skills", id: "skills", href: "/#skills" },
-  { label: "Background", id: "about", href: "/#about" },
-  { label: "Blog", id: "blog", href: "/blog" },
-];
+import { NAV_ITEMS } from "@/lib/data";
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
@@ -34,8 +27,6 @@ export function Navbar() {
     // If we are on the home page and clicking a hash link, scroll smoothly
     if (pathname === "/" && href.startsWith("/#")) {
       e.preventDefault();
-      // Extract the id from href if strictly needed, or use the passed id
-      // The passed id is usually strictly the section id (e.g. "home", "projects")
       
       setActiveSection(id);
       const targetId = href.replace("/#", "");
@@ -81,7 +72,7 @@ export function Navbar() {
           {/* Center: Nav Pill - Hidden on mobile */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">
             <div className="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl px-1.5 py-1">
-              {navItems.map((item) => {
+              {NAV_ITEMS.map((item) => {
                 const isActive = pathname === "/" 
                   ? activeSection === item.id 
                   : pathname === item.href || pathname?.startsWith(item.href + "/");
