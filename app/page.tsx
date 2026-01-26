@@ -9,7 +9,6 @@ import { ContactSection } from "./components/contact-section";
 export default function HomePage() {
   return (
     <>
-      <Navbar />
       <HeroSection />
       <ProjectsSection />
       <SkillsSection />

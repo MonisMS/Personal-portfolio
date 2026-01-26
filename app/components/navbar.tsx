@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Command } from "lucide-react";
@@ -12,7 +12,7 @@ const navItems = [
   { label: "Home", id: "home", href: "/#home" },
   { label: "Projects", id: "projects", href: "/#projects" },
   { label: "Skills", id: "skills", href: "/#skills" },
-  { label: "Experience", id: "experience", href: "/#experience" },
+  { label: "Background", id: "about", href: "/#about" },
   { label: "Blog", id: "blog", href: "/blog" },
 ];
 
@@ -21,7 +21,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,22 +30,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClick = (id: string, href: string) => {
-    const isHomePage = pathname === "/";
-    const isSectionLink = href.startsWith("/#");
-
-    if (isSectionLink) {
-      if (isHomePage) {
-        // On home page, just scroll to section
-        setActiveSection(id);
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        // On other page, navigate to home then scroll
-        router.push(href);
+  const handleLinkClick = (e: React.MouseEvent, id: string, href: string) => {
+    // If we are on the home page and clicking a hash link, scroll smoothly
+    if (pathname === "/" && href.startsWith("/#")) {
+      e.preventDefault();
+      // Extract the id from href if strictly needed, or use the passed id
+      // The passed id is usually strictly the section id (e.g. "home", "projects")
+      
+      setActiveSection(id);
+      const targetId = href.replace("/#", "");
+      const element = document.getElementById(targetId);
+      
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", href);
+      } else if (targetId === "home" || href === "/") {
+         window.scrollTo({ top: 0, behavior: "smooth" });
+         window.history.pushState(null, "", "/");
       }
-    } else {
-      // External route like /blog
-      router.push(href);
     }
   };
 
@@ -59,9 +60,13 @@ export function Navbar() {
         <div className="relative flex items-center justify-center md:justify-between">
           
           {/* Logo - Desktop */}
-          <a href="#home" className="hidden md:block text-lg font-semibold text-text-primary tracking-tight">
+          <Link 
+            href="/" 
+            onClick={(e) => handleLinkClick(e, "home", "/#home")}
+            className="hidden md:block text-lg font-semibold text-text-primary tracking-tight"
+          >
             MS
-          </a>
+          </Link>
 
           {/* Mobile: Logo pill - Opens command menu */}
           <button 
@@ -82,9 +87,10 @@ export function Navbar() {
                   : pathname === item.href || pathname?.startsWith(item.href + "/");
                 
                 return (
-                  <button
+                  <Link
                     key={item.id}
-                    onClick={() => handleClick(item.id, item.href)}
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(e, item.id, item.href)}
                     className={cn(
                       "relative px-4 py-1.5 text-sm cursor-pointer rounded-full transition-colors",
                       isActive 
@@ -100,17 +106,18 @@ export function Navbar() {
                       />
                     )}
                     <span className="relative z-10">{item.label}</span>
-                  </button>
+                  </Link>
                 );
               })}
               
               {/* CTA */}
-              <button
-                onClick={() => handleClick("contact", "/#contact")}
+              <Link
+                href="/#contact"
+                onClick={(e) => handleLinkClick(e, "contact", "/#contact")}
                 className="relative ml-1 px-4 py-1.5 text-sm font-medium rounded-full bg-white/[0.12] text-white hover:bg-white/[0.18] cursor-pointer transition-all"
               >
                 Let&apos;s Talk
-              </button>
+              </Link>
             </div>
           </div>
 

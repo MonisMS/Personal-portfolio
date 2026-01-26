@@ -31,8 +31,13 @@ export interface BlogPostMetadata {
 
 // Get post metadata only (without MDX processing)
 export function getPostMetadata(slug: string): BlogPostMetadata | null {
+  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
 
@@ -74,8 +79,13 @@ export function getAllPosts(): BlogPostMetadata[] {
 
 // Get a single blog post by slug
 export function getPostBySlug(slug: string): BlogPost | null {
+  const fullPath = path.join(postsDirectory, `${slug}.md`);
+
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
 
