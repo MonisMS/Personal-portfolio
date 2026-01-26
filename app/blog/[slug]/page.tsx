@@ -40,6 +40,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
+import { ReadingProgress } from "../../components/reading-progress";
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -50,6 +52,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main className="bg-bg-primary">
+      <ReadingProgress />
       <article className="px-4 pt-24 pb-20 md:px-12 lg:px-20">
         <div className="mx-auto max-w-3xl">
           {/* Back link */}
