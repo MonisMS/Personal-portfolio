@@ -69,7 +69,7 @@ export function HeroSection() {
                 href="https://www.typescriptlang.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-500 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
               >
                 <SiTypescript className="text-[#3178C6]" />
                 TypeScript
@@ -79,7 +79,7 @@ export function HeroSection() {
                 href="https://nodejs.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-500 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
               >
                 <SiNodedotjs className="text-[#339933]" />
                 Node.js
@@ -89,7 +89,7 @@ export function HeroSection() {
                 href="https://nextjs.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-500 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
               >
                 <SiNextdotjs className="text-white" />
                 Next.js
@@ -99,7 +99,7 @@ export function HeroSection() {
                 href="https://www.postgresql.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-zinc-900/80 border border-dashed border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-500 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
               >
                 <SiPostgresql className="text-[#4169E1]" />
                 PostgreSQL

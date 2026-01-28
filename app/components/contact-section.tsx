@@ -46,7 +46,7 @@ export function ContactSection() {
             href="https://cal.com/monis-sarwar-vvbnfn"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-medium hover:bg-gray-200 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-text-primary text-bg-primary px-6 py-3 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             <Calendar size={18} />
             Book a call

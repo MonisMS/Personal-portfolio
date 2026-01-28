@@ -48,7 +48,7 @@ function ProjectCard({ project }: { project: Project }) {
             className="object-cover"
           />
         ) : (
-          <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-900" />
+          <div className="absolute inset-0 bg-linear-to-br from-zinc-200 to-zinc-300 dark:from-zinc-800 dark:to-zinc-900" />
         )}
         
         {/* Overlay Gradient */}

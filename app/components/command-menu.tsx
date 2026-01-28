@@ -194,9 +194,9 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
       
       {/* Command Dialog - Responsive */}
       <div className="fixed left-1/2 top-[10%] md:top-[20%] -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-xl mx-auto">
-        <Command className="rounded-2xl border border-white/10 bg-[#0f0f0f] shadow-2xl overflow-hidden">
+        <Command className="rounded-2xl border border-border bg-bg-card shadow-2xl overflow-hidden">
           {/* Search Input */}
-          <div className="flex items-center border-b border-white/10 px-4">
+          <div className="flex items-center border-b border-border px-4">
             <svg 
               className="mr-3 text-text-muted shrink-0" 
               width="18" 
@@ -216,13 +216,14 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
             />
             <button 
               onClick={() => setOpen(false)}
-              className="p-1 rounded hover:bg-white/10 text-text-muted"
+              className="p-1 rounded hover:bg-bg-secondary text-text-muted"
             >
               <X size={16} />
             </button>
           </div>
 
-          <Command.List className="max-h-[60vh] md:max-h-[400px] overflow-y-auto p-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20">
+
+          <Command.List className="max-h-[60vh] md:max-h-[400px] overflow-y-auto p-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border hover:scrollbar-thumb-text-muted/50">
             <Command.Empty className="py-6 text-center text-sm text-text-muted">
               No results found.
             </Command.Empty>
@@ -233,15 +234,16 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
               {navigationItems.map((item) => (
                 <Command.Item
                   key={item.label}
+
                   onSelect={() => runCommand(item.action)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-text-secondary hover:bg-white/5 hover:text-text-primary data-[selected=true]:bg-white/5 data-[selected=true]:text-text-primary"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-text-secondary hover:bg-bg-secondary hover:text-text-primary data-[selected=true]:bg-bg-secondary data-[selected=true]:text-text-primary"
                 >
                   <span className="text-text-muted shrink-0">{item.icon}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{item.label}</p>
                     <p className="text-xs text-text-muted truncate">{item.description}</p>
                   </div>
-                  <kbd className="hidden sm:block px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-text-muted">
+                  <kbd className="hidden sm:block px-2 py-1 text-xs rounded bg-bg-secondary border border-border text-text-muted">
                     {item.shortcut}
                   </kbd>
                 </Command.Item>
@@ -255,14 +257,14 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
                 <Command.Item
                   key={item.label}
                   onSelect={() => runCommand(item.action)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-text-secondary hover:bg-white/5 hover:text-text-primary data-[selected=true]:bg-white/5 data-[selected=true]:text-text-primary"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-text-secondary hover:bg-bg-secondary hover:text-text-primary data-[selected=true]:bg-bg-secondary data-[selected=true]:text-text-primary"
                 >
                   <span className="text-text-muted shrink-0">{item.icon}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{item.label}</p>
                     <p className="text-xs text-text-muted truncate">{item.description}</p>
                   </div>
-                  <kbd className="hidden sm:block px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-text-muted">
+                  <kbd className="hidden sm:block px-2 py-1 text-xs rounded bg-bg-secondary border border-border text-text-muted">
                     {item.shortcut}
                   </kbd>
                 </Command.Item>

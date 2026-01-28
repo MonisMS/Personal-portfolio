@@ -48,7 +48,7 @@ function getPrimaryTagColor(tag: string, isFeatured: boolean = false): string {
     return "from-accent/40 to-accent/20";
   }
   // Neutral/darker gradient for regular posts
-  return "from-zinc-800/40 to-zinc-900/20";
+  return "from-zinc-200/40 to-zinc-300/20 dark:from-zinc-800/40 dark:to-zinc-900/20";
 }
 
 export function BlogCard({ post, featured = false }: BlogCardProps) {
@@ -74,9 +74,9 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             ) : (
               <>
                 {/* Typography-based thumbnail - neutral for regular posts */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${thumbnailColor} ${featured ? 'group-hover:from-accent/50 group-hover:to-accent/30' : 'group-hover:from-zinc-700/50 group-hover:to-zinc-800/30'} transition-all duration-300`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${thumbnailColor} ${featured ? 'group-hover:from-accent/50 group-hover:to-accent/30' : 'group-hover:from-zinc-300/50 group-hover:to-zinc-400/30 dark:group-hover:from-zinc-700/50 dark:group-hover:to-zinc-800/30'} transition-all duration-300`} />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`text-6xl md:text-7xl font-black ${featured ? 'text-accent/40 group-hover:text-accent/60' : 'text-zinc-600/40 group-hover:text-zinc-500/60'} transition-colors select-none`}>
+                  <div className={`text-6xl md:text-7xl font-black ${featured ? 'text-accent/40 group-hover:text-accent/60' : 'text-text-muted/20 group-hover:text-text-muted/40'} transition-colors select-none`}>
                     {getInitial(post.title)}
                   </div>
                 </div>
@@ -97,7 +97,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                     className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border transition-all ${
                       featured 
                         ? 'bg-accent/10 text-accent border-accent/30 group-hover:bg-accent/20 group-hover:border-accent/50'
-                        : 'bg-zinc-800/50 text-zinc-400 border-zinc-700/50 group-hover:bg-zinc-700/50 group-hover:border-zinc-600/50'
+                        : 'bg-bg-secondary/50 text-text-muted border-border group-hover:bg-bg-secondary group-hover:border-text-muted/30'
                     }`}
                   >
                     {tag}
@@ -131,7 +131,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               <div className={`flex items-center gap-1 text-xs font-semibold transition-colors group/link ${
                 featured 
                   ? 'text-accent group-hover:text-accent-dark'
-                  : 'text-zinc-400 group-hover:text-zinc-300'
+                  : 'text-text-muted group-hover:text-text-primary'
               }`}>
                 <span>Read</span>
                 <ArrowRight size={12} className="transition-transform group-hover/link:translate-x-1" />

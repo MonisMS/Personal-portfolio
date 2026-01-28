@@ -2,20 +2,61 @@
 @import "tw-animate-css";
 @import "highlight.js/styles/github-dark.css";
 
+:root {
+  /* Light Mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f5;
+  --bg-card: #ffffff;
+  --bg-hover: #f4f4f5;
+
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  /* zinc-600 */
+  --text-muted: #a1a1aa;
+  /* zinc-400 */
+
+  --accent: #DC2626;
+  --accent-dark: #B91C1C;
+
+  --border: #e4e4e7;
+  /* zinc-200 */
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+}
+
+.dark {
+  /* Dark Mode */
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #111111;
+  --bg-card: #0F0F0F;
+  --bg-hover: #1A1A1A;
+
+  --text-primary: #F5F5F5;
+  --text-secondary: #888888;
+  --text-muted: #666666;
+
+  --accent: #DC2626;
+  --accent-dark: #B91C1C;
+
+  --border: #1A1A1A;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
+}
+
 @theme {
-  --color-bg-primary: #0A0A0A;
-  --color-bg-secondary: #111111;
-  --color-bg-card: #0F0F0F;
-  --color-bg-hover: #1A1A1A;
-  
-  --color-text-primary: #F5F5F5;
-  --color-text-secondary: #888888;
-  --color-text-muted: #666666;
-  
-  --color-accent: #DC2626;
-  --color-accent-dark: #B91C1C;
-  
-  --color-border: #1A1A1A;
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-hover: var(--bg-hover);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+
+  --color-border: var(--border);
 }
 
 html {
@@ -47,12 +88,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--scrollbar-thumb);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Firefox */
@@ -343,11 +384,10 @@ body {
 }
 
 /* Ensure proper spacing for nested elements */
-.prose-invert > *:first-child {
+.prose-invert>*:first-child {
   margin-top: 0;
 }
 
-.prose-invert > *:last-child {
+.prose-invert>*:last-child {
   margin-bottom: 0;
 }
-
