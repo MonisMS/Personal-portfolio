@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 async function getResumeMetadata() {
   try {
-    const metadata = await import('@/../public/resume/metadata.json');
+    const metadata = await import('@/lib/resume-metadata.json');
     return metadata.default;
   } catch {
     return {
