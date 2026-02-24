@@ -6,9 +6,9 @@ export function SkillsSection() {
   return (
     <section id="skills" className="bg-bg-primary px-4 py-20">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-text-primary">Stack</h2>
-          <p className="mt-2 text-text-secondary">Tools I work with.</p>
+        <div className="mb-12 flex flex-col gap-3">
+          <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Stack</h2>
+          <p className="text-text-secondary">Tools I work with.</p>
         </div>
 
         <div className="flex flex-wrap gap-3">

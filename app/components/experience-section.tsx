@@ -6,9 +6,9 @@ export function ExperienceSection() {
   return (
     <section id="about" className="bg-bg-primary px-4 py-20">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-text-primary">Background</h2>
-          <p className="mt-2 text-text-secondary">Where I&apos;m at right now.</p>
+        <div className="mb-12 flex flex-col gap-3">
+          <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Background</h2>
+          <p className="text-text-secondary">Where I&apos;m at right now.</p>
         </div>
 
         <div className="relative space-y-4 before:absolute before:left-[7px] before:top-3 before:h-[calc(100%-24px)] before:w-px before:bg-border">

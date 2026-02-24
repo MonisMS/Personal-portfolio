@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Github, Linkedin, Mail, FileText, ArrowRight, Twitter, Instagram } from "lucide-react";
-import { SiTypescript, SiNodedotjs, SiNextdotjs, SiPostgresql, SiMedium } from "react-icons/si";
+import { SiTypescript, SiNodedotjs, SiNextdotjs, SiPostgresql } from "react-icons/si";
 import { motion } from "framer-motion";
 
 export function HeroSection() {
@@ -13,31 +13,30 @@ export function HeroSection() {
       <div className="mx-auto max-w-4xl px-6 flex flex-col items-center text-center gap-8">
         
         {/* Avatar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="group relative cursor-pointer">
-            <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border border-border bg-bg-card p-1 shadow-2xl shadow-accent/10 transition-transform duration-500 group-hover:scale-105">
-              <div className="relative h-full w-full overflow-hidden rounded-full">
-                <Image 
-                  src="/profile-pic-1.jpeg" 
-                  alt="Monis" 
-                  fill 
-                  className="object-cover"
-                  priority
-                />
-              </div>
+          <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border border-border bg-bg-card p-1 shadow-2xl shadow-accent/10">
+            <div className="relative h-full w-full overflow-hidden rounded-full">
+              <Image
+                src="/profile-pic-1.jpeg"
+                alt="Monis"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
-            {/* Status Indicator */}
-            <div className="absolute bottom-[14.6%] right-[14.6%] translate-x-1/2 translate-y-1/2">
-              <div className="h-4 w-4 rounded-full border-2 border-bg-card bg-emerald-600 transition-transform duration-300 group-hover:scale-110" />
-              <div className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded bg-zinc-900/90 px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
-                Available for opportunities
-              </div>
-            </div>
+          </div>
+          {/* Availability Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="text-xs font-medium text-emerald-400">Open to opportunities</span>
           </div>
         </motion.div>
 

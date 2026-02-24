@@ -50,10 +50,10 @@ export function Navbar() {
         scrolled && "py-2 bg-bg-primary/50 backdrop-blur-md"
       )}>
         <div className="relative flex items-center justify-center md:justify-between">
-          
+
           {/* Logo - Desktop */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             onClick={(e) => handleLinkClick(e, "home", "/#home")}
             className="hidden md:block text-lg font-semibold text-text-primary tracking-tight"
           >
