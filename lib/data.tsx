@@ -69,6 +69,15 @@ export const PROJECTS_DATA: Project[] = [
     image: "/folder-mage.png"
   },
   {
+    title: "PharmaGuard",
+    description:
+      "A pharmacogenomic risk prediction system that analyzes patient genetic data (VCF files) against CPIC guidelines. Returns deterministic drug safety assessments with AI-generated clinical explanations. Built for the RIFT 2026 hackathon.",
+    tech: ["Next.js", "TypeScript", "Tailwind"],
+    liveUrl: "https://photonx-rift-2026.vercel.app/",
+    githubUrl: "https://github.com/MonisMS/photonx-rift-2026",
+    image:"/pharmaguard.png"
+  },
+  {
     title: "Beats Generator",
     description:
       "An AI-powered music generator that creates unique tunes using the Gemini API. Just describe the vibe you want, and it generates beats for you. Features a vinyl-inspired UI with full playback controls.",

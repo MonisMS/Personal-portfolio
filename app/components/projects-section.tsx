@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { Github, ArrowRight, Globe } from "lucide-react";
-import { 
-  SiNextdotjs, 
-  SiTypescript, 
-  SiOpenai, 
-  SiReact, 
-  SiTailwindcss, 
-  SiVite, 
-  SiRedis, 
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiOpenai,
+  SiReact,
+  SiTailwindcss,
+  SiVite,
+  SiRedis,
   SiDocker,
   SiPostgresql
 } from "react-icons/si";
@@ -17,8 +17,8 @@ import { PROJECTS_DATA } from "@/lib/data";
 import { Project } from "@/lib/types";
 
 const TechIcon = ({ name }: { name: string }) => {
-  const iconClass = "w-5 h-5 text-text-muted hover:text-text-primary transition-colors";
-  
+  const iconClass = "w-5 h-5 text-text-muted group-hover:text-text-primary transition-colors";
+
   switch (name) {
     case "Next.js": return <SiNextdotjs className={iconClass} />;
     case "TypeScript": return <SiTypescript className={iconClass} />;
@@ -37,7 +37,12 @@ function ProjectCard({ project }: { project: Project }) {
   const mainUrl = project.liveUrl || project.githubUrl;
 
   return (
-    <div className="group flex flex-col rounded-2xl border border-border bg-bg-card overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5">
+    <a
+      href={mainUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col rounded-2xl border border-border bg-bg-card overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 cursor-pointer"
+    >
       {/* Image Area */}
       <div className="relative aspect-video w-full overflow-hidden bg-bg-secondary group-hover:scale-[1.02] transition-transform duration-500">
         {project.image ? (
@@ -50,7 +55,7 @@ function ProjectCard({ project }: { project: Project }) {
         ) : (
           <div className="absolute inset-0 bg-linear-to-br from-zinc-200 to-zinc-300 dark:from-zinc-800 dark:to-zinc-900" />
         )}
-        
+
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-linear-to-t from-bg-card via-transparent to-transparent opacity-80" />
       </div>
@@ -64,26 +69,30 @@ function ProjectCard({ project }: { project: Project }) {
           </h3>
           <div className="flex gap-3">
             {project.liveUrl && (
-              <a 
-                href={project.liveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(project.liveUrl, "_blank", "noopener,noreferrer");
+                }}
                 className="text-text-muted hover:text-accent transition-colors"
                 aria-label="Live Demo"
               >
                 <Globe size={18} />
-              </a>
+              </span>
             )}
             {project.githubUrl && (
-              <a 
-                href={project.githubUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(project.githubUrl, "_blank", "noopener,noreferrer");
+                }}
                 className="text-text-muted hover:text-accent transition-colors"
                 aria-label="GitHub Repo"
               >
                 <Github size={18} />
-              </a>
+              </span>
             )}
           </div>
         </div>
@@ -113,22 +122,15 @@ function ProjectCard({ project }: { project: Project }) {
               </span>
               {project.isBuilding ? "In Development" : "All Systems Operational"}
             </div>
-            
-            {mainUrl && (
-              <a 
-                href={mainUrl} 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs font-medium text-text-muted hover:text-accent transition-colors group/link"
-              >
-                View Details 
-                <ArrowRight size={12} className="transition-transform group-hover/link:translate-x-0.5" />
-              </a>
-            )}
+
+            <span className="flex items-center gap-1 text-xs font-medium text-text-muted group-hover:text-accent transition-colors">
+              View Details
+              <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+            </span>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -140,7 +142,7 @@ export function ProjectsSection() {
 
       <div className="mx-auto max-w-4xl">
         <div className="mb-12 flex flex-col gap-3">
-          
+
           <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
             Projects
           </h2>
@@ -155,7 +157,7 @@ export function ProjectsSection() {
           ))}
 
           {/* Coming Soon Card */}
-          <a 
+          <a
             href="https://github.com/MonisMS"
             target="_blank"
             rel="noopener noreferrer"
