@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Command, Mail, Linkedin, Twitter, Calendar, Copy, Check, ExternalLink } from "lucide-react";
+import { Command, Mail, Linkedin, Twitter, Calendar, Copy, Check, ExternalLink, Menu } from "lucide-react";
 import { CommandMenu } from "./command-menu";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_ITEMS } from "@/lib/data";
@@ -72,25 +72,27 @@ function HireMeButton() {
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.03 }}
         className={cn(
-          "flex items-center gap-3 rounded-full border px-5 py-3 transition-all duration-300 cursor-pointer",
+          "flex items-center gap-2.5 rounded-full border transition-all duration-300 cursor-pointer",
           "bg-bg-card/80 backdrop-blur-md shadow-lg",
+          /* mobile: compact single-line */
+          "px-3.5 py-2 md:px-5 md:py-3",
           open
             ? "border-emerald-500/60 shadow-emerald-500/20 shadow-xl"
             : "border-emerald-500/40 hover:border-emerald-500/70 hover:shadow-emerald-500/15 hover:shadow-xl"
         )}
       >
         {/* Blinking dot */}
-        <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+        <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5 flex-shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70" />
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+          <span className="relative inline-flex rounded-full h-full w-full bg-emerald-500" />
         </span>
 
-        {/* Two-line label */}
+        {/* Mobile: single line. Desktop: two lines */}
         <span className="flex flex-col items-start leading-none">
-          <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-emerald-400 mb-0.5">
+          <span className="hidden md:block text-[9px] font-semibold uppercase tracking-[0.15em] text-emerald-400 mb-0.5">
             Open to Work
           </span>
-          <span className="text-sm font-bold text-text-primary tracking-wide">
+          <span className="text-xs md:text-sm font-bold text-text-primary tracking-wide">
             Hire Me
           </span>
         </span>
@@ -104,7 +106,7 @@ function HireMeButton() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.96 }}
             transition={{ type: "spring", stiffness: 280, damping: 22 }}
-            className="absolute top-full right-0 mt-3 w-80 rounded-2xl border border-white/10 bg-bg-card/95 backdrop-blur-2xl shadow-2xl shadow-black/50 overflow-hidden"
+            className="absolute top-full right-0 mt-3 w-[min(320px,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-bg-card/95 backdrop-blur-2xl shadow-2xl shadow-black/50 overflow-hidden"
           >
             {/* Header */}
             <div className="px-5 pt-5 pb-3 border-b border-border/40">
@@ -194,9 +196,9 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-40 px-4 md:px-12 lg:px-20 py-3 transition-all mt-2",
         scrolled && "py-2 bg-bg-primary/50 backdrop-blur-md"
       )}>
-        <div className="relative flex items-center justify-center md:justify-between">
+        <div className="relative flex items-center justify-between">
 
-          {/* Left: ThemeToggle + CtrlK - Desktop only */}
+          {/* Left: ThemeToggle + CtrlK — desktop only */}
           <div className="hidden md:flex items-center gap-2.5">
             <ThemeToggle />
             <button
@@ -208,17 +210,19 @@ export function Navbar() {
             </button>
           </div>
 
-          {/* Mobile: Logo pill - Opens command menu */}
-          <button
-            onClick={() => setCommandOpen(true)}
-            className="md:hidden flex items-center rounded-[20px] border border-border bg-bg-secondary/50 backdrop-blur-xl px-5 py-2.5 cursor-pointer"
-          >
+          {/* Mobile: logo + hamburger */}
+          <div className="md:hidden flex items-center gap-2.5">
             <span className="text-base font-bold text-text-primary tracking-tight">MS</span>
-            <span className="mx-5 w-px h-5 bg-border" />
-            <span className="text-base text-text-muted">monis</span>
-          </button>
+            <button
+              onClick={() => setCommandOpen(true)}
+              aria-label="Open menu"
+              className="flex items-center justify-center w-9 h-9 rounded-lg border border-border bg-bg-secondary/50 text-text-muted hover:bg-bg-secondary hover:text-text-primary transition-colors cursor-pointer"
+            >
+              <Menu size={17} />
+            </button>
+          </div>
 
-          {/* Center: Nav Pill - Hidden on mobile */}
+          {/* Center: Nav Pill — desktop only, truly centered */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">
             <div className="flex items-center gap-0.5 rounded-full border border-border bg-bg-secondary/50 backdrop-blur-xl px-1.5 py-1">
               {NAV_ITEMS.map((item) => {
@@ -261,10 +265,8 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Right: Hire Me CTA - Desktop only */}
-          <div className="hidden md:block">
-            <HireMeButton />
-          </div>
+          {/* Right: Hire Me — visible on all screen sizes */}
+          <HireMeButton />
         </div>
       </nav>
 
