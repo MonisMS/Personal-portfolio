@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-[80vh] flex items-center justify-center pt-20 pb-12 overflow-hidden">
+    <section id="home" className="relative overflow-hidden min-h-[80vh] flex items-center justify-center pt-20 pb-12">
       <div className="grain" />
       
       <div className="mx-auto max-w-4xl px-6 flex flex-col items-center text-center gap-8">
@@ -17,8 +17,14 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex flex-col items-center gap-4"
+          className="relative flex flex-col items-center gap-4"
         >
+          {/* Radial spotlight glow */}
+          <div
+            className="absolute w-80 h-80 md:w-[420px] md:h-[420px] rounded-full -z-10 blur-3xl pointer-events-none"
+            style={{ background: "radial-gradient(circle at center, rgba(220,38,38,0.15), transparent 65%)" }}
+          />
+
           <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border border-border bg-bg-card p-1 shadow-2xl shadow-accent/10">
             <div className="relative h-full w-full overflow-hidden rounded-full">
               <Image
@@ -30,14 +36,6 @@ export function HeroSection() {
               />
             </div>
           </div>
-          {/* Availability Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-xs font-medium text-emerald-400">Open to opportunities</span>
-          </div>
         </motion.div>
 
         {/* Text Content */}
@@ -48,19 +46,21 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary"
           >
-            Hi, I&apos;m <span 
+            Hi, I&apos;m <span
               className="text-accent cursor-pointer hover:text-accent-dark hover:underline underline-offset-4 transition-all"
               onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
             >
               Monis
             </span> <span className="text-text-secondary hidden sm:inline">—</span> <span className="block sm:inline text-text-secondary">a full-stack web developer.</span>
           </motion.h1>
-          
-          <motion.div 
+
+         
+        
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-lg md:text-xl text-text-muted leading-relaxed max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-text-secondary dark:text-[#aaaaaa] leading-relaxed max-w-2xl mx-auto"
           >
             <p>
               I build scalable web applications using 
@@ -68,7 +68,7 @@ export function HeroSection() {
                 href="https://www.typescriptlang.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-white/20 hover:-translate-y-0.5 hover:scale-105 hover:shadow-sm transition-all align-middle no-underline cursor-pointer mx-1.5"
               >
                 <SiTypescript className="text-[#3178C6]" />
                 TypeScript
@@ -78,7 +78,7 @@ export function HeroSection() {
                 href="https://nodejs.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-white/20 hover:-translate-y-0.5 hover:scale-105 hover:shadow-sm transition-all align-middle no-underline cursor-pointer mx-1.5"
               >
                 <SiNodedotjs className="text-[#339933]" />
                 Node.js
@@ -88,7 +88,7 @@ export function HeroSection() {
                 href="https://nextjs.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-white/20 hover:-translate-y-0.5 hover:scale-105 hover:shadow-sm transition-all align-middle no-underline cursor-pointer mx-1.5"
               >
                 <SiNextdotjs className="text-white" />
                 Next.js
@@ -98,7 +98,7 @@ export function HeroSection() {
                 href="https://www.postgresql.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-2 py-0.5 mx-1 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-text-muted/60 hover:-translate-y-px transition-all align-middle no-underline cursor-pointer"
+                className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-white/20 hover:-translate-y-0.5 hover:scale-105 hover:shadow-sm transition-all align-middle no-underline cursor-pointer mx-1.5"
               >
                 <SiPostgresql className="text-[#4169E1]" />
                 PostgreSQL
@@ -154,9 +154,9 @@ export function HeroSection() {
 
 function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
   return (
-    <a 
-      href={href} 
-      target="_blank" 
+    <a
+      href={href}
+      target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
       className="hover:text-accent transition-colors hover:scale-110 transform duration-200"
@@ -165,3 +165,4 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
     </a>
   );
 }
+

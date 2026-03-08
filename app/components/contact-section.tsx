@@ -234,7 +234,7 @@ export function ContactSection() {
           {/* Right Column - Quick Actions */}
           <div className="lg:col-span-2 flex flex-col gap-4">
             {/* Email Card */}
-            <div className="rounded-xl border border-border bg-bg-card p-5">
+            <div className="rounded-xl border border-border dark:border-white/[0.08] bg-bg-card p-5">
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/10 text-accent">
                   <Mail size={18} />
@@ -266,7 +266,7 @@ export function ContactSection() {
               href="https://cal.com/monis-sarwar-vvbnfn"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 rounded-xl border border-border bg-bg-card p-5 hover:border-accent/50 transition-all"
+              className="group flex items-center gap-4 rounded-xl border border-border dark:border-white/[0.08] bg-bg-card p-5 hover:border-accent/50 dark:hover:border-accent/50 transition-all"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-text-primary/5 text-text-primary">
                 <Calendar size={18} />
@@ -279,7 +279,7 @@ export function ContactSection() {
             </a>
 
             {/* Socials Card */}
-            <div className="rounded-xl border border-border bg-bg-card p-5">
+            <div className="rounded-xl border border-border dark:border-white/[0.08] bg-bg-card p-5">
               <p className="text-sm font-medium text-text-primary mb-3">Find me elsewhere</p>
               <div className="flex gap-2">
                 {socials.map((social) => (
