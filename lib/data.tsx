@@ -60,13 +60,12 @@ export const PROJECTS_DATA: Project[] = [
     image: "/ask-ai.png"
   },
   {
-    title: "FolderMage",
+    title: "Article-It",
     description:
-      "A desktop app that transforms your messy Downloads and cluttered folders into organized bliss. Features smart auto-sorting, undo functionality, background job queues, and a clean dashboard to keep everything in order.",
-    tech: ["TypeScript", "Redis", "Docker"],
-    githubUrl: "https://github.com/MonisMS/folder-organizer",
-    isBuilding: true,
-    image: "/folder-mage.png"
+      "Full-stack personalized article aggregator with topic-based feeds and quality-ranked RSS ingestion across 60+ sources. Built a source scoring system that blends bookmark and read rates into feed ranking, parallel ingestion with per-source timeouts, and scheduled email digests with timezone-aware delivery and HMAC-signed unsubscribe links.",
+    tech: ["Next.js", "TypeScript", "Drizzle", "PostgreSQL", "Resend", "Tailwind"],
+    githubUrl: "https://github.com/MonisMS/article-it",
+    image: "/article-it.jpg",
   },
   {
     title: "PharmaGuard",
