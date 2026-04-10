@@ -77,14 +77,21 @@ export const PROJECTS_DATA: Project[] = [
     image:"/pharmaguard.png"
   },
   {
-    title: "Beats Generator",
+    title: "FolderMage",
     description:
-      "An AI-powered music generator that creates unique tunes using the Gemini API. Just describe the vibe you want, and it generates beats for you. Features a vinyl-inspired UI with full playback controls.",
-    tech: ["React", "TypeScript", "Vite", "Tailwind"],
-    liveUrl: "https://tunes-generator.vercel.app/",
-    githubUrl: "https://github.com/MonisMS/Tunes-generator-",
-    image: "/tunes-generator-image (2).png"
+      "A smart file organizer in active development with deep directory scanning, automated categorization, SHA-256 duplicate detection, and an undoable history system.",
+    tech: ["Fastify", "Drizzle", "Redis", "Next.js", "Electron", "Docker", "PM2"],
+    githubUrl: "https://github.com/MonisMS",
+    isBuilding: true,
+    image: "/folder-mage.png"
   },
+];
+
+export const MORE_PROJECTS_DATA: Project[] = [];
+
+export const ALL_PROJECTS_DATA: Project[] = [
+  ...PROJECTS_DATA,
+  ...MORE_PROJECTS_DATA,
 ];
 
 export const SKILLS_DATA: Skill[] = [
