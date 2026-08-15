@@ -7,6 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 const contactFormSchema = z.object({
   name: z.string().optional(),
+  phone: z.string().optional(),
   email: z.string().email("Please enter a valid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 })
@@ -67,8 +68,14 @@ export async function sendEmail(
               <div class="body">
                 ${validatedData.name?.trim() ? `
                 <div class="field">
-                  <div class="label">Name / Phone</div>
+                  <div class="label">Name</div>
                   <div class="value">${validatedData.name.trim()}</div>
+                </div>
+                ` : ""}
+                ${validatedData.phone?.trim() ? `
+                <div class="field">
+                  <div class="label">Phone</div>
+                  <div class="value">${validatedData.phone.trim()}</div>
                 </div>
                 ` : ""}
                 <div class="field">

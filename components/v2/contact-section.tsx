@@ -1,36 +1,44 @@
+import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/v2/contact-form";
-import { Section, SectionHeading } from "@/components/v2/section";
+import { Section } from "@/components/v2/section";
+import { SocialLinks } from "@/components/v2/social-links";
 import { contact } from "@/lib/v2/config/contact";
 
 export function ContactSection() {
   return (
     <Section id="contact">
-      <SectionHeading title="Contact" />
+      <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-14">
+        {/* Left — the invitation */}
+        <div>
+          <h2 className="text-foreground font-display text-[1.75rem] leading-none tracking-tight">
+            {contact.heading}
+          </h2>
 
-      <p className="text-muted-foreground mb-6 text-[15px] leading-relaxed">
-        {contact.blurb}
-      </p>
+          <p className="text-muted-foreground mt-4 text-[15px] leading-relaxed">
+            {contact.blurb}{" "}
+            <a
+              href={`mailto:${contact.email}`}
+              className="text-foreground font-medium underline-offset-4 hover:underline"
+            >
+              {contact.email}
+            </a>
+          </p>
 
-      <ContactForm />
+          <Button asChild variant="outline" className="mt-6">
+            <a href={contact.calUrl} target="_blank" rel="noopener noreferrer">
+              Book a call
+            </a>
+          </Button>
 
-      <p className="text-muted-foreground mt-6 text-sm">
-        Or email{" "}
-        <a
-          href={`mailto:${contact.email}`}
-          className="text-foreground underline-offset-4 hover:underline"
-        >
-          {contact.email}
-        </a>{" "}
-        &middot;{" "}
-        <a
-          href={contact.calUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground underline-offset-4 hover:underline"
-        >
-          book a call
-        </a>
-      </p>
+          <div className="mt-8">
+            <p className="text-foreground mb-3 text-sm font-medium">Follow me</p>
+            <SocialLinks boxed className="-ml-px" />
+          </div>
+        </div>
+
+        {/* Right — the form */}
+        <ContactForm />
+      </div>
     </Section>
   );
 }

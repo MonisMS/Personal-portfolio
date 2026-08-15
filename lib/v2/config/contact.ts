@@ -1,19 +1,24 @@
 import { site } from "./site";
 
 export const contact = {
-  // TODO(monis): rewrite in your voice. One line on what you want to hear about.
+  heading: "Get in Touch",
+  // Rendered with the email appended as a link, so it ends "...via email at <email>".
   blurb:
-    "Open to roles, freelance work, or just a conversation about something you're building.",
+    "If you have any inquiries, please feel free to reach out. You can contact me via email at",
 
   email: site.email,
   calUrl: site.calUrl,
 
   form: {
-    emailLabel: "Your email",
-    emailPlaceholder: "you@company.com",
+    nameLabel: "Full Name",
+    namePlaceholder: "Full Name",
+    phoneLabel: "Phone No",
+    phonePlaceholder: "Phone No",
+    emailLabel: "Email",
+    emailPlaceholder: "Email",
     messageLabel: "Message",
-    messagePlaceholder: "What's on your mind?",
-    submitLabel: "Send message",
+    messagePlaceholder: "Message",
+    submitLabel: "Submit",
     pendingLabel: "Sending…",
   },
 } as const;
