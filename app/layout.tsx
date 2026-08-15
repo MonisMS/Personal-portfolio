@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { Navbar } from "./components/navbar";
+import { NavbarGate } from "./components/navbar-gate";
 import { ThemeProvider } from "./components/theme-provider";
 
 const geistSans = Geist({
@@ -13,6 +13,14 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// Editorial display serif for v2 headings. One weight + italic; never faux-bold.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -46,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
         <ThemeProvider
             attribute="class"
@@ -54,7 +62,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-          <Navbar />
+          <NavbarGate />
           {children}
           <Analytics />
         </ThemeProvider>
