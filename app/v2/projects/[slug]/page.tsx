@@ -25,9 +25,17 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
 
+  // Just the project name — the layout's title template adds the "— Name"
+  // suffix. Returning the full string here would double it.
   return {
-    title: `${project.title} — ${site.name}`,
+    title: project.title,
     description: project.summary,
+    alternates: { canonical: routes.project(slug) },
+    openGraph: {
+      title: `${project.title} — ${site.name}`,
+      description: project.summary,
+      url: routes.project(slug),
+    },
   };
 }
 
