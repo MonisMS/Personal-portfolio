@@ -1,0 +1,26 @@
+# Syed Monis Sarwar
+
+> Backend-focused full-stack developer. I build full-stack products where the hard part is the backend — ingestion pipelines, autonomous agents, and data models that hold up in production.
+
+## About
+
+Syed Monis Sarwar (Monis) is a full-stack developer focused on backend architecture, database design, and systems that survive production — not just the demo. Open to full-time, freelance, and collaboration opportunities.
+
+- Portfolio: https://syedmonissarwar.com/v2
+- GitHub: https://github.com/MonisMS
+- Email: monissms16@gmail.com
+- Book a call: https://cal.com/monis-sarwar-vvbnfn
+
+## Projects
+
+- [Curio](https://curio-sity.vercel.app/): Article aggregator that ranks 60+ RSS sources by how people actually read them. Source scoring blends bookmark and read rates into feed ranking; parallel ingestion with per-source timeouts; scheduled, timezone-aware email digests with HMAC-signed unsubscribe links. Stack: Next.js, TypeScript, Drizzle, PostgreSQL, Resend, Tailwind.
+- [Nivora](https://nivora-seven.vercel.app): Autonomous AI agent for civic grievance redressal. Classifies complaints, routes them to the right department with an SLA, and autonomously escalates with a re-drafted complaint when deadlines are breached. Stack: Next.js, TypeScript, OpenAI, Drizzle, PostgreSQL, Tailwind.
+- [FolderMage](https://folder-organizer-frontend-k7r8.vercel.app/): Desktop file organizer (in active development) with deep directory scanning, SHA-256 duplicate detection, and an undoable history system. Stack: Fastify, Drizzle, Redis, Next.js, Electron, Docker, PM2.
+- [AskAI](https://askai-nu.vercel.app/): Turns meeting recordings and documents into real-time summaries and action items. Stack: Next.js, TypeScript, OpenAI, PostgreSQL.
+- [PharmaGuard](https://photonx-rift-2026.vercel.app/): Pharmacogenomic risk prediction — scores drug safety from patient genetic data (VCF) against CPIC guidelines with AI-generated clinical explanations. Stack: Next.js, TypeScript, Tailwind.
+
+## Open source
+
+- Corsair — Added an OCR.space integration for extracting text from images: https://github.com/corsairdev/corsair/pull/703
+- Hubble — Fixed list items being dropped when pressing Enter after an image: https://github.com/bholmesdev/hubble.md/pull/241
+- twitbruv — Handled the @ prefix in search and added an avatar load fallback: https://github.com/twitbruv/twitbruv/pull/113
