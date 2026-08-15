@@ -15,7 +15,7 @@ export function BlogsSection() {
         <div className="text-center">
           <Link
             href="/blog"
-            className="group inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-sm font-medium text-white shadow transition-all hover:-translate-y-0.5 hover:shadow-lg hover:bg-accent-dark"
+            className="group inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-sm font-medium text-bg-primary shadow transition-all hover:-translate-y-0.5 hover:shadow-lg hover:bg-accent-dark"
           >
             <span>Read All Posts</span>
             <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />

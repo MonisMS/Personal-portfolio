@@ -121,7 +121,7 @@ export function HeroSection() {
             href="https://cal.com/monis-sarwar-vvbnfn"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex h-10 w-full sm:w-auto items-center justify-center rounded-full bg-accent px-8 text-sm font-medium text-white shadow transition-all hover:-translate-y-0.5 hover:shadow-lg hover:bg-accent-dark focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            className="group inline-flex h-10 w-full sm:w-auto items-center justify-center rounded-full bg-accent px-8 text-sm font-medium text-bg-primary shadow transition-all hover:-translate-y-0.5 hover:shadow-lg hover:bg-accent-dark focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
             Book a call
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />

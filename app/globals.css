@@ -15,8 +15,9 @@
   --text-muted: #a1a1aa;
   /* zinc-400 */
 
-  --accent: #DC2626;
-  --accent-dark: #B91C1C;
+  /* Neutralised: v1 no longer uses a red accent — monochrome, matching v2. */
+  --accent: #18181b;
+  --accent-dark: #3f3f46;
 
   --border: #e4e4e7;
   /* zinc-200 */
@@ -35,8 +36,9 @@
   --text-secondary: #888888;
   --text-muted: #666666;
 
-  --accent: #DC2626;
-  --accent-dark: #B91C1C;
+  /* Neutralised: v1 no longer uses a red accent — monochrome, matching v2. */
+  --accent: #fafafa;
+  --accent-dark: #a1a1aa;
 
   --border: #1A1A1A;
   --scrollbar-thumb: rgba(255, 255, 255, 0.1);
