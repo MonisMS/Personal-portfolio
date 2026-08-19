@@ -24,7 +24,7 @@ export function SocialLinks({
   boxed?: boolean;
 }) {
   return (
-    <ul className={cn("flex items-center", boxed ? "gap-3" : "gap-1", className)}>
+    <ul className={cn("flex items-center", boxed ? "gap-3" : "gap-2", className)}>
       {socials.map((social) => {
         const Icon = icons[social.icon];
         const isMail = social.href.startsWith("mailto:");

@@ -1,11 +1,14 @@
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Emphasis } from "@/components/v2/emphasis";
 import { PhotoBooth } from "@/components/v2/photo-booth";
+import { PulseDot } from "@/components/v2/pulse-dot";
 import { Section } from "@/components/v2/section";
 import { SocialLinks } from "@/components/v2/social-links";
 import { hero } from "@/lib/v2/config/hero";
+import { routes } from "@/lib/v2/config/routes";
 import { site } from "@/lib/v2/config/site";
 
 const { primary, secondary } = hero.actions;
@@ -13,15 +16,12 @@ const { primary, secondary } = hero.actions;
 export function Hero() {
   return (
     <Section id="home" className="pt-10 md:pt-16">
-      <div className="v2-rise grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-12">
+      <div className="v2-rise grid items-start gap-10 md:grid-cols-[1fr_auto] md:gap-12">
         {/* Left — the words */}
         <div className="order-2 md:order-1">
           {site.availability ? (
             <p className="text-muted-foreground mb-5 flex items-center gap-2 text-sm">
-              <span
-                aria-hidden
-                className="bg-positive size-1.5 shrink-0 rounded-full"
-              />
+              <PulseDot />
               {site.availability}
             </p>
           ) : null}
@@ -54,10 +54,7 @@ export function Hero() {
           </div>
 
           <p className="text-muted-foreground mt-6 flex flex-wrap items-center gap-x-1.5 text-[15px]">
-            <span
-              aria-hidden
-              className="bg-positive mr-1 inline-block size-1.5 shrink-0 rounded-full"
-            />
+            <PulseDot className="mr-1" />
             <span className="text-foreground font-medium">
               {hero.openToWork.label}
             </span>
@@ -87,8 +84,25 @@ export function Hero() {
 
         {/* Right — the face */}
         <div className="order-1 flex justify-center md:order-2 md:justify-end">
-          <PhotoBooth src={hero.avatar.src} alt={hero.avatar.alt} />
+          <PhotoBooth
+            src={hero.avatar.src}
+            alt={hero.avatar.alt}
+            shots={hero.avatar.shots}
+          />
         </div>
+      </div>
+
+      {/* Scroll cue — keeps the fold from reading as a dead end. Hidden on
+          touch/short viewports, silenced for reduced-motion. */}
+      <div className="mt-16 hidden justify-center md:flex">
+        <Link
+          href={routes.anchor("work")}
+          aria-label="Scroll to projects"
+          className="text-muted-foreground/50 hover:text-muted-foreground flex flex-col items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase transition-colors"
+        >
+          <span>Scroll</span>
+          <ChevronDown className="size-4 animate-bounce motion-reduce:animate-none" />
+        </Link>
       </div>
     </Section>
   );

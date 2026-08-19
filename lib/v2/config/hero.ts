@@ -1,4 +1,3 @@
-import { routes } from "./routes";
 import { site } from "./site";
 
 /**
@@ -23,12 +22,15 @@ export const hero = {
   openToWork: {
     label: "Open to Work",
     detail: "Full-Time, Freelance, or Collabs.",
-    cta: { label: "Let's talk.", href: routes.anchor("contact") },
+    cta: { label: "Let's talk.", href: `mailto:${site.email}` },
   },
 
   avatar: {
     src: "/profile-pic-1.jpeg",
     alt: "Portrait of Syed Monis Sarwar",
+    // Real photos only — the thumbnail strip cycles these two under CSS filters
+    // (Photo Booth-style). Add more real shots here to lengthen the session.
+    shots: ["/profile-pic-1.jpeg", "/profile-pic.jpg"],
   },
 
   actions: {

@@ -15,18 +15,24 @@ const FILTERS = [
   "grayscale(1) contrast(1.05)",
   "sepia(0.55) saturate(1.2)",
   "contrast(1.35) brightness(1.05)",
-  "invert(1) hue-rotate(180deg)",
+  "saturate(1.45) hue-rotate(-12deg)",
+  "grayscale(1) brightness(1.12) contrast(0.95)",
+  "sepia(0.3) contrast(1.15) brightness(1.05)",
 ] as const;
 
 export function PhotoBooth({
   src,
   alt,
+  shots,
   className,
 }: {
   src: string;
   alt: string;
+  /** Real photos to cycle through the effects strip. Defaults to just `src`. */
+  shots?: readonly string[];
   className?: string;
 }) {
+  const sources = shots && shots.length > 0 ? shots : [src];
   return (
     <figure
       className={cn(
@@ -68,12 +74,16 @@ export function PhotoBooth({
           {FILTERS.map((filter, i) => (
             <li
               key={filter}
-              className="border-border/60 relative size-8 overflow-hidden rounded-md border"
+              className="border-border/60 relative size-7 overflow-hidden rounded-md border sm:size-8"
             >
+              {/* Decorative effect swatches — the whole figcaption is aria-hidden,
+                  so the strip carries alt="" and the real alt lives on the main
+                  photo above. `loading="lazy"` keeps them off the hero's LCP path. */}
               <Image
-                src={src}
+                src={sources[i % sources.length]}
                 alt=""
                 fill
+                loading="lazy"
                 sizes="32px"
                 className="object-cover"
                 style={{ filter }}

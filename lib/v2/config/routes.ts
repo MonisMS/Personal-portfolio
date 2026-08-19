@@ -12,8 +12,14 @@ const home = BASE_PATH || "/";
 
 export const routes = {
   home,
-  /** In-page section anchor, absolute so it works from case-study pages too. */
+  /** In-page section anchor, absolute so it works from other pages too. */
   anchor: (id: string) => `${home}#${id}`,
+  /** The projects index — lists every project. */
+  projects: `${BASE_PATH}/projects` || "/projects",
   /** A project's case-study page. */
   project: (slug: string) => `${BASE_PATH}/projects/${slug}`,
+  /** The writing / blog index. */
+  blog: `${BASE_PATH}/blog` || "/blog",
+  /** The résumé — reuses the existing standalone route. */
+  resume: "/resume",
 } as const;
