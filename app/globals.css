@@ -209,6 +209,9 @@ html {
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
+  /* Same clean Geist sans the v2 site uses (was falling back to the system font). */
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
 }
 
 @keyframes grain-shift {
