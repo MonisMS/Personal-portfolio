@@ -1,6 +1,7 @@
 import { HeroSection } from "./components/herosection";
 import { Navbar } from "./components/navbar";
 import { ProjectsSection } from "./components/projects-section";
+import { OpenSourceSection } from "./components/open-source-section";
 import { SkillsSection } from "./components/skills-section";
 import { GithubActivity } from "./components/github-activity";
 import { ExperienceSection } from "./components/experience-section";
@@ -12,6 +13,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ProjectsSection />
+      <OpenSourceSection />
       <GithubActivity />
       <SkillsSection />
       <ExperienceSection />

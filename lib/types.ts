@@ -25,6 +25,14 @@ export interface Project {
   image?: string;
 }
 
+export interface Contribution {
+  project: string;
+  repoUrl?: string;
+  summary: string;
+  prUrl: string;
+  prLabel?: string;
+}
+
 export interface Skill {
   name: string;
   // We will store the icon name string here and map it in the component 

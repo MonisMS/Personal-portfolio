@@ -25,7 +25,7 @@ import {
   SiRadixui,
 } from "react-icons/si";
 import { RiStackLine } from "react-icons/ri";
-import { NavItem, ExperienceItem, Project, Skill } from "./types";
+import { NavItem, ExperienceItem, Project, Skill, Contribution } from "./types";
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", id: "home", href: "/#home" },
@@ -109,6 +109,33 @@ export const MORE_PROJECTS_DATA: Project[] = [
 export const ALL_PROJECTS_DATA: Project[] = [
   ...PROJECTS_DATA,
   ...MORE_PROJECTS_DATA,
+];
+
+// Real merged PRs authored by github.com/MonisMS to repos he doesn't own.
+// Recent first; each prUrl is the verifiable proof.
+export const OPEN_SOURCE_DATA: Contribution[] = [
+  {
+    project: "Corsair",
+    repoUrl: "https://github.com/corsairdev/corsair",
+    summary: "Added an OCR.space integration for extracting text from images.",
+    prUrl: "https://github.com/corsairdev/corsair/pull/703",
+    prLabel: "#703",
+  },
+  {
+    project: "Hubble",
+    repoUrl: "https://github.com/bholmesdev/hubble.md",
+    summary:
+      "Fixed list items being dropped when pressing Enter after an image.",
+    prUrl: "https://github.com/bholmesdev/hubble.md/pull/241",
+    prLabel: "#241",
+  },
+  {
+    project: "twitbruv",
+    repoUrl: "https://github.com/twitbruv/twitbruv",
+    summary: "Handled the @ prefix in search and added an avatar load fallback.",
+    prUrl: "https://github.com/twitbruv/twitbruv/pull/113",
+    prLabel: "#113",
+  },
 ];
 
 export const SKILLS_DATA: Skill[] = [
