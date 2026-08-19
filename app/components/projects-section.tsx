@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, Github } from "lucide-react";
 import { PROJECTS_DATA } from "@/lib/data";
 import { ProjectCard } from "@/app/components/project-card";
 
@@ -22,38 +20,10 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2">
           {PROJECTS_DATA.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
-
-          {/* Coming Soon Card */}
-          <a
-            href="https://github.com/MonisMS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex flex-col justify-center items-center text-center rounded-xl border border-dashed border-border bg-bg-card/50 p-8 hover:border-accent/50 hover:bg-bg-card transition-all"
-          >
-            <div className="mb-4 rounded-full bg-bg-hover p-4 text-text-muted group-hover:text-accent transition-colors">
-              <Github size={28} />
-            </div>
-            <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent">
-              More projects coming soon
-            </h3>
-            <p className="mt-2 text-sm text-text-secondary max-w-[250px]">
-              Visit my GitHub to see what I&apos;m currently working on.
-            </p>
-          </a>
-        </div>
-
-        <div className="mt-8 flex justify-center">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg-card px-4 py-2 text-sm font-medium text-text-primary transition-colors hover:border-accent/50 hover:text-accent"
-          >
-            See more projects
-            <ArrowRight size={14} />
-          </Link>
         </div>
       </div>
     </section>

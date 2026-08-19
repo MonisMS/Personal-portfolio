@@ -11,16 +11,16 @@ export function SkillsSection() {
           <p className="text-text-secondary">Tools I work with.</p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2.5">
           {SKILLS_DATA.map((skill) => (
             <div
               key={skill.name}
-              className="group flex items-center gap-2 rounded-full border border-border bg-bg-card px-4 py-2 transition-all duration-300 hover:border-accent/50 hover:bg-bg-hover hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5"
+              className="group inline-flex items-center gap-2 rounded-lg border border-border/70 bg-bg-card px-3.5 py-2 transition-colors duration-200 hover:border-accent/40 hover:bg-bg-hover"
             >
-              <span className="text-base text-text-muted group-hover:text-text-primary transition-colors">
+              <span className="text-[15px] leading-none text-text-muted transition-colors group-hover:text-text-primary">
                 {skill.icon}
               </span>
-              <span className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors">
+              <span className="text-sm font-medium text-text-secondary transition-colors group-hover:text-text-primary">
                 {skill.name}
               </span>
             </div>

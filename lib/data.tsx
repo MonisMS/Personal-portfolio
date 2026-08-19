@@ -2,24 +2,29 @@ import {
   SiReact,
   SiNextdotjs,
   SiTypescript,
-  SiJavascript,
   SiTailwindcss,
   SiNodedotjs,
   SiExpress,
+  SiFastify,
   SiMongodb,
   SiPostgresql,
-  SiGit,
-  SiGithub,
+  SiRedis,
   SiDocker,
   SiVercel,
   SiPrisma,
   SiGraphql,
   SiDrizzle,
   SiBun,
-  SiFramer
+  SiOpenai,
+  SiFramer,
+  SiZod,
+  SiResend,
+  SiElectron,
+  SiPm2,
+  SiShadcnui,
+  SiRadixui,
 } from "react-icons/si";
 import { RiStackLine } from "react-icons/ri";
-import { TbPolaroid } from "react-icons/tb";
 import { NavItem, ExperienceItem, Project, Skill } from "./types";
 
 export const NAV_ITEMS: NavItem[] = [
@@ -53,7 +58,7 @@ export const PROJECTS_DATA: Project[] = [
   {
     title: "AskAI",
     description:
-      "Your personal AI assistant that answers questions, processes meetings, and summarizes content in real-time. Upload recordings or documents, and let AI extract key insights and action items for you.",
+      "Sit in a live meeting with an AI that hears every word of the conversation. When you're done, it hands the whole thing back summarized — the decisions made, the action items, the follow-ups. Forget a detail later? Just chat with it and ask; it remembers everything, so you never take notes again.",
     tech: ["Next.js", "TypeScript", "OpenAI", "PostgreSQL"],
     liveUrl: "https://askai-nu.vercel.app/",
     githubUrl: "https://github.com/MonisMS/askai",
@@ -107,24 +112,29 @@ export const ALL_PROJECTS_DATA: Project[] = [
 ];
 
 export const SKILLS_DATA: Skill[] = [
+  { name: "TypeScript", icon: <SiTypescript /> },
   { name: "React", icon: <SiReact /> },
   { name: "Next.js", icon: <SiNextdotjs /> },
-  { name: "TypeScript", icon: <SiTypescript /> },
-  { name: "JavaScript", icon: <SiJavascript /> },
   { name: "Tailwind", icon: <SiTailwindcss /> },
+  { name: "TanStack", icon: <RiStackLine /> },
+  { name: "shadcn/ui", icon: <SiShadcnui /> },
+  { name: "Radix UI", icon: <SiRadixui /> },
+  { name: "Framer Motion", icon: <SiFramer /> },
   { name: "Node.js", icon: <SiNodedotjs /> },
   { name: "Bun", icon: <SiBun /> },
   { name: "Express", icon: <SiExpress /> },
+  { name: "Fastify", icon: <SiFastify /> },
+  { name: "Electron", icon: <SiElectron /> },
   { name: "GraphQL", icon: <SiGraphql /> },
-  { name: "MongoDB", icon: <SiMongodb /> },
+  { name: "OpenAI", icon: <SiOpenai /> },
+  { name: "Zod", icon: <SiZod /> },
   { name: "PostgreSQL", icon: <SiPostgresql /> },
+  { name: "MongoDB", icon: <SiMongodb /> },
+  { name: "Redis", icon: <SiRedis /> },
   { name: "Prisma", icon: <SiPrisma /> },
   { name: "Drizzle", icon: <SiDrizzle /> },
-  { name: "TanStack", icon: <RiStackLine /> },
-  { name: "Git", icon: <SiGit /> },
-  { name: "GitHub", icon: <SiGithub /> },
   { name: "Docker", icon: <SiDocker /> },
   { name: "Vercel", icon: <SiVercel /> },
-  { name: "Framer Motion", icon: <SiFramer /> },
-  { name: "Polar", icon: <TbPolaroid /> },
+  { name: "Resend", icon: <SiResend /> },
+  { name: "PM2", icon: <SiPm2 /> },
 ];

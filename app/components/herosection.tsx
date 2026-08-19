@@ -2,15 +2,7 @@
 
 import Image from "next/image";
 import { Github, Linkedin, Mail, FileText, ArrowRight, Twitter, Instagram } from "lucide-react";
-import { SiTypescript, SiNodedotjs, SiNextdotjs, SiPostgresql } from "react-icons/si";
 import { motion } from "framer-motion";
-
-const TECH_BADGES = [
-  { href: "https://www.typescriptlang.org/", icon: <SiTypescript className="text-[#3178C6]" />, label: "TypeScript" },
-  { href: "https://nodejs.org/", icon: <SiNodedotjs className="text-[#339933]" />, label: "Node.js" },
-  { href: "https://nextjs.org/", icon: <SiNextdotjs className="text-text-primary" />, label: "Next.js" },
-  { href: "https://www.postgresql.org/", icon: <SiPostgresql className="text-[#4169E1]" />, label: "PostgreSQL" },
-];
 
 export function HeroSection() {
   return (
@@ -64,8 +56,7 @@ export function HeroSection() {
             >
               Monis
             </span>
-            {" "}<span className="text-text-secondary">—</span>{" "}
-            <span className="text-text-secondary">a full-stack web developer.</span>
+            <span className="text-text-secondary">.</span>
           </motion.h1>
 
           {/* Description — two short blocks */}
@@ -76,38 +67,19 @@ export function HeroSection() {
             className="flex flex-col gap-3 text-sm md:text-lg text-text-secondary dark:text-[#aaaaaa] leading-relaxed"
           >
             <p>
-              I build scalable web applications with a strong focus on{" "}
-              <span className="text-text-primary font-medium">backend architecture</span>{" "}
-              and{" "}
-              <span className="text-text-primary font-medium">database design</span>.
+              <span className="text-text-primary font-medium">Backend-focused engineer</span>{" "}
+              who ships fast. I turn ideas into polished products and obsess over the
+              details that make software feel right.
             </p>
             <p>
-              I care about{" "}
-              <span className="text-text-primary font-medium">system performance</span>{" "}
-              and building software that actually holds up in production.
+              I&apos;ve built{" "}
+              <span className="text-text-primary font-medium">autonomous agents</span>,
+              data-ingestion pipelines, and full-stack web apps — where the{" "}
+              <span className="text-text-primary font-medium">backend is the hard part</span>.
+              Mostly TypeScript, Next.js, and Postgres, or whatever gets the job done.
             </p>
           </motion.div>
 
-          {/* Tech badges — flex-wrap row, no commas */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
-            className="flex flex-wrap justify-center gap-2"
-          >
-            {TECH_BADGES.map(({ href, icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs md:text-sm font-medium bg-bg-secondary/80 border border-dashed border-text-muted/30 text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:border-white/20 hover:-translate-y-0.5 hover:scale-105 hover:shadow-sm transition-all no-underline cursor-pointer"
-              >
-                {icon}
-                {label}
-              </a>
-            ))}
-          </motion.div>
         </div>
 
         {/* CTA buttons */}
