@@ -1,26 +1,38 @@
 import type { MetadataRoute } from "next";
 
-import { projects } from "@/lib/v2/config/projects";
-import { routes } from "@/lib/v2/config/routes";
+import { getAllPosts } from "@/lib/blog";
 import { site } from "@/lib/v2/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url.replace(/\/$/, "");
-  const lastModified = new Date();
+  const now = new Date();
+  const posts = getAllPosts();
 
   return [
-    { url: `${base}/`, lastModified, changeFrequency: "monthly", priority: 1 },
+    { url: `${base}/`, lastModified: now, changeFrequency: "monthly", priority: 1 },
     {
-      url: `${base}${routes.home}`,
-      lastModified,
+      url: `${base}/projects`,
+      lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.8,
     },
-    ...projects.map((project) => ({
-      url: `${base}${routes.project(project.slug)}`,
-      lastModified,
-      changeFrequency: "monthly" as const,
+    {
+      url: `${base}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.7,
+    },
+    {
+      url: `${base}/resume`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    ...posts.map((post) => ({
+      url: `${base}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
   ];
 }
