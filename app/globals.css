@@ -187,6 +187,9 @@
 }
 
 @theme {
+  /* Make Geist Sans the site-wide default font (Tailwind applies it on html). */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
   --color-bg-card: var(--bg-card);

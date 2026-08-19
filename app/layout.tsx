@@ -55,10 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+    >
+      <body className="antialiased">
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
