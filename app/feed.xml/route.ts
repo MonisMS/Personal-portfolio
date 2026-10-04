@@ -1,5 +1,5 @@
 import { getAllPosts } from "@/lib/blog";
-import { site } from "@/lib/v2/config/site";
+import { site } from "@/lib/site/config";
 
 // Rebuild the feed at most hourly.
 export const revalidate = 3600;

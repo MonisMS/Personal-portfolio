@@ -1,26 +1,32 @@
 # Syed Monis Sarwar
 
-> Backend-focused full-stack developer. I build full-stack products where the hard part is the backend — ingestion pipelines, autonomous agents, and data models that hold up in production.
+> Full-stack engineer, building AI agents. Projects start from real problems and are built end to end — data pipelines, backends, interfaces and the agents in between. Mostly TypeScript and Python, on Postgres. Open to work.
 
-## About
-
-Syed Monis Sarwar (Monis) is a full-stack developer focused on backend architecture, database design, and systems that survive production — not just the demo. Open to full-time, freelance, and collaboration opportunities.
-
-- Portfolio: https://syedmonissarwar.com/v2
+- Site: https://m0nis.com
 - GitHub: https://github.com/MonisMS
+- LinkedIn: https://www.linkedin.com/in/syed-monis-sarwar-sms47/
 - Email: monissms16@gmail.com
 - Book a call: https://cal.com/monis-sarwar-vvbnfn
+- Résumé: https://m0nis.com/resume
 
 ## Projects
 
-- [Curio](https://curio-sity.vercel.app/): Article aggregator that ranks 60+ RSS sources by how people actually read them. Source scoring blends bookmark and read rates into feed ranking; parallel ingestion with per-source timeouts; scheduled, timezone-aware email digests with HMAC-signed unsubscribe links. Stack: Next.js, TypeScript, Drizzle, PostgreSQL, Resend, Tailwind.
-- [Nivora](https://nivora-seven.vercel.app): Autonomous AI agent for civic grievance redressal. Classifies complaints, routes them to the right department with an SLA, and autonomously escalates with a re-drafted complaint when deadlines are breached. Stack: Next.js, TypeScript, OpenAI, Drizzle, PostgreSQL, Tailwind.
-- [FolderMage](https://folder-organizer-frontend-k7r8.vercel.app/): Desktop file organizer (in active development) with deep directory scanning, SHA-256 duplicate detection, and an undoable history system. Stack: Fastify, Drizzle, Redis, Next.js, Electron, Docker, PM2.
-- [AskAI](https://askai-nu.vercel.app/): Turns meeting recordings and documents into real-time summaries and action items. Stack: Next.js, TypeScript, OpenAI, PostgreSQL.
-- [PharmaGuard](https://photonx-rift-2026.vercel.app/): Pharmacogenomic risk prediction — scores drug safety from patient genetic data (VCF) against CPIC guidelines with AI-generated clinical explanations. Stack: Next.js, TypeScript, Tailwind.
+- [APIx](https://m0nis.com/projects/apix): Daily airfare price index for India Solo build.. Python collectors on a daily cron sweep 12 DGCA-weighted routes × 5 advance-purchase windows; 24,448 fares collected. Jevons/Young index engine reproduces MoSPI's four published worked examples to four decimal places. Python, Next.js, PostgreSQL, GitHub Actions.
+- [Curio](https://m0nis.com/projects/curio): Personalized reading feed from 275+ sources across 26 topics. Five scheduled jobs (ingestion, digests, source-quality scoring, cleanup, re-engagement); parallel ingestion with per-source timeouts; Postgres full-text search; HMAC-signed digest links. Solo. Next.js, Drizzle, PostgreSQL, Resend.
+- [FieldProof](https://m0nis.com/projects/fieldproof): Field photos to verifiable impact reports (Code Cubicle 6.0, team of 4; owned backend and AI pipeline). Postgres job queue and Python worker running CLIP tagging, pgvector search, EXIF GPS site assignment; LLM reports that invent numbers are rejected. 40 tests against a real database. FastAPI, pgvector, LiteLLM.
+- [DataPilot](https://m0nis.com/projects/datapilot): Prompt to clean dataset. LLM planning agent runs robots.txt-aware collectors across 9 sources in parallel, then validates, de-duplicates and confidence-scores rows into Postgres. Solo. Next.js, PostgreSQL, Cheerio.
+- [Shikshak Saathi](https://m0nis.com/projects/shikshak-saathi): Lesson kits for teachers from an NCERT chapter, in English and Hindi (Hack-e-Awadh 2026, team of 3; frontend and AI pipeline). Next.js, Prisma, Gemini, Sarvam AI.
 
-## Open source
+## Smaller builds
 
-- Corsair — Added an OCR.space integration for extracting text from images: https://github.com/corsairdev/corsair/pull/703
-- Hubble — Fixed list items being dropped when pressing Enter after an image: https://github.com/bholmesdev/hubble.md/pull/241
-- twitbruv — Handled the @ prefix in search and added an avatar load fallback: https://github.com/twitbruv/twitbruv/pull/113
+- Remote Browser Control: headless Chromium per session in Docker, CDP screencast over a WebSocket proxy.
+- Agent Console: resilient WebSocket streaming client with a pure state-machine core; 60 unit tests.
+- triage-bot: CLI agent that explores a repo with capped read-only tools to triage a GitHub issue.
+- FolderMage: file organizer with SHA-256 duplicate detection and BullMQ scheduled jobs.
+
+## Open source (merged)
+
+- corsairdev/corsair #703 — Add OCR.space integration
+- bholmesdev/hubble.md #241 — Keep list items when pressing Enter after an image
+- twitbruv/twitbruv #113 — Handle @ prefix in search and add avatar load fallback
+- ig-imanish/mx-icons #48 — Only publish the npm package when icon sources change
