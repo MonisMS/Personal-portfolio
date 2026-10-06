@@ -1,7 +1,8 @@
 import { Footer } from "@/components/site/footer";
 import { GithubActivity } from "@/components/site/github-activity";
 import { Intro } from "@/components/site/intro";
-import { BuildList, PullRequestList } from "@/components/site/link-list";
+import { BuildList } from "@/components/site/build-list";
+import { PullRequestList } from "@/components/site/link-list";
 import { ProjectCard } from "@/components/site/project-card";
 import { ScrollPill } from "@/components/site/scroll-pill";
 import { Section } from "@/components/site/section";
@@ -29,19 +30,19 @@ export default function HomePage() {
         </Section>
 
         <Section
-          id="builds"
-          title="Smaller builds"
-          description="Focused tools and systems worth a look."
-        >
-          <BuildList builds={builds} />
-        </Section>
-
-        <Section
           id="open-source"
           title="Open source"
           description="Merged pull requests to projects I don't own."
         >
           <PullRequestList pullRequests={pullRequests} />
+        </Section>
+
+        <Section
+          id="builds"
+          title="Smaller builds"
+          description="Focused tools and systems worth a look."
+        >
+          <BuildList builds={builds} />
         </Section>
       </main>
 

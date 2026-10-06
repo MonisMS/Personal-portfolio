@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/site/footer";
-import { BuildList } from "@/components/site/link-list";
+import { BuildList } from "@/components/site/build-list";
 import { PageHeader } from "@/components/site/page-header";
 import { ProjectCard } from "@/components/site/project-card";
 import { Section } from "@/components/site/section";
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
         </div>
 
         <Section id="builds" title="Smaller builds">
-          <BuildList builds={builds} />
+          <BuildList builds={builds} initial={builds.length} />
         </Section>
       </main>
       <Footer />
