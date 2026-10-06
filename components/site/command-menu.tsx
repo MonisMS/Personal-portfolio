@@ -15,6 +15,7 @@ import {
   Home,
   Linkedin,
   Mail,
+  Send,
   SunMoon,
   Twitter,
 } from "lucide-react";
@@ -80,6 +81,7 @@ export function CommandMenu() {
         { label: "Home", icon: <Home />, run: () => goToSection("home") },
         { label: "Projects", icon: <FolderGit2 />, run: () => router.push("/projects") },
         { label: "Open source", icon: <GitPullRequest />, run: () => goToSection("open-source") },
+        { label: "Contact", icon: <Send />, keywords: ["hire", "message"], run: () => goToSection("contact") },
         { label: "Résumé", icon: <FileText />, keywords: ["resume", "cv"], run: () => router.push(site.resumeUrl) },
       ],
     },

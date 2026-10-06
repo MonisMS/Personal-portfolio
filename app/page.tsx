@@ -2,6 +2,7 @@ import { Footer } from "@/components/site/footer";
 import { GithubActivity } from "@/components/site/github-activity";
 import { Intro } from "@/components/site/intro";
 import { BuildList } from "@/components/site/build-list";
+import { Contact } from "@/components/site/contact";
 import { PullRequestList } from "@/components/site/link-list";
 import { ProjectCard } from "@/components/site/project-card";
 import { ScrollPill } from "@/components/site/scroll-pill";
@@ -43,6 +44,10 @@ export default function HomePage() {
           description="Focused tools and systems worth a look."
         >
           <BuildList builds={builds} />
+        </Section>
+
+        <Section id="contact" title="Contact">
+          <Contact />
         </Section>
       </main>
 
