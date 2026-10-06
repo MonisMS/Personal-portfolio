@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -19,35 +19,30 @@ const actionClass =
 
 export function ProjectCard({ project, priority, className }: ProjectCardProps) {
   const ref = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
 
-  // Feed the cursor position to CSS for the spotlight; no re-renders.
-  const onPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+  // Touch screens can't hover: colour the screenshot while the card sits in
+  // the middle of the screen instead.
+  useEffect(() => {
     const el = ref.current;
-    if (!el || event.pointerType !== "mouse") return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty("--x", `${event.clientX - rect.left}px`);
-    el.style.setProperty("--y", `${event.clientY - rect.top}px`);
-  };
+    if (!el || !window.matchMedia("(hover: none)").matches) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "-35% 0px -35% 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <article
       ref={ref}
-      onPointerMove={onPointerMove}
+      data-in-view={inView}
       className={cn(
-        "group border-line hover:border-line-strong relative isolate grid gap-5 overflow-hidden rounded-xl border p-3 transition-colors duration-300 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-6",
+        "group border-fg/20 hover:border-fg/45 focus-within:border-fg/45 relative isolate grid gap-5 overflow-hidden rounded-xl border border-dashed p-3 transition-colors duration-300 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-6",
         className,
       )}
     >
-      {/* Spotlight: a soft radial glow that follows the cursor. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), var(--spotlight), transparent 70%)",
-        }}
-      />
-
       <div className="bg-surface border-line relative aspect-[16/10] overflow-hidden rounded-lg border">
         {project.image ? (
           <Image
@@ -56,7 +51,7 @@ export function ProjectCard({ project, priority, className }: ProjectCardProps) 
             fill
             priority={priority}
             sizes="(min-width: 640px) 240px, 100vw"
-            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            className="object-cover object-top grayscale transition-[filter] duration-[350ms] ease-out group-hover:grayscale-0 group-focus-within:grayscale-0 group-data-[in-view=true]:grayscale-0 motion-reduce:transition-none"
           />
         ) : (
           <div className="flex size-full items-center justify-center bg-[radial-gradient(var(--line-strong)_1px,transparent_1px)] [background-size:14px_14px]">
