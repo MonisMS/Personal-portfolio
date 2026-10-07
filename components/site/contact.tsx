@@ -247,7 +247,7 @@ export function Contact() {
           </span>
           <ArrowUpRight className="text-subtle group-hover:text-fg size-4 transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </a>
-        <div className="flex items-center justify-between gap-3 pt-1">
+        <div className="flex flex-col items-start gap-3 pt-1">
           <ul className="flex flex-wrap gap-1.5">
             {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
               <li key={label}>
