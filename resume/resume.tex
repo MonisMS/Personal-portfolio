@@ -1,0 +1,177 @@
+%-------------------------
+% Resume in LaTeX
+% Based on Jake Gutierrez's template (MIT): https://github.com/jakegut/resume
+%-------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{iftex}
+\ifPDFTeX\input{glyphtounicode}\fi
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generated PDF is machine readable / ATS parsable
+\ifPDFTeX\pdfgentounicode=1\fi % XeTeX/LuaTeX are Unicode-native
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \small #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Syed Monis Sarwar} \\ \vspace{1pt}
+    \small Lucknow, India $|$ +91 93367 54624 $|$ \href{mailto:monissms16@gmail.com}{monissms16@gmail.com} \\ \vspace{1pt}
+    \small \href{https://m0nis.com}{m0nis.com} $|$
+    \href{https://github.com/MonisMS}{github.com/MonisMS} $|$
+    \href{https://www.linkedin.com/in/syed-monis-sarwar-sms47/}{linkedin.com/in/syed-monis-sarwar-sms47}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Babu Banarasi Das Institute of Technology and Management}{Lucknow, India}
+      {B.Tech in Computer Science and Engineering}{2024 -- 2028}
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{APIx: Daily Airfare Price Index for India} $|$ \emph{Python, PostgreSQL, Next.js, GitHub Actions}}{\href{https://apix-dashboard-gitbashers.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/apix-dashboard}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built a daily collection pipeline on GitHub Actions that prices 12 DGCA-weighted routes across 5 advance-purchase windows, storing \textbf{24,448 fares} in Postgres}
+            \resumeItem{Implemented the official CPI method in Python (Jevons elementary indices, Young aggregation, outlier cleaning, imputation), \textbf{reproducing MoSPI's published worked examples to 4 decimal places}}
+            \resumeItem{Made every number auditable: each index point carries a hash of its inputs, and each publish writes a full new version in one transaction so readers never see half-written data}
+            \resumeItem{Served the index via 19 public JSON endpoints with a static-snapshot fallback; \textbf{79 pytest tests}}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{DataPilot: Prompt-to-Dataset LLM Agent} $|$ \emph{TypeScript, Next.js, PostgreSQL, LLM APIs}}{\href{https://datapilot-intel.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/cc-general-hack-ps}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built an agent pipeline where an LLM planner turns a plain-English request into a schema and plan, runs \textbf{9 source connectors in parallel}, and extracts rows in batched LLM calls}
+            \resumeItem{Guarded against hallucinated rows by requiring a verbatim source quote per row, \textbf{verified in code}, then validating types, merging duplicates and scoring each row's confidence}
+            \resumeItem{Hardened it against untrusted web input with an SSRF guard (private, loopback and cloud-metadata IPs) and by fencing scraped text as data to resist prompt injection}
+            \resumeItem{Wrote a provider-agnostic LLM client (Gemini, Anthropic, OpenAI) with model fallbacks and a rule-based mode, plus an eval harness scoring fill rate and precision}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Curio: Personalized Reading Feed} $|$ \emph{TypeScript, Next.js, PostgreSQL, Drizzle ORM, Resend}}{\href{https://curio-sity.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/article-it}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Ingested \textbf{275+ sources across 26 topics} (RSS, Hacker News, Reddit, YouTube) in parallel with an 8-second per-source timeout, so one slow feed never stalls a run}
+            \resumeItem{Ranked feeds by blending recency with a per-source quality score from bookmark and read rates; built search on Postgres full-text search instead of an external service}
+            \resumeItem{Automated 5 scheduled jobs (ingestion, digests, quality scoring, cleanup, re-engagement) and sent timezone-aware digests with HMAC-signed unsubscribe links; \textbf{80+ Vitest tests}}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------OPEN SOURCE-----------
+\section{Open Source}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{corsairdev/corsair} $|$ \emph{13k+ stars, TypeScript}}{\href{https://github.com/corsairdev/corsair/pull/703}{PR \#703, merged}}
+          \resumeItemListStart
+            \resumeItem{Added the OCR.space integration: typed client, error handling and Jest tests (2,300+ lines, 17 files)}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{bholmesdev/hubble.md} $|$ \emph{1.4k+ stars, Markdown editor}}{\href{https://github.com/bholmesdev/hubble.md/pull/241}{PR \#241, merged}}
+          \resumeItemListStart
+            \resumeItem{Fixed the editor's Enter handler dropping users out of a list when pressing Enter after an image in a list item}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{twitbruv/twitbruv} $|$ \emph{TypeScript}}{\href{https://github.com/twitbruv/twitbruv/pull/113}{PR \#113, merged}}
+          \resumeItemListStart
+            \resumeItem{Handled @-prefixed queries in user search and added a fallback for avatars that fail to load}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: TypeScript, JavaScript, Python, SQL} \\
+     \textbf{Frameworks}{: Next.js, React, Node.js} \\
+     \textbf{Databases}{: PostgreSQL, Drizzle ORM, SQLite} \\
+     \textbf{AI}{: LLM APIs (OpenAI, Anthropic, Gemini), structured JSON output, LLM evals} \\
+     \textbf{Tools}{: Git, GitHub Actions, Vercel, Vitest, pytest}
+    }}
+ \end{itemize}
+
+%-----------LEADERSHIP-----------
+\section{Leadership}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Google Developer Groups (GDG) on Campus}{2026 -- Present}
+      {Campus Lead}{BBDITM, Lucknow}
+  \resumeSubHeadingListEnd
+
+\end{document}

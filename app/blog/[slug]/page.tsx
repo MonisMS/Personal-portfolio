@@ -27,8 +27,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: `${post.title} - Syed Monis Sarwar`,
+    title: post.title,
     description: post.description,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.description,
@@ -51,7 +52,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="bg-bg-primary">
+    <main id="main" className="bg-bg-primary">
       <ReadingProgress />
       <article className="px-4 pt-24 pb-20 md:px-12 lg:px-20">
         <div className="mx-auto max-w-3xl">

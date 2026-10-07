@@ -1,42 +1,47 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { ProjectCard } from "@/app/components/project-card";
-import { ALL_PROJECTS_DATA } from "@/lib/data";
+import { Footer } from "@/components/site/footer";
+import { BuildList } from "@/components/site/build-list";
+import { PageHeader } from "@/components/site/page-header";
+import { ProjectCard } from "@/components/site/project-card";
+import { Section } from "@/components/site/section";
+import { builds, projects } from "@/lib/site/projects";
 
 export const metadata: Metadata = {
-  title: "Projects | Monis Sarwar",
-  description: "Featured and additional projects built by Monis Sarwar.",
+  title: "Projects",
+  description:
+    "Projects by Syed Monis Sarwar: APIx, Curio, FieldProof, DataPilot and Shikshak Saathi: data pipelines, AI agents and backends.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {
   return (
-    <section className="min-h-screen bg-bg-primary px-4 pt-20 pb-20">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-10 flex items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-              All Projects
-            </h1>
-            <p className="mt-2 text-text-secondary">
-              Featured work plus additional projects from my resume.
-            </p>
-          </div>
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg-card px-4 py-2 text-sm font-medium text-text-primary transition-colors hover:border-accent/50 hover:text-accent"
+    <div className="mx-auto w-full max-w-[44rem] px-4 sm:px-6">
+      <PageHeader />
+      <main id="main" className="space-y-14">
+        <header className="pt-12">
+          <h1 className="rise font-display text-fg text-[2.4rem] leading-none tracking-[-0.01em]">
+            Projects
+          </h1>
+          <p
+            className="rise text-muted mt-4 max-w-prose text-[0.9375rem] leading-relaxed"
+            style={{ "--i": 1 } as React.CSSProperties}
           >
-            <ArrowLeft size={14} />
-            Back to home
-          </Link>
-        </div>
+            Everything I&apos;d point a hiring manager at. Open one for how it
+            works and what was hard about it.
+          </p>
+        </header>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {ALL_PROJECTS_DATA.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+        <div className="space-y-3">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} priority={i < 2} />
           ))}
         </div>
-      </div>
-    </section>
+
+        <Section id="builds" title="Smaller builds">
+          <BuildList builds={builds} initial={builds.length} />
+        </Section>
+      </main>
+      <Footer />
+    </div>
   );
 }

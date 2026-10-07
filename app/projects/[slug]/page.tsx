@@ -1,0 +1,168 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowRight, ArrowUpRight, Info } from "lucide-react";
+import { SiGithub } from "react-icons/si";
+import { Footer } from "@/components/site/footer";
+import { PageHeader } from "@/components/site/page-header";
+import { site } from "@/lib/site/config";
+import { getProject, projects } from "@/lib/site/projects";
+
+interface ProjectPageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) return {};
+
+  const title = `${project.title}: ${project.tagline}`;
+  return {
+    title,
+    description: project.description,
+    alternates: { canonical: `/projects/${project.slug}` },
+    openGraph: {
+      title,
+      description: project.description,
+      url: `/projects/${project.slug}`,
+      ...(project.image && { images: [{ url: project.image }] }),
+    },
+  };
+}
+
+const buttonClass =
+  "border-line-strong text-fg hover:bg-surface-2 inline-flex h-9 items-center gap-2 rounded-md border px-3.5 text-sm transition-[background-color,transform] duration-150 active:scale-[0.97] [&_svg]:size-4";
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) notFound();
+
+  const index = projects.indexOf(project);
+  const next = projects[(index + 1) % projects.length];
+
+  const facts = [
+    { label: "Year", value: project.year },
+    { label: "Role", value: project.role },
+    { label: "Context", value: project.context },
+    { label: "Stack", value: project.tech.join(", ") },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: project.title,
+    description: project.description,
+    codeRepository: project.githubUrl,
+    programmingLanguage: project.tech,
+    author: { "@type": "Person", name: site.name, url: site.url },
+    ...(project.liveUrl && { url: project.liveUrl }),
+  };
+
+  return (
+    <div className="mx-auto w-full max-w-[44rem] px-4 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <PageHeader backHref="/projects" backLabel="Projects" />
+
+      <main id="main">
+        <header className="pt-12">
+          <p className="rise text-subtle font-mono text-xs">{project.metric}</p>
+          <h1
+            className="rise font-display text-fg mt-3 text-[2.6rem] leading-none tracking-[-0.01em] sm:text-[3rem]"
+            style={{ "--i": 1 } as React.CSSProperties}
+          >
+            {project.title}
+          </h1>
+          <p
+            className="rise text-muted mt-3 text-lg"
+            style={{ "--i": 2 } as React.CSSProperties}
+          >
+            {project.tagline}
+          </p>
+          <div
+            className="rise mt-6 flex flex-wrap gap-2"
+            style={{ "--i": 3 } as React.CSSProperties}
+          >
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={buttonClass}>
+                <ArrowUpRight />
+                Live demo
+              </a>
+            )}
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={buttonClass}>
+              <SiGithub />
+              Source code
+            </a>
+          </div>
+        </header>
+
+        {project.image && (
+          <div className="border-line bg-surface relative mt-10 aspect-[16/10] overflow-hidden rounded-xl border">
+            <Image
+              src={project.image}
+              alt={`${project.title} screenshot`}
+              fill
+              priority
+              sizes="(min-width: 768px) 672px, 100vw"
+              className="object-cover object-top"
+            />
+          </div>
+        )}
+
+        <dl className="border-line mt-10 grid gap-x-8 gap-y-5 border-y py-6 sm:grid-cols-2">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt className="text-subtle text-xs">{fact.label}</dt>
+              <dd className="text-fg mt-1 text-sm leading-relaxed">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <section className="mt-12">
+          <h2 className="font-display text-fg text-[1.75rem] leading-none">Overview</h2>
+          <p className="text-muted mt-5 text-[0.9375rem] leading-[1.75]">{project.description}</p>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="font-display text-fg text-[1.75rem] leading-none">How it works</h2>
+          <ul className="mt-5 space-y-3">
+            {project.highlights.map((highlight) => (
+              <li key={highlight} className="text-muted flex gap-3 text-[0.9375rem] leading-[1.7]">
+                <span aria-hidden className="bg-subtle mt-[0.7em] size-1 shrink-0 rounded-full" />
+                {highlight}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {project.note && (
+          <p className="border-line bg-surface text-muted mt-10 flex gap-3 rounded-lg border p-4 text-sm leading-relaxed">
+            <Info className="text-subtle mt-0.5 size-4 shrink-0" />
+            {project.note}
+          </p>
+        )}
+
+        <Link
+          href={`/projects/${next.slug}`}
+          className="group border-line hover:border-line-strong hover:bg-surface mt-14 flex items-center justify-between gap-4 rounded-xl border p-5 transition-colors duration-200"
+        >
+          <div>
+            <p className="text-subtle text-xs">Next project</p>
+            <p className="font-display text-fg mt-1 text-2xl leading-none">{next.title}</p>
+          </div>
+          <ArrowRight className="text-subtle group-hover:text-fg size-5 transition-[color,transform] duration-200 group-hover:translate-x-1" />
+        </Link>
+      </main>
+      <Footer />
+    </div>
+  );
+}

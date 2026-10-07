@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
  
 export const runtime = 'edge'
  
-export const alt = 'Syed Monis Sarwar - Portfolio'
+export const alt = 'Syed Monis Sarwar | Full-stack Engineer building AI agents'
 export const size = {
   width: 1200,
   height: 630,
@@ -76,7 +76,7 @@ export default async function Image() {
                 fontWeight: 500
               }}
             >
-              Full Stack Back-end Developer
+              Full-stack Engineer · m0nis.com
             </p>
           </div>
         </div>

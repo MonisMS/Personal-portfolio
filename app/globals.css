@@ -1,246 +1,178 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "highlight.js/styles/github-dark.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+ * Design tokens. Dark is the default theme; light is the alternate.
+ * Color is restraint: near-black, white, grays. Green only means "open to work".
+ * ------------------------------------------------------------------------ */
 
 :root {
-  /* Light Mode */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f4f4f5;
-  --bg-card: #ffffff;
-  --bg-hover: #f4f4f5;
+  --bg: #ffffff;
+  --surface: #f6f6f6;
+  --surface-2: #efefef;
+  --fg: #171717;
+  --muted: #525252;
+  --subtle: #737373;
+  --line: rgb(0 0 0 / 0.08);
+  --line-strong: rgb(0 0 0 / 0.14);
+  --positive: #16a34a;
+  --spotlight: rgb(0 0 0 / 0.05);
 
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  /* zinc-600 */
-  --text-muted: #a1a1aa;
-  /* zinc-400 */
-
-  /* Neutralised: v1 no longer uses a red accent — monochrome, matching v2. */
-  --accent: #18181b;
-  --accent-dark: #3f3f46;
-
-  --border: #e4e4e7;
-  /* zinc-200 */
-  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
-  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+  color-scheme: light;
 }
 
 .dark {
-  /* Dark Mode */
-  --bg-primary: #0A0A0A;
-  --bg-secondary: #111111;
-  --bg-card: #0F0F0F;
-  --bg-hover: #1A1A1A;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface-2: #181818;
+  --fg: #ededed;
+  --muted: #a3a3a3;
+  --subtle: #808080;
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.14);
+  --positive: #22c55e;
+  --spotlight: rgb(255 255 255 / 0.06);
 
-  --text-primary: #F5F5F5;
-  --text-secondary: #888888;
-  --text-muted: #666666;
-
-  /* Neutralised: v1 no longer uses a red accent — monochrome, matching v2. */
-  --accent: #fafafa;
-  --accent-dark: #a1a1aa;
-
-  --border: #1A1A1A;
-  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
-}
-
-/* ---------------------------------------------------------------------------
- * v2 design system — scoped to `.v2`
- *
- * Neutral shadcn base (oklch) + a single deliberate brand red. These are only
- * overrides inside the `.v2` subtree, so v1 keeps its own `--accent` red.
- * Delete the `:root`/`.dark` v1 blocks above once v2 ships.
- * ------------------------------------------------------------------------ */
-
-.v2 {
-  --radius: 0.625rem;
-
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-
-  /* shadcn `accent` is a subtle hover surface, NOT the brand colour. */
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-
-  /* The brand red. Used sparingly and on purpose — never as a blanket hover. */
-  --brand: oklch(0.577 0.223 27.4);
-  --brand-foreground: oklch(0.985 0 0);
-
-  /* Reserved for genuine positive status (open to work). Not decoration. */
-  --positive: oklch(0.63 0.17 152);
-
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-
-  /* Vertical rhythm. One scale, so sections never drift. */
-  --section-y: 4rem;
-  --content-max: 48rem;
-
-  color-scheme: light;
-  background-color: var(--background);
-  color: var(--foreground);
-
-  /* Body is a clean sans; headings opt into the serif via `font-display`. */
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "cv11", "ss01";
-}
-
-.dark .v2 {
   color-scheme: dark;
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.185 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.185 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.245 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.245 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-
-  --accent: oklch(0.245 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-
-  --brand: oklch(0.637 0.208 25.3);
-  --brand-foreground: oklch(0.985 0 0);
-
-  --positive: oklch(0.72 0.17 152);
-
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
 }
 
-@media (min-width: 768px) {
-  .v2 {
-    --section-y: 6rem;
-  }
-}
-
-/*
- * The only entrance animation in v2. One element, on first paint, no scroll
- * observers. v1 animated every node with the same 0.5s/20px transform, which
- * is most of why it read as generated.
- */
-@keyframes v2-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.v2-rise {
-  animation: v2-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .v2-rise {
-    animation: none;
-  }
+/* Legacy names, still used by the blog and résumé pages. */
+:root,
+.dark {
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--surface);
+  --bg-card: var(--surface);
+  --bg-hover: var(--surface-2);
+  --text-primary: var(--fg);
+  --text-secondary: var(--muted);
+  --text-muted: var(--subtle);
+  --accent: var(--fg);
+  --accent-dark: var(--muted);
+  --border: var(--line-strong);
+  --scrollbar-thumb: var(--line-strong);
+  --scrollbar-thumb-hover: var(--subtle);
 }
 
 @theme inline {
-  /* Editorial serif for headings (`font-display`); Geist Mono for `$whoami`
-   * + tech strings (`font-mono`). Body sans is set on `.v2` directly. */
+  /* Strong ease-out for every UI transition (class: ease-snappy). */
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-brand: var(--brand);
-  --color-brand-foreground: var(--brand-foreground);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-positive: var(--positive);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-}
-
-@theme {
-  /* Make Geist Sans the site-wide default font (Tailwind applies it on html). */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
   --color-bg-card: var(--bg-card);
   --color-bg-hover: var(--bg-hover);
-
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
-
   --color-border: var(--border);
 }
 
 html {
+  /* Whole site renders ~10% larger; everything is rem-based so it scales together. */
+  font-size: 110%;
   scroll-behavior: smooth;
+  /* Keep focused/anchored content clear of the floating pill. */
+  scroll-padding-bottom: 7rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  /* Same clean Geist sans the v2 site uses (was falling back to the system font). */
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "cv11", "ss01";
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-@keyframes grain-shift {
-  0%        { transform: translate(0, 0); }
-  10%       { transform: translate(-2%, -3%); }
-  20%       { transform: translate(3%, 1%); }
-  30%       { transform: translate(-1%, 4%); }
-  40%       { transform: translate(2%, -2%); }
-  50%       { transform: translate(-3%, 3%); }
-  60%       { transform: translate(1%, -1%); }
-  70%       { transform: translate(-2%, 2%); }
-  80%       { transform: translate(3%, -3%); }
-  90%       { transform: translate(-1%, 2%); }
-  100%      { transform: translate(0, 0); }
+/* One visible focus ring for every link and button (keyboard only). */
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
 }
 
-.grain {
-  position: fixed;
-  inset: -20%;
-  width: 140%;
-  height: 140%;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  z-index: 50;
-  animation: grain-shift 8s steps(10) infinite;
+button,
+a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* Theme switch: a wipe driven from JS (see theme-toggle.tsx). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Contribution graph: columns fade in left to right, once, when first seen.
+ * Hidden only when JS can reveal it and motion is welcome. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] .heat-col {
+    opacity: 0;
+    transition: opacity 320ms var(--ease-snappy);
+    transition-delay: calc(var(--c, 0) * 6ms);
+  }
+
+  [data-reveal="shown"] .heat-col {
+    opacity: 1;
+  }
+}
+
+/* One entrance animation, on first paint only. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
 }
 
 /* Custom scrollbar */
@@ -265,7 +197,7 @@ body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: var(--line-strong) transparent;
 }
 
 /* Comprehensive prose styles for blog content - matching portfolio design system */
@@ -367,7 +299,7 @@ body {
   color: var(--color-accent);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   border-bottom: 2px solid var(--color-accent);
   padding-bottom: 2px;
 }

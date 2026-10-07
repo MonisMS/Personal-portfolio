@@ -2,8 +2,9 @@ import { Metadata } from 'next';
 import { Download, ExternalLink, Calendar, FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Resume | Monis Sarwar',
-  description: 'View and download the resume of Monis Sarwar - Full Stack Back-end Developer',
+  title: 'Résumé',
+  description: 'Résumé of Syed Monis Sarwar, full-stack engineer building AI agents. View or download the PDF.',
+  alternates: { canonical: '/resume' },
 };
 
 async function getResumeMetadata() {
@@ -25,7 +26,7 @@ export default async function ResumePage() {
   const resumePath = '/resume/resume.pdf';
 
   return (
-    <div className="min-h-screen bg-bg-primary text-text-primary py-20 px-4">
+    <div id="main" className="min-h-screen bg-bg-primary text-text-primary py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">

@@ -1,13 +1,10 @@
 import type { MetadataRoute } from "next";
-
-import { site } from "@/lib/v2/config/site";
+import { site } from "@/lib/site/config";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = site.url.replace(/\/$/, "");
-
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: `${base}/sitemap.xml`,
-    host: base,
+    sitemap: `${site.url}/sitemap.xml`,
+    host: site.url,
   };
 }
