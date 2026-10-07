@@ -1,42 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, FileText, Mail } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { FileText } from "lucide-react";
 import { CommandButton } from "./command-button";
+import { SOCIAL_LINKS } from "./social-links";
 import { ThemeToggle } from "./theme-toggle";
-import { site, socials } from "@/lib/site/config";
+import { site } from "@/lib/site/config";
+import { cn } from "@/lib/utils";
 
-interface InlineLinkProps {
-  href: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-}
+const chip =
+  "inline-flex h-9 items-center gap-2 rounded-md border px-3 text-sm transition-[background-color,border-color,color,transform] duration-150 ease-snappy active:scale-[0.97] [&_svg]:size-3.5";
 
-/** A link that sits inside a sentence, with a small leading icon. */
-function InlineLink({ href, icon, children }: InlineLinkProps) {
-  const external = href.startsWith("http");
-  const className =
-    "text-fg decoration-line-strong hover:decoration-fg inline-flex items-baseline gap-1 underline underline-offset-4 transition-[text-decoration-color] duration-150 [&_svg]:size-[0.85em] [&_svg]:translate-y-[0.1em] [&_svg]:self-center";
-
-  if (href.startsWith("/")) {
-    return (
-      <Link href={href} className={className}>
-        {icon}
-        {children}
-      </Link>
-    );
-  }
-
-  return (
-    <a
-      href={href}
-      className={className}
-      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-    >
-      {icon}
-      {children}
-    </a>
-  );
+/** Key phrase inside a gray paragraph: bold white, not a colour. */
+function Em({ children }: { children: React.ReactNode }) {
+  return <strong className="text-fg font-semibold">{children}</strong>;
 }
 
 export function Intro() {
@@ -65,60 +41,56 @@ export function Intro() {
         </div>
       </div>
 
-      <div className="text-muted mt-10 space-y-4 text-[15px] leading-[1.75] sm:text-base">
+      <div className="text-subtle mt-10 space-y-4 text-[0.9375rem] leading-[1.75] sm:text-base">
         <p className="rise" style={{ "--i": 1 } as React.CSSProperties}>
-          I&apos;m a full-stack engineer who enjoys the hard parts —{" "}
-          <span className="text-fg">data pipelines, AI agents</span> and the
-          backends that hold them together. Mostly TypeScript and Python, on
-          Postgres.
+          I&apos;m a <Em>full-stack engineer</Em> who enjoys the hard parts:{" "}
+          <Em>data pipelines, AI agents</Em> and the backends that hold them
+          together. Mostly <Em>TypeScript and Python</Em>, on Postgres.
         </p>
         <p className="rise" style={{ "--i": 2 } as React.CSSProperties}>
           Most of my projects start from{" "}
-          <span className="text-fg">a real problem, not a tutorial</span> —
-          teachers losing evenings to lesson plans, airfares the official index
-          samples only once a month, ten tabs open just to keep up. I dig into
-          why the problem exists, then build the fix{" "}
-          <span className="text-fg">end to end</span>.
-        </p>
-        <p className="rise" style={{ "--i": 3 } as React.CSSProperties}>
-          Reach me by{" "}
-          <InlineLink href={socials.email} icon={<Mail />}>
-            email
-          </InlineLink>{" "}
-          or{" "}
-          <InlineLink href={site.calUrl} icon={<Calendar />}>
-            book a call
-          </InlineLink>
-          . Code on{" "}
-          <InlineLink href={socials.github} icon={<SiGithub />}>
-            GitHub
-          </InlineLink>
-          , me on{" "}
-          <InlineLink href={socials.linkedin} icon={<SiLinkedin />}>
-            LinkedIn
-          </InlineLink>{" "}
-          and{" "}
-          <InlineLink href={socials.x} icon={<SiX />}>
-            X
-          </InlineLink>
-          , or grab my{" "}
-          <InlineLink href={site.resumeUrl} icon={<FileText />}>
-            résumé
-          </InlineLink>
-          .
+          <Em>a real problem, not a tutorial</Em>. Teachers losing evenings to
+          lesson plans, airfares the official index samples only once a month,
+          ten tabs open just to keep up. I dig into why the problem exists, then
+          build the fix <Em>end to end</Em>.
         </p>
       </div>
 
-      <p
-        className="rise text-muted mt-6 inline-flex items-center gap-2.5 text-sm"
-        style={{ "--i": 4 } as React.CSSProperties}
-      >
-        <span aria-hidden className="relative inline-flex size-2">
-          <span className="bg-positive absolute inline-flex size-full animate-ping rounded-full opacity-50 motion-reduce:hidden" />
-          <span className="bg-positive relative inline-flex size-2 rounded-full" />
-        </span>
-        {site.openTo}
-      </p>
+      <div className="rise mt-8" style={{ "--i": 3 } as React.CSSProperties}>
+        <p className="text-subtle text-sm">
+          My <Em>social links</Em> if you wish to connect with me
+        </p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  chip,
+                  "border-line-strong bg-surface text-muted hover:bg-surface-2 hover:text-fg hover:border-subtle"
+                )}
+              >
+                <Icon aria-hidden />
+                {label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <Link
+              href={site.resumeUrl}
+              className={cn(
+                chip,
+                "border-fg/40 bg-surface text-fg hover:border-fg/70 hover:bg-surface-2 font-medium"
+              )}
+            >
+              <FileText aria-hidden />
+              Résumé
+            </Link>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }

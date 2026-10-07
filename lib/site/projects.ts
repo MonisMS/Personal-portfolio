@@ -60,7 +60,7 @@ export const projects: Project[] = [
     title: "Curio",
     tagline: "One reading feed from 275+ sources",
     description:
-      "Topic-based feeds pulled from 275+ sources across 26 topics. Five scheduled jobs run ingestion, email digests, source-quality scoring, cleanup and re-engagement — and one slow feed never stalls a run.",
+      "Topic-based feeds pulled from 275+ sources across 26 topics. Five scheduled jobs run ingestion, email digests, source-quality scoring, cleanup and re-engagement, and one slow feed never stalls a run.",
     metric: "275+ sources · 26 topics",
     context: "Solo · 71 commits",
     tech: ["Next.js", "TypeScript", "Drizzle", "PostgreSQL", "Resend", "GitHub Actions"],
@@ -68,11 +68,11 @@ export const projects: Project[] = [
     liveUrl: "https://curio-sity.vercel.app",
     githubUrl: "https://github.com/MonisMS/article-it",
     year: "2026",
-    role: "Solo — design, backend, infra",
+    role: "Solo: design, backend, infra",
     highlights: [
       "Parallel ingestion with Promise.allSettled and an 8-second timeout per source.",
       "Feed ranking blends recency with a per-source quality score built from bookmark and read rates.",
-      "Postgres full-text search ranked with ts_rank — no external search service.",
+      "Postgres full-text search ranked with ts_rank, no external search service.",
       "Timezone-aware digests via Resend, with HMAC-signed unsubscribe and feedback links.",
     ],
   },
@@ -107,6 +107,8 @@ export const projects: Project[] = [
     metric: "9 sources in parallel",
     context: "Solo build",
     tech: ["Next.js", "TypeScript", "PostgreSQL", "Cheerio", "LLM agents"],
+    image: "/projects/datapilot.webp",
+    liveUrl: "https://datapilot-intel.vercel.app",
     githubUrl: "https://github.com/MonisMS/cc-general-hack-ps",
     year: "2026",
     role: "Solo",
@@ -122,7 +124,7 @@ export const projects: Project[] = [
     title: "Shikshak Saathi",
     tagline: "A lesson kit from any NCERT chapter",
     description:
-      "Turns an NCERT chapter into objectives, a lesson plan, a worksheet and a quiz tagged by misconception — with a validator that auto-repairs malformed AI output, Word export and Hindi voice.",
+      "Turns an NCERT chapter into objectives, a lesson plan, a worksheet and a quiz tagged by misconception, with a validator that auto-repairs malformed AI output, Word export and Hindi voice.",
     metric: "English + Hindi",
     context: "Hack-e-Awadh 2026 · team of 3",
     tech: ["Next.js", "Prisma", "PostgreSQL", "Better Auth", "Gemini", "Sarvam AI"],
@@ -164,7 +166,7 @@ export const builds: Build[] = [
   {
     title: "FolderMage",
     description:
-      "File organizer with SHA-256 duplicate detection, undo history and scheduled jobs on BullMQ — a Fastify API wrapped in an Electron app.",
+      "File organizer with SHA-256 duplicate detection, undo history and scheduled jobs on BullMQ. A Fastify API wrapped in an Electron app.",
     tech: ["Fastify", "BullMQ", "Redis", "Electron"],
     githubUrl: "https://github.com/MonisMS/folder-organizer",
   },

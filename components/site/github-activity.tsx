@@ -1,3 +1,4 @@
+import { RevealOnView } from "./reveal-on-view";
 import { Section } from "./section";
 import { site } from "@/lib/site/config";
 import {
@@ -36,52 +37,51 @@ export async function GithubActivity() {
   const months = monthLabels(weeks);
 
   return (
-    <Section id="activity" title="Activity">
-      <div className="mb-4 flex items-baseline justify-between gap-4 text-sm">
-        <p className="text-muted">
-          <span className="text-fg tabular-nums">
-            {data.total.toLocaleString()}
-          </span>{" "}
-          contributions in the last year
-        </p>
-        <a
-          href={`https://github.com/${site.githubUsername}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-subtle hover:text-fg font-mono text-xs transition-colors duration-150"
-        >
-          @{site.githubUsername}
-        </a>
-      </div>
-
+    <Section
+      id="activity"
+      title="Activity"
+      action={{
+        label: `@${site.githubUsername}`,
+        href: `https://github.com/${site.githubUsername}`,
+      }}
+    >
       {/* Scrolls on narrow screens; most recent weeks stay in view. */}
-      <div className="-mx-1 overflow-x-auto px-1 pb-1 [direction:rtl]">
-        <div className="inline-flex flex-col gap-[2px] [direction:ltr]">
-          <div aria-hidden className="text-subtle flex h-3 gap-[2px] text-[10px] leading-none">
+      <div
+        tabIndex={0}
+        role="img"
+        aria-label={`GitHub contribution graph for ${site.githubUsername} over the last 12 months`}
+        className="-mx-1 overflow-x-auto rounded-sm px-1 pb-1 [direction:rtl]"
+      >
+        <RevealOnView className="inline-flex flex-col gap-[0.125rem] [direction:ltr]">
+          <div className="text-subtle flex h-3 gap-[0.125rem] text-[0.625rem] leading-none">
             {months.map((month, i) => (
-              <span key={i} className="w-[10px] whitespace-nowrap">
+              <span key={i} className="w-[0.625rem] whitespace-nowrap">
                 {month}
               </span>
             ))}
           </div>
-          <div className="flex gap-[2px]">
+          <div className="flex gap-[0.125rem]">
             {weeks.map((week, wi) => (
-              <div key={wi} className="flex flex-col gap-[2px]">
+              <div
+                key={wi}
+                className="heat-col flex flex-col gap-[0.125rem]"
+                style={{ "--c": wi } as React.CSSProperties}
+              >
                 {week.map((day, di) =>
                   day ? (
                     <span
                       key={di}
                       title={describe(day)}
-                      className={`size-[10px] rounded-[2px] ${LEVEL_CLASS[day.level]}`}
+                      className={`size-[0.625rem] rounded-[0.125rem] ${LEVEL_CLASS[day.level]}`}
                     />
                   ) : (
-                    <span key={di} className="size-[10px]" />
+                    <span key={di} className="size-[0.625rem]" />
                   ),
                 )}
               </div>
             ))}
           </div>
-        </div>
+        </RevealOnView>
       </div>
     </Section>
   );

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "highlight.js/styles/github-dark.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -57,6 +56,8 @@
 }
 
 @theme inline {
+  /* Strong ease-out for every UI transition (class: ease-snappy). */
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -84,7 +85,11 @@
 }
 
 html {
+  /* Whole site renders ~10% larger; everything is rem-based so it scales together. */
+  font-size: 110%;
   scroll-behavior: smooth;
+  /* Keep focused/anchored content clear of the floating pill. */
+  scroll-padding-bottom: 7rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -101,6 +106,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* One visible focus ring for every link and button (keyboard only). */
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+button,
+a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 ::selection {
   background: var(--fg);
   color: var(--bg);
@@ -111,6 +134,20 @@ body {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+/* Contribution graph: columns fade in left to right, once, when first seen.
+ * Hidden only when JS can reveal it and motion is welcome. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] .heat-col {
+    opacity: 0;
+    transition: opacity 320ms var(--ease-snappy);
+    transition-delay: calc(var(--c, 0) * 6ms);
+  }
+
+  [data-reveal="shown"] .heat-col {
+    opacity: 1;
+  }
 }
 
 /* One entrance animation, on first paint only. */
@@ -262,7 +299,7 @@ body {
   color: var(--color-accent);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   border-bottom: 2px solid var(--color-accent);
   padding-bottom: 2px;
 }

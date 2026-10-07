@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: site.meta.title,
-    template: `%s — ${site.shortName}`,
+    template: `%s | ${site.shortName}`,
   },
   description: site.meta.description,
   applicationName: site.name,
@@ -65,10 +65,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-  ],
+  // The site is dark by default regardless of the OS setting.
+  themeColor: "#0a0a0a",
 };
 
 const personJsonLd = {
@@ -80,7 +78,7 @@ const personJsonLd = {
   image: `${site.url}${site.avatar}`,
   jobTitle: "Full-stack Engineer",
   email: `mailto:${site.email}`,
-  sameAs: [socials.github, socials.linkedin, socials.x],
+  sameAs: Object.values(socials).filter((url) => url.startsWith("https://")),
 };
 
 export default function RootLayout({
@@ -95,6 +93,12 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="antialiased">
+        <a
+          href="#main"
+          className="bg-fg text-bg sr-only z-[70] rounded-md px-3 py-2 text-sm font-medium focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

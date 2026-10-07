@@ -15,7 +15,7 @@ interface ProjectCardProps {
 }
 
 const actionClass =
-  "border-line-strong text-muted hover:text-fg hover:bg-surface-2 relative z-10 inline-flex h-7 items-center gap-1.5 rounded-md border px-2.5 text-xs transition-[color,background-color,transform] duration-150 active:scale-[0.96] [&_svg]:size-3.5";
+  "border-line-strong text-muted hover:text-fg hover:bg-surface-2 relative z-10 inline-flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs transition-[color,background-color,transform] duration-150 ease-snappy active:scale-[0.96] [&_svg]:size-3.5 before:absolute before:-inset-y-1.5 before:inset-x-0 before:content-['']";
 
 export function ProjectCard({ project, priority, className }: ProjectCardProps) {
   const ref = useRef<HTMLElement>(null);
@@ -58,7 +58,7 @@ export function ProjectCard({ project, priority, className }: ProjectCardProps) 
             <span className="font-display text-fg text-3xl">{project.title}</span>
           </div>
         )}
-        <span className="absolute left-2 top-2 rounded-md bg-black/70 px-2 py-1 font-mono text-[10.5px] leading-none text-white backdrop-blur-sm">
+        <span className="absolute left-2 top-2 rounded-md bg-black/70 px-2 py-1 font-mono text-[0.65625rem] leading-none text-white backdrop-blur-sm">
           {project.metric}
         </span>
       </div>
@@ -66,7 +66,7 @@ export function ProjectCard({ project, priority, className }: ProjectCardProps) 
       <div className="flex min-w-0 flex-col pb-1 sm:py-1 sm:pr-1">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h3 className="text-fg text-[15px] font-medium leading-snug">
+            <h3 className="text-fg text-[0.9375rem] font-medium leading-snug">
               <Link
                 href={`/projects/${project.slug}`}
                 className="after:absolute after:inset-0 after:content-['']"
@@ -106,16 +106,9 @@ export function ProjectCard({ project, priority, className }: ProjectCardProps) 
           {project.description}
         </p>
 
-        <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Tech stack">
-          {project.tech.map((tech) => (
-            <li
-              key={tech}
-              className="border-line text-subtle rounded border px-1.5 py-0.5 font-mono text-[10.5px]"
-            >
-              {tech}
-            </li>
-          ))}
-        </ul>
+        <p className="text-subtle mt-4 font-mono text-[0.6875rem]">
+          {project.tech.join(" / ")}
+        </p>
       </div>
     </article>
   );

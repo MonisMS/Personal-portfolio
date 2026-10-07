@@ -13,7 +13,7 @@ import { builds, projects } from "@/lib/site/projects";
 export default function HomePage() {
   return (
     <>
-      <main className="mx-auto w-full max-w-[44rem] space-y-14 px-4 sm:px-6">
+      <main id="main" className="mx-auto w-full max-w-[44rem] space-y-14 px-4 sm:px-6">
         <Intro />
         <GithubActivity />
 

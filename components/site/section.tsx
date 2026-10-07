@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SectionProps {
@@ -11,6 +11,9 @@ interface SectionProps {
   children: React.ReactNode;
   className?: string;
 }
+
+const actionClass =
+  "group text-muted hover:text-fg inline-flex shrink-0 items-center gap-1.5 text-sm transition-[color,transform] duration-150 ease-snappy active:scale-[0.97]";
 
 export function Section({
   id,
@@ -39,15 +42,23 @@ export function Section({
             <p className="text-subtle mt-2.5 text-sm">{description}</p>
           )}
         </div>
-        {action && (
-          <Link
-            href={action.href}
-            className="group text-muted hover:text-fg inline-flex shrink-0 items-center gap-1.5 text-sm transition-colors duration-150"
-          >
-            {action.label}
-            <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
-        )}
+        {action &&
+          (action.href.startsWith("http") ? (
+            <a
+              href={action.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={actionClass}
+            >
+              {action.label}
+              <ArrowUpRight className="size-3.5 transition-transform duration-200 ease-snappy group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          ) : (
+            <Link href={action.href} className={actionClass}>
+              {action.label}
+              <ArrowRight className="size-3.5 transition-transform duration-200 ease-snappy group-hover:translate-x-0.5" />
+            </Link>
+          ))}
       </div>
       {children}
     </section>

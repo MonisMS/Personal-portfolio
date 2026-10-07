@@ -75,7 +75,7 @@ export function ScrollPill() {
       />
 
       {/* Full-width flex row keeps the pill centred while its width animates. */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center px-4">
+      <div className="pointer-events-none fixed inset-x-0 bottom-[max(1.5rem,calc(env(safe-area-inset-bottom)+0.75rem))] z-50 flex justify-center px-4">
         <div className="pointer-events-auto">
           <motion.button
             type="button"
@@ -84,7 +84,7 @@ export function ScrollPill() {
             layout={!reduceMotion}
             transition={{ type: "spring", stiffness: 500, damping: 40 }}
             whileTap={{ scale: 0.96 }}
-            className="border-line-strong bg-surface/80 text-fg flex h-10 items-center gap-2.5 overflow-hidden rounded-full border pl-3 pr-4 text-[13px] shadow-lg shadow-black/20 backdrop-blur-md"
+            className="border-line-strong bg-surface/80 text-fg flex h-10 items-center gap-2.5 overflow-hidden rounded-full border pl-3 pr-4 text-[0.8125rem] shadow-lg shadow-black/20 backdrop-blur-md"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden className="-rotate-90">
               <circle cx="9" cy="9" r={RADIUS} fill="none" stroke="var(--line-strong)" strokeWidth="2" />

@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const project = getProject(slug);
   if (!project) return {};
 
-  const title = `${project.title} — ${project.tagline}`;
+  const title = `${project.title}: ${project.tagline}`;
   return {
     title,
     description: project.description,
@@ -73,7 +73,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       />
       <PageHeader backHref="/projects" backLabel="Projects" />
 
-      <main>
+      <main id="main">
         <header className="pt-12">
           <p className="rise text-subtle font-mono text-xs">{project.metric}</p>
           <h1
@@ -129,14 +129,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <section className="mt-12">
           <h2 className="font-display text-fg text-[1.75rem] leading-none">Overview</h2>
-          <p className="text-muted mt-5 text-[15px] leading-[1.75]">{project.description}</p>
+          <p className="text-muted mt-5 text-[0.9375rem] leading-[1.75]">{project.description}</p>
         </section>
 
         <section className="mt-12">
           <h2 className="font-display text-fg text-[1.75rem] leading-none">How it works</h2>
           <ul className="mt-5 space-y-3">
             {project.highlights.map((highlight) => (
-              <li key={highlight} className="text-muted flex gap-3 text-[15px] leading-[1.7]">
+              <li key={highlight} className="text-muted flex gap-3 text-[0.9375rem] leading-[1.7]">
                 <span aria-hidden className="bg-subtle mt-[0.7em] size-1 shrink-0 rounded-full" />
                 {highlight}
               </li>

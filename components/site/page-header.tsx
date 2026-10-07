@@ -13,7 +13,7 @@ export function PageHeader({ backHref = "/", backLabel = "Home" }: PageHeaderPro
     <div className="flex items-center justify-between gap-4 pt-8 sm:pt-12">
       <Link
         href={backHref}
-        className="group text-muted hover:text-fg inline-flex items-center gap-1.5 text-sm transition-colors duration-150"
+        className="group text-muted hover:text-fg inline-flex items-center gap-1.5 text-sm transition-[color,transform] duration-150 ease-snappy active:scale-[0.97]"
       >
         <ArrowLeft className="size-3.5 transition-transform duration-200 group-hover:-translate-x-0.5" />
         {backLabel}

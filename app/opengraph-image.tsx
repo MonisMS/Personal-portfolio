@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
  
 export const runtime = 'edge'
  
-export const alt = 'Syed Monis Sarwar — Full-stack Engineer building AI agents'
+export const alt = 'Syed Monis Sarwar | Full-stack Engineer building AI agents'
 export const size = {
   width: 1200,
   height: 630,

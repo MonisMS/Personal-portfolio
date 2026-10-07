@@ -1,11 +1,40 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Calendar, Check, Copy, Loader2, Send } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SOCIAL_LINKS } from "./social-links";
 import { sendEmail } from "@/app/actions/send-email";
 import { site, socials } from "@/lib/site/config";
 import { cn } from "@/lib/utils";
+
+const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+
+/**
+ * Crossfade between two pieces of content. The blur makes the old and new
+ * states read as one object changing rather than two swapping places.
+ */
+function Swap({ swapKey, children }: { swapKey: string; children: React.ReactNode }) {
+  const reduceMotion = useReducedMotion();
+  const hidden = reduceMotion
+    ? { opacity: 0 }
+    : { opacity: 0, scale: 0.6, filter: "blur(4px)" };
+
+  return (
+    <AnimatePresence mode="popLayout" initial={false}>
+      <motion.span
+        key={swapKey}
+        initial={hidden}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        exit={hidden}
+        transition={{ duration: 0.2, ease: EASE_OUT }}
+        className="inline-flex items-center gap-2"
+      >
+        {children}
+      </motion.span>
+    </AnimatePresence>
+  );
+}
 
 function CopyEmail() {
   const [copied, setCopied] = useState(false);
@@ -38,11 +67,13 @@ function CopyEmail() {
       <span
         aria-hidden
         className={cn(
-          "border-line flex size-8 shrink-0 items-center justify-center rounded-md border transition-colors duration-200",
+          "border-line flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border transition-colors duration-200",
           copied ? "text-positive border-positive/40" : "text-muted group-hover:text-fg",
         )}
       >
-        {copied ? <Check className="size-4" /> : <Copy className="size-3.5" />}
+        <Swap swapKey={copied ? "check" : "copy"}>
+          {copied ? <Check className="size-4" /> : <Copy className="size-3.5" />}
+        </Swap>
       </span>
       <span aria-live="polite" className="sr-only">
         {copied ? "Copied to clipboard" : ""}
@@ -80,7 +111,7 @@ function ContactForm() {
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="block">
           <span className="text-subtle mb-1.5 block text-xs">Name (optional)</span>
-          <input name="name" autoComplete="name" maxLength={100} placeholder="Your name" className={fieldClass} />
+          <input name="name" autoComplete="name" maxLength={100} placeholder="Your name…" className={fieldClass} />
         </label>
         <label className="block">
           <span className="text-subtle mb-1.5 block text-xs">Email</span>
@@ -104,7 +135,7 @@ function ContactForm() {
           minLength={10}
           maxLength={5000}
           rows={5}
-          placeholder="What are you working on?"
+          placeholder="What are you working on…"
           className={cn(fieldClass, "resize-none")}
         />
       </label>
@@ -124,32 +155,38 @@ function ContactForm() {
           disabled={pending}
           className="bg-fg text-bg inline-flex h-10 items-center gap-2 rounded-lg px-4 text-sm font-medium transition-[opacity,transform] duration-150 hover:opacity-90 active:scale-[0.97] disabled:opacity-60"
         >
-          {pending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-3.5" />}
-          {pending ? "Sending…" : "Send message"}
+          <Swap swapKey={pending ? "sending" : "idle"}>
+            {pending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-3.5" />}
+            {pending ? "Sending…" : "Send message"}
+          </Swap>
         </button>
         <p
           aria-live="polite"
           className={cn("text-sm", status?.ok ? "text-positive" : "text-muted")}
         >
-          {status?.message}
+          {status && (
+            <motion.span
+              key={status.message}
+              initial={{ opacity: 0, transform: "translateY(4px)" }}
+              animate={{ opacity: 1, transform: "translateY(0px)" }}
+              transition={{ duration: 0.2, ease: EASE_OUT }}
+              className="inline-block"
+            >
+              {status.message}
+            </motion.span>
+          )}
         </p>
       </div>
     </form>
   );
 }
 
-const socialLinks = [
-  { label: "GitHub", href: socials.github, icon: SiGithub },
-  { label: "LinkedIn", href: socials.linkedin, icon: SiLinkedin },
-  { label: "X", href: socials.x, icon: SiX },
-];
-
 export function Contact() {
   return (
     <div className="grid gap-8 sm:grid-cols-[minmax(0,16rem)_1fr] sm:gap-10">
       <div className="space-y-4">
-        <p className="text-muted text-[15px] leading-relaxed">
-          Have a role, a project or a problem worth solving? Send a note — I
+        <p className="text-muted text-[0.9375rem] leading-relaxed">
+          Have a role, a project or a problem worth solving? Send a note, I
           read every one.
         </p>
         <CopyEmail />
@@ -157,7 +194,7 @@ export function Contact() {
           href={site.calUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group border-line hover:border-line-strong hover:bg-surface flex items-center justify-between gap-3 rounded-xl border p-4 transition-[background-color,border-color] duration-200"
+          className="group border-line hover:border-line-strong hover:bg-surface flex items-center justify-between gap-3 rounded-xl border p-4 transition-[background-color,border-color,transform] duration-200 ease-snappy active:scale-[0.99]"
         >
           <span className="flex items-center gap-3">
             <Calendar className="text-muted size-4" />
@@ -166,8 +203,8 @@ export function Contact() {
           <ArrowUpRight className="text-subtle group-hover:text-fg size-4 transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </a>
         <div className="flex items-center justify-between gap-3 pt-1">
-          <ul className="flex gap-1.5">
-            {socialLinks.map(({ label, href, icon: Icon }) => (
+          <ul className="flex flex-wrap gap-1.5">
+            {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
               <li key={label}>
                 <a
                   href={href}

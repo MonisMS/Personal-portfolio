@@ -25,8 +25,8 @@ export function PullRequestList({ pullRequests }: { pullRequests: PullRequest[] 
               <GitMerge className="size-3.5" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-fg truncate text-sm">{pr.title}</p>
-              <p className="text-subtle mt-0.5 font-mono text-[11px]">
+              <p className="text-fg text-sm text-pretty">{pr.title}</p>
+              <p className="text-subtle mt-0.5 font-mono text-[0.6875rem]">
                 {pr.repo} #{pr.number} · {formatMonth(pr.mergedAt)}
               </p>
             </div>

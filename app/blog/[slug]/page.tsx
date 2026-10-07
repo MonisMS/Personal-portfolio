@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="bg-bg-primary">
+    <main id="main" className="bg-bg-primary">
       <ReadingProgress />
       <article className="px-4 pt-24 pb-20 md:px-12 lg:px-20">
         <div className="mx-auto max-w-3xl">

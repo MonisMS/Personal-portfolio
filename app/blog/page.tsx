@@ -31,7 +31,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   }
 
   return (
-    <main className="bg-bg-primary">
+    <main id="main" className="bg-bg-primary">
       {/* Header */}
       <section className="relative px-4 pt-24 pb-12 md:px-12 lg:px-20">
         {/* Soft Divider */}

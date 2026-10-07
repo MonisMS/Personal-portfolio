@@ -37,15 +37,17 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     <button
       type="button"
       onClick={toggle}
-      aria-label="Toggle theme"
       title="Toggle theme (D)"
       className={cn(
         "text-muted hover:text-fg hover:bg-surface-2 inline-flex size-8 items-center justify-center rounded-md transition-[color,background-color,transform] duration-150 active:scale-[0.94]",
         className,
       )}
     >
-      <Moon className="hidden size-4 dark:block" />
-      <Sun className="size-4 dark:hidden" />
+      <Moon aria-hidden className="hidden size-4 dark:block" />
+      <Sun aria-hidden className="size-4 dark:hidden" />
+      {/* Label follows the theme via CSS, so it never mismatches on hydration. */}
+      <span className="sr-only hidden dark:block">Switch to light theme</span>
+      <span className="sr-only dark:hidden">Switch to dark theme</span>
     </button>
   );
 }
