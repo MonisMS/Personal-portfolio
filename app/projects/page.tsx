@@ -5,13 +5,14 @@ import { PageHeader } from "@/components/site/page-header";
 import { ProjectCard } from "@/components/site/project-card";
 import { Section } from "@/components/site/section";
 import { builds, projects } from "@/lib/site/projects";
+import { pageMetadata } from "@/lib/site/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
-    "Projects by Syed Monis Sarwar: APIx, Curio, FieldProof, DataPilot and Shikshak Saathi: data pipelines, AI agents and backends.",
-  alternates: { canonical: "/projects" },
-};
+    "Projects by Syed Monis Sarwar: APIx, Curio, FieldProof, DataPilot and Shikshak Saathi. Data pipelines, AI agents and backends.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import { Download, ExternalLink, Calendar, FileText } from 'lucide-react';
+import { pageMetadata } from '@/lib/site/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Résumé',
   description: 'Résumé of Syed Monis Sarwar, full-stack engineer building AI agents. View or download the PDF.',
-  alternates: { canonical: '/resume' },
-};
+  path: '/resume',
+});
 
 async function getResumeMetadata() {
   try {

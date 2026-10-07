@@ -4,6 +4,11 @@ import type { NextConfig } from "next";
 const RETIRED_V2_PROJECTS = ["nivora", "foldermage", "askai", "pharmaguard"];
 
 const nextConfig: NextConfig = {
+  // OG images read fonts and photos from disk; ship them with those routes.
+  outputFileTracingIncludes: {
+    "/opengraph-image": ["./assets/og/**/*"],
+    "/projects/[slug]/opengraph-image/[__metadata_id__]": ["./assets/og/**/*"],
+  },
   // The old /v2 preview was public; keep its links working.
   async redirects() {
     return [

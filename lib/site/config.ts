@@ -8,6 +8,7 @@ export const site = {
   resumeUrl: "/resume",
   resumePdf: "/resume/resume.pdf",
   githubUsername: "MonisMS",
+  xHandle: "@SMSarwar47",
   avatar: "/profile-pic-1.jpeg",
   timeZone: "Asia/Kolkata",
   openTo: "Open to work",
