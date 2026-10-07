@@ -2,7 +2,14 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Calendar, Check, Copy, Loader2, Send } from "lucide-react";
+import {
+  ArrowUpRight,
+  Calendar,
+  Check,
+  Copy,
+  Loader2,
+  Send,
+} from "lucide-react";
 import { SOCIAL_LINKS } from "./social-links";
 import { sendEmail } from "@/app/actions/send-email";
 import { site, socials } from "@/lib/site/config";
@@ -14,7 +21,13 @@ const EASE_OUT = [0.23, 1, 0.32, 1] as const;
  * Crossfade between two pieces of content. The blur makes the old and new
  * states read as one object changing rather than two swapping places.
  */
-function Swap({ swapKey, children }: { swapKey: string; children: React.ReactNode }) {
+interface SwapProps {
+  /** Changing this key plays the crossfade. */
+  swapKey: string;
+  children: React.ReactNode;
+}
+
+function Swap({ swapKey, children }: SwapProps) {
   const reduceMotion = useReducedMotion();
   const hidden = reduceMotion
     ? { opacity: 0 }
@@ -62,17 +75,25 @@ function CopyEmail() {
     >
       <span className="min-w-0">
         <span className="text-subtle block text-xs">Email · click to copy</span>
-        <span className="text-fg mt-1 block truncate text-sm">{site.email}</span>
+        <span className="text-fg mt-1 block truncate text-sm">
+          {site.email}
+        </span>
       </span>
       <span
         aria-hidden
         className={cn(
           "border-line flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border transition-colors duration-200",
-          copied ? "text-positive border-positive/40" : "text-muted group-hover:text-fg",
+          copied
+            ? "text-positive border-positive/40"
+            : "text-muted group-hover:text-fg",
         )}
       >
         <Swap swapKey={copied ? "check" : "copy"}>
-          {copied ? <Check className="size-4" /> : <Copy className="size-3.5" />}
+          {copied ? (
+            <Check className="size-4" />
+          ) : (
+            <Copy className="size-3.5" />
+          )}
         </Swap>
       </span>
       <span aria-live="polite" className="sr-only">
@@ -87,7 +108,9 @@ const fieldClass =
 
 function ContactForm() {
   const [pending, startTransition] = useTransition();
-  const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(null);
+  const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(
+    null,
+  );
   const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -95,12 +118,22 @@ function ContactForm() {
     const data = new FormData(event.currentTarget);
     setStatus(null);
     startTransition(async () => {
-      const result = await sendEmail({
-        name: String(data.get("name") ?? ""),
-        email: String(data.get("email") ?? ""),
-        message: String(data.get("message") ?? ""),
-        company: String(data.get("company") ?? ""),
-      });
+      let result;
+      try {
+        result = await sendEmail({
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          message: String(data.get("message") ?? ""),
+          botField: String(data.get("bot-field") ?? ""),
+        });
+      } catch (error) {
+        console.error("Error sending message:", error);
+        setStatus({
+          ok: false,
+          message: `Couldn't reach the server. Email me at ${site.email} instead.`,
+        });
+        return;
+      }
       setStatus({ ok: result.success, message: result.message });
       if (result.success) formRef.current?.reset();
     });
@@ -110,8 +143,16 @@ function ContactForm() {
     <form ref={formRef} onSubmit={onSubmit} className="space-y-3">
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="block">
-          <span className="text-subtle mb-1.5 block text-xs">Name (optional)</span>
-          <input name="name" autoComplete="name" maxLength={100} placeholder="Your name…" className={fieldClass} />
+          <span className="text-subtle mb-1.5 block text-xs">
+            Name (optional)
+          </span>
+          <input
+            name="name"
+            autoComplete="name"
+            maxLength={100}
+            placeholder="Your name…"
+            className={fieldClass}
+          />
         </label>
         <label className="block">
           <span className="text-subtle mb-1.5 block text-xs">Email</span>
@@ -142,7 +183,7 @@ function ContactForm() {
 
       {/* Honeypot: off-screen for people, tempting for bots. */}
       <input
-        name="company"
+        name="bot-field"
         tabIndex={-1}
         autoComplete="off"
         aria-hidden
@@ -156,7 +197,11 @@ function ContactForm() {
           className="bg-fg text-bg inline-flex h-10 items-center gap-2 rounded-lg px-4 text-sm font-medium transition-[opacity,transform] duration-150 hover:opacity-90 active:scale-[0.97] disabled:opacity-60"
         >
           <Swap swapKey={pending ? "sending" : "idle"}>
-            {pending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-3.5" />}
+            {pending ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <Send className="size-3.5" />
+            )}
             {pending ? "Sending…" : "Send message"}
           </Swap>
         </button>
@@ -186,8 +231,8 @@ export function Contact() {
     <div className="grid gap-8 sm:grid-cols-[minmax(0,16rem)_1fr] sm:gap-10">
       <div className="space-y-4">
         <p className="text-muted text-[0.9375rem] leading-relaxed">
-          Have a role, a project or a problem worth solving? Send a note, I
-          read every one.
+          Have a role, a project or a problem worth solving? Send a note, I read
+          every one.
         </p>
         <CopyEmail />
         <a

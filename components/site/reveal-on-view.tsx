@@ -18,6 +18,11 @@ export function RevealOnView({ children, className }: RevealOnViewProps) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Very old browsers: skip the effect rather than leave the graph hidden.
+    if (!("IntersectionObserver" in window)) {
+      const frame = requestAnimationFrame(() => setShown(true));
+      return () => cancelAnimationFrame(frame);
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;

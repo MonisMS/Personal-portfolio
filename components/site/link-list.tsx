@@ -15,12 +15,25 @@ function formatMonth(iso: string) {
   });
 }
 
-export function PullRequestList({ pullRequests }: { pullRequests: PullRequest[] }) {
+interface PullRequestListProps {
+  pullRequests: PullRequest[];
+  className?: string;
+}
+
+export function PullRequestList({
+  pullRequests,
+  className,
+}: PullRequestListProps) {
   return (
-    <ul>
+    <ul className={className}>
       {pullRequests.map((pr) => (
         <li key={pr.url}>
-          <a href={pr.url} target="_blank" rel="noopener noreferrer" className={rowClass}>
+          <a
+            href={pr.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={rowClass}
+          >
             <span className="border-line bg-surface text-muted flex size-8 shrink-0 items-center justify-center rounded-md border">
               <GitMerge className="size-3.5" />
             </span>

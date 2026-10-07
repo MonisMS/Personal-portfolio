@@ -56,6 +56,23 @@ export function CommandMenu() {
     returnFocus.current = null;
   }, [open]);
 
+  // Modal: freeze the page behind it. Pad for the scrollbar so nothing shifts.
+  useEffect(() => {
+    if (!open) return;
+    const { body, documentElement } = document;
+    const scrollbar = window.innerWidth - documentElement.clientWidth;
+    const previous = {
+      overflow: body.style.overflow,
+      paddingRight: body.style.paddingRight,
+    };
+    body.style.overflow = "hidden";
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+    return () => {
+      body.style.overflow = previous.overflow;
+      body.style.paddingRight = previous.paddingRight;
+    };
+  }, [open]);
+
   // Feedback toast for actions that close the menu (e.g. copy email).
   useEffect(() => {
     if (!notice) return;
@@ -150,11 +167,17 @@ export function CommandMenu() {
           label: "Copy email",
           hint: site.email,
           icon: <Copy />,
-          run: () =>
+          run: () => {
+            // No clipboard (old browser, insecure context): open the mail app.
+            if (!navigator.clipboard) {
+              window.location.assign(socials.email);
+              return;
+            }
             navigator.clipboard
-              ?.writeText(site.email)
+              .writeText(site.email)
               .then(() => setNotice("Email copied"))
-              .catch(() => window.location.assign(socials.email)),
+              .catch(() => window.location.assign(socials.email));
+          },
         },
         {
           label: "Send email",

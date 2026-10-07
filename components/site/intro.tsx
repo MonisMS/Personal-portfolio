@@ -11,7 +11,11 @@ const chip =
   "inline-flex h-9 items-center gap-2 rounded-md border px-3 text-sm transition-[background-color,border-color,color,transform] duration-150 ease-snappy active:scale-[0.97] [&_svg]:size-3.5";
 
 /** Key phrase inside a gray paragraph: bold white, not a colour. */
-function Em({ children }: { children: React.ReactNode }) {
+interface EmProps {
+  children: React.ReactNode;
+}
+
+function Em({ children }: EmProps) {
   return <strong className="text-fg font-semibold">{children}</strong>;
 }
 

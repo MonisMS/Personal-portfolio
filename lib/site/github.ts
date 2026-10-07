@@ -50,6 +50,8 @@ export async function fetchContributions(
       // Revalidate hourly — contribution counts move slowly and we never want
       // to hammer the aggregator on every request.
       next: { revalidate: 3600 },
+      // A stalled aggregator must never hold up the page; the graph just hides.
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) return null;
 

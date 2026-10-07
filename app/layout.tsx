@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { CommandMenu } from "@/components/site/command-menu";
+import { ThemeShortcut } from "@/components/site/theme-toggle";
 import { ThemeProvider } from "./components/theme-provider";
 import { site, socials } from "@/lib/site/config";
 import "./globals.css";
@@ -47,7 +48,12 @@ export const metadata: Metadata = {
     "AI agents",
     "data pipelines",
   ],
-  alternates: { canonical: "/" },
+  // Each page sets its own canonical; only the feed is shared.
+  alternates: {
+    types: {
+      "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} · RSS` }],
+    },
+  },
   openGraph: {
     type: "website",
     url: "/",
@@ -111,6 +117,7 @@ export default function RootLayout({
         >
           {children}
           <CommandMenu />
+          <ThemeShortcut />
           <Analytics />
         </ThemeProvider>
       </body>

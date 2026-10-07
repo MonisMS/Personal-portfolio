@@ -10,8 +10,9 @@ import type { BlogPostMetadata } from "../components/blog-card";
 import { ArrowRight, Sparkles, ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog - Syed Monis Sarwar",
+  title: "Blog",
   description: "Thoughts, learnings, and tutorials about web development, blockchain, and technology.",
+  alternates: { canonical: "/blog" },
 };
 
 interface BlogPageProps {

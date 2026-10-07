@@ -17,10 +17,10 @@ function isTyping(target: EventTarget | null) {
   );
 }
 
-export function ThemeToggle({ className }: ThemeToggleProps) {
+/** Press D anywhere to flip the theme. Mounted once, in the root layout. */
+export function ThemeShortcut() {
   const toggle = useThemeSwitch();
 
-  // Press D anywhere to flip the theme.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() !== "d") return;
@@ -32,6 +32,12 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [toggle]);
+
+  return null;
+}
+
+export function ThemeToggle({ className }: ThemeToggleProps) {
+  const toggle = useThemeSwitch();
 
   return (
     <button

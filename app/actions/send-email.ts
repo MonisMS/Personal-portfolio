@@ -12,8 +12,11 @@ const contactSchema = z.object({
     .trim()
     .min(10, "Message must be at least 10 characters.")
     .max(5000, "Message is too long."),
-  /** Honeypot: hidden from people, filled in by bots. */
-  company: z.string().max(0).optional(),
+  /**
+   * Honeypot: hidden from people, filled in by bots. The name is deliberately
+   * meaningless so browser autofill never fills it for a real visitor.
+   */
+  botField: z.string().max(0).optional(),
 });
 
 export type ContactInput = z.input<typeof contactSchema>;
@@ -36,7 +39,7 @@ export async function sendEmail(input: ContactInput): Promise<ContactResult> {
   const parsed = contactSchema.safeParse(input);
   if (!parsed.success) {
     // A filled honeypot means a bot: pretend it worked.
-    if (parsed.error.issues.some((issue) => issue.path[0] === "company")) {
+    if (parsed.error.issues.some((issue) => issue.path[0] === "botField")) {
       return { success: true, message: "Message sent! I'll get back to you soon." };
     }
     return { success: false, message: parsed.error.issues[0].message };

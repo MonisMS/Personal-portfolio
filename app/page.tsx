@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Footer } from "@/components/site/footer";
 import { GithubActivity } from "@/components/site/github-activity";
 import { Intro } from "@/components/site/intro";
@@ -8,7 +9,17 @@ import { ProjectCard } from "@/components/site/project-card";
 import { ScrollPill } from "@/components/site/scroll-pill";
 import { Section } from "@/components/site/section";
 import { pullRequests } from "@/lib/site/open-source";
+import { site } from "@/lib/site/config";
 import { builds, projects } from "@/lib/site/projects";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} · RSS` }],
+    },
+  },
+};
 
 export default function HomePage() {
   return (

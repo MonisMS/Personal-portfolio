@@ -2,15 +2,26 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { CommandButton } from "./command-button";
 import { ThemeToggle } from "./theme-toggle";
+import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
   backHref?: string;
   backLabel?: string;
+  className?: string;
 }
 
-export function PageHeader({ backHref = "/", backLabel = "Home" }: PageHeaderProps) {
+export function PageHeader({
+  backHref = "/",
+  backLabel = "Home",
+  className,
+}: PageHeaderProps) {
   return (
-    <div className="flex items-center justify-between gap-4 pt-8 sm:pt-12">
+    <div
+      className={cn(
+        "flex items-center justify-between gap-4 pt-8 sm:pt-12",
+        className,
+      )}
+    >
       <Link
         href={backHref}
         className="group text-muted hover:text-fg inline-flex items-center gap-1.5 text-sm transition-[color,transform] duration-150 ease-snappy active:scale-[0.97]"
