@@ -96,48 +96,22 @@
     \resumeSubheading
       {Babu Banarasi Das Institute of Technology and Management}{Lucknow, India}
       {B.Tech in Computer Science and Engineering}{2024 -- 2028}
+    \vspace{-2pt}\item
+      \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{Anand Bhawan School} & Barabanki, India \\
+        \textit{\small ISC (Class XII), 78\%} & \textit{\small 2023} \\
+        \textit{\small ICSE (Class X), 93\%} & \textit{\small 2021} \\
+      \end{tabular*}\vspace{-7pt}
   \resumeSubHeadingListEnd
-
-%-----------PROJECTS-----------
-\section{Projects}
-    \resumeSubHeadingListStart
-
-      \resumeProjectHeading
-          {\textbf{APIx: Daily Airfare Price Index for India} $|$ \emph{Python, PostgreSQL, Next.js, GitHub Actions}}{\href{https://apix-dashboard-gitbashers.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/apix-dashboard}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{Built a daily collection pipeline on GitHub Actions that prices 12 DGCA-weighted routes across 5 advance-purchase windows, storing \textbf{24,448 fares} in Postgres}
-            \resumeItem{Implemented the official CPI method in Python (Jevons elementary indices, Young aggregation, outlier cleaning, imputation), \textbf{reproducing MoSPI's published worked examples to 4 decimal places}}
-            \resumeItem{Made every number auditable: each index point carries a hash of its inputs, and each publish writes a full new version in one transaction so readers never see half-written data}
-            \resumeItem{Served the index via 19 public JSON endpoints with a static-snapshot fallback; \textbf{79 pytest tests}}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\textbf{DataPilot: Prompt-to-Dataset LLM Agent} $|$ \emph{TypeScript, Next.js, PostgreSQL, LLM APIs}}{\href{https://datapilot-intel.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/cc-general-hack-ps}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{Built an agent pipeline where an LLM planner turns a plain-English request into a schema and plan, runs \textbf{9 source connectors in parallel}, and extracts rows in batched LLM calls}
-            \resumeItem{Guarded against hallucinated rows by requiring a verbatim source quote per row, \textbf{verified in code}, then validating types, merging duplicates and scoring each row's confidence}
-            \resumeItem{Hardened it against untrusted web input with an SSRF guard (private, loopback and cloud-metadata IPs) and by fencing scraped text as data to resist prompt injection}
-            \resumeItem{Wrote a provider-agnostic LLM client (Gemini, Anthropic, OpenAI) with model fallbacks and a rule-based mode, plus an eval harness scoring fill rate and precision}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\textbf{Curio: Personalized Reading Feed} $|$ \emph{TypeScript, Next.js, PostgreSQL, Drizzle ORM, Resend}}{\href{https://curio-sity.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/article-it}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{Ingested \textbf{275+ sources across 26 topics} (RSS, Hacker News, Reddit, YouTube) in parallel with an 8-second per-source timeout, so one slow feed never stalls a run}
-            \resumeItem{Ranked feeds by blending recency with a per-source quality score from bookmark and read rates; built search on Postgres full-text search instead of an external service}
-            \resumeItem{Automated 5 scheduled jobs (ingestion, digests, quality scoring, cleanup, re-engagement) and sent timezone-aware digests with HMAC-signed unsubscribe links; \textbf{80+ Vitest tests}}
-          \resumeItemListEnd
-
-    \resumeSubHeadingListEnd
 
 %-----------OPEN SOURCE-----------
 \section{Open Source}
     \resumeSubHeadingListStart
 
       \resumeProjectHeading
-          {\textbf{corsairdev/corsair} $|$ \emph{13k+ stars, TypeScript}}{\href{https://github.com/corsairdev/corsair/pull/703}{PR \#703, merged}}
+          {\textbf{corsairdev/corsair} $|$ \emph{YC W25, 13k+ stars, TypeScript}}{\href{https://github.com/corsairdev/corsair/pull/703}{PR \#703, merged}}
           \resumeItemListStart
-            \resumeItem{Added the OCR.space integration: typed client, error handling and Jest tests (2,300+ lines, 17 files)}
+            \resumeItem{Added the OCR.space integration as a standalone typed package (client, endpoints, error handling, test suite), reviewed and merged by the founder}
           \resumeItemListEnd
 
       \resumeProjectHeading
@@ -154,24 +128,59 @@
 
     \resumeSubHeadingListEnd
 
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{APIx: Daily Airfare Price Index for India} $|$ \emph{PostgreSQL, Next.js, GitHub Actions}}{\href{https://apix-dashboard-gitbashers.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/apix-dashboard}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built a daily collection pipeline on GitHub Actions that prices 12 DGCA-weighted routes across 5 advance-purchase windows, storing \textbf{24,448 fares} in Postgres}
+            \resumeItem{Implemented the official CPI method (Jevons elementary indices, Young aggregation, outlier cleaning, imputation), \textbf{reproducing MoSPI's published worked examples to 4 decimal places}}
+            \resumeItem{Made every number auditable: each index point carries a hash of its inputs, and each publish writes a full new version in one transaction so readers never see half-written data}
+            \resumeItem{Served the index through a public JSON API that falls back to a static snapshot when the database is down}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{DataPilot: Prompt-to-Dataset LLM Agent} $|$ \emph{TypeScript, Next.js, PostgreSQL, LLM APIs}}{\href{https://datapilot-intel.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/cc-general-hack-ps}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built an agent pipeline where an LLM planner turns a plain-English request into a schema and plan, runs \textbf{9 source connectors in parallel}, and extracts rows in batched LLM calls}
+            \resumeItem{Guarded against hallucinated rows by requiring a source quote per row and checking it against the fetched page in code, then validating types, merging duplicates and scoring each row}
+            \resumeItem{Added an SSRF guard for fetched URLs (private, loopback and cloud-metadata IPs) and fenced scraped text as data to resist prompt injection}
+            \resumeItem{Wrote a provider-agnostic LLM client (Gemini, Anthropic, OpenAI) with model fallbacks and a rule-based mode, plus an eval harness scoring fill rate and precision}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Curio: Personalized Reading Feed} $|$ \emph{TypeScript, Next.js, PostgreSQL, Drizzle ORM, Resend}}{\href{https://curio-sity.vercel.app}{Live} $|$ \href{https://github.com/MonisMS/article-it}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Ingested \textbf{275+ sources across 26 topics} (RSS, Hacker News, Reddit, YouTube) in parallel with an 8-second per-source timeout, so one slow feed never stalls a run}
+            \resumeItem{Ranked feeds by blending recency with a per-source quality score from bookmark and read rates; built search on Postgres full-text search instead of an external service}
+            \resumeItem{Automated 5 scheduled jobs (ingestion, digests, quality scoring, cleanup, re-engagement) and sent timezone-aware digests with HMAC-signed unsubscribe links}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
 %-----------SKILLS-----------
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: TypeScript, JavaScript, Python, SQL} \\
-     \textbf{Frameworks}{: Next.js, React, Node.js} \\
-     \textbf{Databases}{: PostgreSQL, Drizzle ORM, SQLite} \\
-     \textbf{AI}{: LLM APIs (OpenAI, Anthropic, Gemini), structured JSON output, LLM evals} \\
-     \textbf{Tools}{: Git, GitHub Actions, Vercel, Vitest, pytest}
+     \textbf{Languages}{: TypeScript, JavaScript, SQL} \\
+     \textbf{Frameworks}{: Next.js, React, Node.js, Express, Tailwind CSS, Zod} \\
+     \textbf{Databases}{: PostgreSQL, Drizzle ORM} \\
+     \textbf{AI}{: LLM APIs (OpenAI, Anthropic, Gemini), tool calling, structured output, LLM evals} \\
+     \textbf{Tools}{: Git, GitHub Actions, Docker, Vercel}
     }}
  \end{itemize}
 
-%-----------LEADERSHIP-----------
-\section{Leadership}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Google Developer Groups (GDG) on Campus}{2026 -- Present}
-      {Campus Lead}{BBDITM, Lucknow}
-  \resumeSubHeadingListEnd
+%-----------ACHIEVEMENTS & LEADERSHIP-----------
+\section{Achievements \& Leadership}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{1st place}, Smart India Hackathon 2026 internal round, BBDITM: APIx (problem SIH26056, MoSPI) \\
+     \textbf{1st place}, BBDITM Internal Hackathon 2026: Inner Council, a voice-first guidance agent \\
+     \textbf{Campus Lead}, Google Developer Groups (GDG) on Campus, BBDITM \hfill Oct 2026 -- Present \\
+     \textbf{Campus Lead}, AlgoZenith, BBDITM \hfill Aug 2025 -- Aug 2026
+    }}
+ \end{itemize}
 
 \end{document}
