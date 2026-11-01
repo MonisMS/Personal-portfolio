@@ -5,7 +5,7 @@ import { Intro } from "@/components/site/intro";
 import { BuildList } from "@/components/site/build-list";
 import { Contact } from "@/components/site/contact";
 import { PullRequestList } from "@/components/site/link-list";
-import { ProjectCard } from "@/components/site/project-card";
+import { ProjectList } from "@/components/site/project-list";
 import { ScrollPill } from "@/components/site/scroll-pill";
 import { Section } from "@/components/site/section";
 import { pullRequests } from "@/lib/site/open-source";
@@ -34,11 +34,7 @@ export default function HomePage() {
           description="Recent work, with the numbers behind it."
           action={{ label: "All projects", href: "/projects" }}
         >
-          <div className="space-y-3">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} priority={i === 0} />
-            ))}
-          </div>
+          <ProjectList projects={projects} />
         </Section>
 
         <Section
@@ -51,7 +47,7 @@ export default function HomePage() {
 
         <Section
           id="builds"
-          title="More projects"
+          title="Smaller builds"
           description="Focused tools and systems worth a look."
         >
           <BuildList builds={builds} />

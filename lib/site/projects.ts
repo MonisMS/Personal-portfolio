@@ -4,7 +4,7 @@
  */
 
 export interface Project {
-  /** Show in More projects instead of the featured cards and case studies. */
+  /** Keep the full card behind the Show more button. */
   more?: boolean;
   slug: string;
   title: string;
@@ -144,17 +144,37 @@ const projectCatalog: Project[] = [
       "Word export, Hindi voice via Sarvam AI and a WhatsApp note for parents.",
     ],
   },
+  {
+    slug: "claimvakeel",
+    title: "ClaimVakeel",
+    tagline: "From insurance rejection letter to a reviewed appeal draft",
+    description:
+      "Five agent stages read a rejection letter, diagnose the denial, match policy clauses and draft an appeal for human review. Citation checks and confidence gates route uncertain cases to a person.",
+    metric: "23-sample evaluation",
+    context: "RocketRide Buildathon",
+    tech: ["Next.js", "TypeScript", "Ollama", "Zod", "SQLite", "Drizzle"],
+    image: "/projects/claimvakeel.webp",
+    githubUrl: "https://github.com/MonisMS/claimvakeel-buildathon",
+    year: "2026",
+    role: "Agent pipeline, evaluation & review interface",
+    highlights: [
+      "Five stages separate intake, diagnosis, clause matching, drafting and adversarial review, with Zod-validated outputs.",
+      "Citations are checked against the supplied policy and a fixed clause corpus; unsupported statements and low confidence route the claim to human review.",
+      "Local Ollama execution with an optional Anthropic provider, plus per-stage traces, retries and JSON repair.",
+      "A 23-sample batch evaluation records latency, token use, cost and expected outcomes, and fails if a broken document produces a draft.",
+      "Human approval lives in the app so a reviewer can return later without keeping an agent run open.",
+    ],
+    note: "Prototype evaluated on fictional letters. The clause corpus is condensed and requires verification before real use. The local engine is the evaluated path; RocketRide execution is not yet verified end to end.",
+  },
 ];
 
-export const projects: Project[] = projectCatalog.filter((project) => !project.more);
+// Featured cards first; all projects retain their case studies and sitemap entries.
+export const projects: Project[] = [
+  ...projectCatalog.filter((project) => !project.more),
+  ...projectCatalog.filter((project) => project.more),
+];
 
 export const builds: Build[] = [
-  ...projectCatalog.filter((project) => project.more).map((project) => ({
-    title: project.title,
-    description: project.description,
-    tech: project.tech,
-    githubUrl: project.githubUrl,
-  })),
   {
     title: "Remote Browser Control",
     description:

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/site/footer";
 import { BuildList } from "@/components/site/build-list";
 import { PageHeader } from "@/components/site/page-header";
-import { ProjectCard } from "@/components/site/project-card";
+import { ProjectList } from "@/components/site/project-list";
 import { Section } from "@/components/site/section";
 import { builds, projects } from "@/lib/site/projects";
 import { pageMetadata } from "@/lib/site/seo";
@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/site/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
-    "Projects by Syed Monis Sarwar: Curio and Shikshak Saathi, plus more projects. Data pipelines, AI agents and backends.",
+    "Projects by Syed Monis Sarwar: Curio, Shikshak Saathi and ClaimVakeel, plus more projects. Data pipelines, AI agents and backends.",
   path: "/projects",
 });
 
@@ -32,13 +32,9 @@ export default function ProjectsPage() {
           </p>
         </header>
 
-        <div className="space-y-3">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} priority={i < 2} />
-          ))}
-        </div>
+        <ProjectList projects={projects} />
 
-        <Section id="builds" title="More projects">
+        <Section id="builds" title="Smaller builds">
           <BuildList builds={builds} initial={builds.length} />
         </Section>
       </main>

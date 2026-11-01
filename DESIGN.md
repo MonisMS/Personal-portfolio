@@ -192,3 +192,13 @@ These are the distinctive elements. Each has a **real-data-or-nothing** rule.
 A section is done when: (1) it renders correct in dark **and** light via Playwright screenshot,
 (2) it holds only real or `TODO`-guarded content, (3) it passes tsc + eslint, (4) keyboard +
 reduced-motion verified, (5) it looks like it belongs to the same system as every other section.
+
+
+## Project disclosure update
+
+The home and projects pages show three featured project cards: Curio, Shikshak Saathi
+and ClaimVakeel. A keyboard-accessible "Show more" button reveals a More projects group
+with the original full cards for APIx, FieldProof and DataPilot, including screenshots,
+source links and case studies. All project routes and sitemap entries remain available.
+Smaller builds remain their own compact list. ClaimVakeel uses a real local screenshot
+and describes the prototype's evaluation and limitations without implying production use.
