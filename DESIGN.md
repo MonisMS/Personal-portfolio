@@ -202,3 +202,43 @@ with the full cards for APIx, FieldProof and ClaimVakeel, including screenshots,
 source links and case studies. All project routes and sitemap entries remain available.
 Smaller builds remain their own compact list. ClaimVakeel uses a real local screenshot
 and describes the prototype's evaluation and limitations without implying production use.
+
+
+## Hallmark redesign, November 2026
+
+This update supersedes earlier layout measurements while preserving the editorial,
+near-black and monochrome identity, Instrument Serif headings, Inter body and Geist
+Mono for code only. Every route shares this system. Real images, facts, links, handlers
+and the three chosen featured projects remain. No invented content or stock imagery.
+
+## Exports
+
+- `app/tokens.css`: shared spacing and type scale, control and container tokens.
+- `app/base.css`: accessible focus, reduced motion, overflow and document defaults.
+- `app/globals.css`: palette and application styles.
+- Container: `.site-container`, capped at 64rem including 24px gutters. Prose measure:
+  65ch, with `.page-title` (Instrument Serif, 56 to 80px), `.page-lead` (18 to 22px).
+- `.page-intro` gives internal pages their heading rhythm. `.site-button` is a 44px
+  outlined control; `.site-button-primary` is the single monochrome filled action.
+- Titles and meta use sentence case, never letterspaced capitals. Metadata uses Inter.
+- Projects: image-led rows with real colour screenshots, clear descriptions, one
+  hairline between entries. Three featured initially, all other full cards on Show more.
+- Home: a compact banner with the name, role and resume action, then work. GitHub
+  activity remains real and subordinate to the work. The preserved About copy follows the selected projects.
+- Blog: an editorial index and readable article, using the shared header/footer.
+- Resume: the same heading, controls and width; original PDF and metadata untouched.
+- Motion is calm: no blur entrances, hover lifts, grayscale reveals or floating dock.
+- Controls have visible instant focus. Mobile inputs are 16px and controls 44px high.
+- No content or routes retired. Shared internal navigation preserves all destinations.
+
+
+### Recorded portfolio exceptions
+
+The compact Banner intros let the work enter the first screen rather than padding a
+marketing hero. Short utility sections (About, topic filters, PDF controls) keep their
+real content instead of invented filler. Neutral ink and real screenshot/PDF paper are
+not a chromatic accent. Section spacing is compact for a hiring portfolio. These four
+Hallmark exceptions are recorded at the top of globals.css and in .hallmark/log.json.
+The monthly contribution table is a native disclosure for keyboard and screen-reader
+access. The PDF preview is informational; open/download links provide keyboard access
+to the native full document. All six project cards are visible without JavaScript.

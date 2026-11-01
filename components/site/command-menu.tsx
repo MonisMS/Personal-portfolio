@@ -243,7 +243,7 @@ export function CommandMenu() {
             className="fixed inset-0 z-[60]"
           >
             <motion.div
-              className="absolute inset-0 bg-black/50 backdrop-blur-[0.125rem]"
+              className="absolute inset-0 bg-black/50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -269,7 +269,7 @@ export function CommandMenu() {
                   // The input is the only stop; keep Tab from leaving the dialog.
                   if (event.key === "Tab") event.preventDefault();
                 }}
-                className="border-line-strong bg-surface overflow-hidden rounded-xl border shadow-2xl shadow-black/40"
+                className="border-line-strong bg-surface overflow-hidden rounded-xl border"
               >
                 <Command.Input
                   autoFocus
@@ -309,8 +309,8 @@ export function CommandMenu() {
                     </Command.Group>
                   ))}
                 </Command.List>
-                <div className="border-line text-subtle flex items-center justify-between border-t px-3 py-2 font-mono text-[0.6875rem]">
-                  <span>↑↓ to move · ↵ to open</span>
+                <div className="border-line text-subtle flex items-center justify-between border-t px-3 py-2 text-[0.6875rem]">
+                  <span>↑↓ to move, ↵ to open</span>
                   <span>esc</span>
                 </div>
               </Command>

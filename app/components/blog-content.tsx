@@ -14,23 +14,28 @@ marked.use(markedHighlight({
         return hljs.highlight(code, { language: lang }).value;
       }
       return hljs.highlightAuto(code).value;
-    } catch (err) {
+    } catch {
       return code;
     }
   }
 }));
 
-marked.setOptions({
+marked.use({
   breaks: true,
   gfm: true,
+  renderer: {
+    heading({ tokens, depth }) {
+      const level = Math.max(2, depth);
+      return `<h${level}>${this.parser.parseInline(tokens)}</h${level}>`;
+    },
+  },
 });
 
 export async function BlogContent({ content }: BlogContentProps) {
   const htmlContent = await marked.parse(content);
 
   return (
-    <div 
-      className="prose prose-invert max-w-none"
+    <div className="prose-invert"
       dangerouslySetInnerHTML={{ __html: htmlContent as string }}
     />
   );

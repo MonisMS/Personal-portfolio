@@ -28,13 +28,13 @@ export function Section({
       id={id}
       data-section={title}
       aria-labelledby={`${id}-title`}
-      className={cn("border-line scroll-mt-12 border-t pt-12 sm:pt-14", className)}
+      className={cn("site-section", className)}
     >
-      <div className="mb-7 flex items-end justify-between gap-4">
+      <div className="section-heading">
         <div>
           <h2
             id={`${id}-title`}
-            className="font-display text-fg text-[1.75rem] leading-none tracking-[-0.01em]"
+            className="section-title"
           >
             {title}
           </h2>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/site/footer";
 import { GithubActivity } from "@/components/site/github-activity";
-import { Intro } from "@/components/site/intro";
+import { Intro, IntroDetails } from "@/components/site/intro";
 import { BuildList } from "@/components/site/build-list";
 import { Contact } from "@/components/site/contact";
 import { PullRequestList } from "@/components/site/link-list";
 import { ProjectList } from "@/components/site/project-list";
-import { ScrollPill } from "@/components/site/scroll-pill";
+import { SiteNav } from "@/components/site/site-nav";
 import { Section } from "@/components/site/section";
 import { pullRequests } from "@/lib/site/open-source";
 import { site } from "@/lib/site/config";
@@ -24,18 +24,24 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <main id="main" className="mx-auto w-full max-w-[44rem] space-y-14 px-4 sm:px-6">
+      <main id="main" className="site-container home-main">
+        <SiteNav />
         <Intro />
-        <GithubActivity />
 
         <Section
           id="projects"
-          title="Projects"
+          title="Selected projects"
           description="Recent work, with the numbers behind it."
           action={{ label: "All projects", href: "/projects" }}
         >
           <ProjectList projects={projects} />
         </Section>
+
+        <Section id="about" title="About">
+          <IntroDetails />
+        </Section>
+
+        <GithubActivity />
 
         <Section
           id="open-source"
@@ -58,10 +64,9 @@ export default function HomePage() {
         </Section>
       </main>
 
-      <div className="mx-auto w-full max-w-[44rem] px-4 sm:px-6">
+      <div className="site-container">
         <Footer />
       </div>
-      <ScrollPill />
     </>
   );
 }

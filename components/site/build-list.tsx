@@ -34,11 +34,11 @@ export function BuildList({ builds, initial = 3, className }: BuildListProps) {
               className={rowClass}
             >
               <div className="min-w-0 flex-1">
-                <p className="text-fg text-sm font-medium">{build.title}</p>
+                <p className="text-fg text-base font-medium">{build.title}</p>
                 <p className="text-muted mt-1 text-sm leading-relaxed">
                   {build.description}
                 </p>
-                <p className="text-subtle mt-1.5 font-mono text-[0.6875rem]">
+                <p className="text-muted mt-2 text-sm">
                   {build.tech.join(" / ")}
                 </p>
               </div>
@@ -54,7 +54,7 @@ export function BuildList({ builds, initial = 3, className }: BuildListProps) {
           onClick={() => setExpanded((value) => !value)}
           aria-expanded={expanded}
           aria-controls="build-list"
-          className="text-muted hover:text-fg mt-3 inline-flex items-center gap-1.5 text-sm transition-[color,transform] duration-150 ease-snappy active:scale-[0.97]"
+          className="text-muted hover:text-fg mt-3 inline-flex min-h-11 items-center gap-1.5 text-sm transition-[color,transform] duration-150 ease-snappy active:scale-[0.97]"
         >
           {expanded ? "Show less" : `Show all (${builds.length})`}
           <ChevronDown

@@ -16,15 +16,15 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <div className="mx-auto w-full max-w-[44rem] px-4 sm:px-6">
+    <div className="site-container">
       <PageHeader />
-      <main id="main" className="space-y-14">
-        <header className="pt-12">
-          <h1 className="rise font-display text-fg text-[2.4rem] leading-none tracking-[-0.01em]">
+      <main id="main" className="projects-main">
+        <header className="page-intro">
+          <h1 className="page-title">
             Projects
           </h1>
           <p
-            className="rise text-muted mt-4 max-w-prose text-[0.9375rem] leading-relaxed"
+            className="page-lead"
             style={{ "--i": 1 } as React.CSSProperties}
           >
             Everything I&apos;d point a hiring manager at. Open one for how it

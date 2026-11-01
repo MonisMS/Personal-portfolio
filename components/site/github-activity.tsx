@@ -69,13 +69,13 @@ export async function GithubActivity() {
         tabIndex={0}
         role="region"
         aria-label={`GitHub contribution graph for ${site.githubUsername} over the last 12 months`}
-        className="-mx-1 overflow-x-auto rounded-sm px-1 pb-1 [direction:rtl]"
+        className="-mx-1 overflow-x-auto rounded-sm px-1 pb-1 "
       >
         <div aria-hidden>
-          <RevealOnView className="inline-flex flex-col gap-[0.125rem] [direction:ltr]">
+          <RevealOnView className="contribution-calendar flex flex-col gap-[0.125rem]">
             <div className="text-subtle flex h-3 gap-[0.125rem] text-[0.625rem] leading-none">
               {months.map((month, i) => (
-                <span key={i} className="w-[0.625rem] whitespace-nowrap">
+                <span key={i} className="min-w-0 flex-1 whitespace-nowrap">
                   {month}
                 </span>
               ))}
@@ -106,7 +106,7 @@ export async function GithubActivity() {
       </div>
 
       {/* The same data, readable by screen readers. */}
-      <table className="sr-only">
+      <details className="contribution-totals"><summary>Monthly contribution totals</summary><table>
         <caption>GitHub contributions per month, last 12 months</caption>
         <thead>
           <tr>
@@ -122,7 +122,7 @@ export async function GithubActivity() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></details>
     </Section>
   );
 }

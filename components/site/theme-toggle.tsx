@@ -45,7 +45,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       onClick={toggle}
       title="Toggle theme (D)"
       className={cn(
-        "text-muted hover:text-fg hover:bg-surface-2 inline-flex size-8 items-center justify-center rounded-md transition-[color,background-color,transform] duration-150 active:scale-[0.94]",
+        "text-muted hover:text-fg hover:bg-surface-2 inline-flex size-11 items-center whitespace-nowrap justify-center rounded-md transition-[color,background-color,transform] duration-150 active:scale-[0.94]",
         className,
       )}
     >

@@ -2,7 +2,7 @@ import { ArrowUpRight, GitMerge } from "lucide-react";
 import type { PullRequest } from "@/lib/site/open-source";
 
 export const rowClass =
-  "group hover:bg-surface -mx-3 flex items-start gap-4 rounded-lg px-3 py-3 transition-colors duration-150";
+  "list-row";
 
 export const arrow = (
   <ArrowUpRight className="text-subtle group-hover:text-fg mt-0.5 size-4 shrink-0 transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -34,13 +34,13 @@ export function PullRequestList({
             rel="noopener noreferrer"
             className={rowClass}
           >
-            <span className="border-line bg-surface text-muted flex size-8 shrink-0 items-center justify-center rounded-md border">
+            <span className="text-muted flex size-8 shrink-0 items-center justify-center">
               <GitMerge className="size-3.5" />
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-fg text-sm text-pretty">{pr.title}</p>
-              <p className="text-subtle mt-0.5 font-mono text-[0.6875rem]">
-                {pr.repo} #{pr.number} · {formatMonth(pr.mergedAt)}
+              <p className="text-muted mt-2 text-sm">
+                {pr.repo} #{pr.number}, {formatMonth(pr.mergedAt)}
               </p>
             </div>
             {arrow}

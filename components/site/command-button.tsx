@@ -32,12 +32,12 @@ export function CommandButton({ className }: CommandButtonProps) {
       onClick={openCommandMenu}
       aria-label="Open command menu"
       className={cn(
-        "border-line text-subtle hover:text-fg hover:border-line-strong inline-flex h-8 items-center gap-1 rounded-md border px-2 font-mono text-[0.6875rem] transition-[color,border-color,transform] duration-150 active:scale-[0.96]",
+        "border-line text-subtle hover:text-fg hover:border-line-strong inline-flex h-11 items-center gap-1 rounded-md border px-2 text-xs transition-[color,border-color,transform] duration-150 active:scale-[0.96]",
         className,
       )}
     >
-      <kbd className="font-mono">{isMac ? "⌘" : "Ctrl"}</kbd>
-      <kbd className="font-mono">K</kbd>
+      <kbd className="font-sans">{isMac ? "⌘" : "Ctrl"}</kbd>
+      <kbd className="font-sans">K</kbd>
     </button>
   );
 }

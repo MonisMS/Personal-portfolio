@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 const buttonClass =
-  "border-line-strong text-fg hover:bg-surface-2 inline-flex h-9 items-center gap-2 rounded-md border px-3.5 text-sm transition-[background-color,transform] duration-150 active:scale-[0.97] [&_svg]:size-4";
+  "site-button";
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
@@ -63,7 +63,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[44rem] px-4 sm:px-6">
+    <div className="site-container case-study">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -71,16 +71,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <PageHeader backHref="/projects" backLabel="Projects" />
 
       <main id="main">
-        <header className="pt-12">
-          <p className="rise text-subtle font-mono text-xs">{project.metric}</p>
+        <header className="page-intro case-intro">
+          <p className="case-metric">{project.metric}</p>
           <h1
-            className="rise font-display text-fg mt-3 text-[2.6rem] leading-none tracking-[-0.01em] sm:text-[3rem]"
+            className="page-title"
             style={{ "--i": 1 } as React.CSSProperties}
           >
             {project.title}
           </h1>
           <p
-            className="rise text-muted mt-3 text-lg"
+            className="page-lead"
             style={{ "--i": 2 } as React.CSSProperties}
           >
             {project.tagline}
@@ -103,38 +103,38 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </header>
 
         {project.image && (
-          <div className="border-line bg-surface relative mt-10 aspect-[16/10] overflow-hidden rounded-xl border">
+          <div className="case-image">
             <Image
               src={project.image}
               alt={`${project.title} screenshot`}
               fill
               priority
-              sizes="(min-width: 768px) 672px, 100vw"
+              sizes="(min-width: 1024px) 976px, 90vw"
               className="object-cover object-top"
             />
           </div>
         )}
 
-        <dl className="border-line mt-10 grid gap-x-8 gap-y-5 border-y py-6 sm:grid-cols-2">
+        <dl className="case-facts">
           {facts.map((fact) => (
             <div key={fact.label}>
-              <dt className="text-subtle text-xs">{fact.label}</dt>
-              <dd className="text-fg mt-1 text-sm leading-relaxed">{fact.value}</dd>
+              <dt className="text-muted text-sm">{fact.label}</dt>
+              <dd className="text-fg mt-2 text-base leading-relaxed">{fact.value}</dd>
             </div>
           ))}
         </dl>
 
-        <section className="mt-12">
-          <h2 className="font-display text-fg text-[1.75rem] leading-none">Overview</h2>
-          <p className="text-muted mt-5 text-[0.9375rem] leading-[1.75]">{project.description}</p>
+        <section className="case-section">
+          <h2 className="section-title">Overview</h2>
+          <p className="case-copy">{project.description}</p>
         </section>
 
-        <section className="mt-12">
-          <h2 className="font-display text-fg text-[1.75rem] leading-none">How it works</h2>
+        <section className="case-section">
+          <h2 className="section-title">How it works</h2>
           <ul className="mt-5 space-y-3">
             {project.highlights.map((highlight) => (
-              <li key={highlight} className="text-muted flex gap-3 text-[0.9375rem] leading-[1.7]">
-                <span aria-hidden className="bg-subtle mt-[0.7em] size-1 shrink-0 rounded-full" />
+              <li key={highlight} className="case-highlight">
+                <span aria-hidden className="sr-only" />
                 {highlight}
               </li>
             ))}
@@ -150,7 +150,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <Link
           href={`/projects/${next.slug}`}
-          className="group border-line hover:border-line-strong hover:bg-surface mt-14 flex items-center justify-between gap-4 rounded-xl border p-5 transition-colors duration-200"
+          className="case-next"
         >
           <div>
             <p className="text-subtle text-xs">Next project</p>

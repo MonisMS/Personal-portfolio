@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { CommandButton } from "./command-button";
-import { ThemeToggle } from "./theme-toggle";
+import { SiteNav } from "./site-nav";
 import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
@@ -10,29 +9,11 @@ interface PageHeaderProps {
   className?: string;
 }
 
-export function PageHeader({
-  backHref = "/",
-  backLabel = "Home",
-  className,
-}: PageHeaderProps) {
+export function PageHeader({ backHref = "/", backLabel = "Home", className }: PageHeaderProps) {
   return (
-    <div
-      className={cn(
-        "flex items-center justify-between gap-4 pt-8 sm:pt-12",
-        className,
-      )}
-    >
-      <Link
-        href={backHref}
-        className="group text-muted hover:text-fg inline-flex items-center gap-1.5 text-sm transition-[color,transform] duration-150 ease-snappy active:scale-[0.97]"
-      >
-        <ArrowLeft className="size-3.5 transition-transform duration-200 group-hover:-translate-x-0.5" />
-        {backLabel}
-      </Link>
-      <div className="flex items-center gap-1.5">
-        <CommandButton className="hidden sm:inline-flex" />
-        <ThemeToggle />
-      </div>
-    </div>
+    <header className={cn("page-header", className)}>
+      <SiteNav />
+      <Link href={backHref} className="back-link"><ArrowLeft size={16} aria-hidden />{backLabel}</Link>
+    </header>
   );
 }
