@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/site/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
-    "Projects by Syed Monis Sarwar: APIx, Curio, FieldProof, DataPilot and Shikshak Saathi. Data pipelines, AI agents and backends.",
+    "Projects by Syed Monis Sarwar: Curio and Shikshak Saathi, plus more projects. Data pipelines, AI agents and backends.",
   path: "/projects",
 });
 
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        <Section id="builds" title="Smaller builds">
+        <Section id="builds" title="More projects">
           <BuildList builds={builds} initial={builds.length} />
         </Section>
       </main>

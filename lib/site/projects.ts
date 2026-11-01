@@ -4,6 +4,8 @@
  */
 
 export interface Project {
+  /** Show in More projects instead of the featured cards and case studies. */
+  more?: boolean;
   slug: string;
   title: string;
   /** One line, shown under the title. */
@@ -33,9 +35,10 @@ export interface Build {
   githubUrl: string;
 }
 
-export const projects: Project[] = [
+const projectCatalog: Project[] = [
   {
     slug: "apix",
+    more: true,
     title: "APIx",
     tagline: "A daily airfare price index for India",
     description:
@@ -78,6 +81,7 @@ export const projects: Project[] = [
   },
   {
     slug: "fieldproof",
+    more: true,
     title: "FieldProof",
     tagline: "Field photos in, verifiable impact reports out",
     description:
@@ -100,6 +104,7 @@ export const projects: Project[] = [
   },
   {
     slug: "datapilot",
+    more: true,
     title: "DataPilot",
     tagline: "Prompt in, clean dataset out",
     description:
@@ -141,7 +146,15 @@ export const projects: Project[] = [
   },
 ];
 
+export const projects: Project[] = projectCatalog.filter((project) => !project.more);
+
 export const builds: Build[] = [
+  ...projectCatalog.filter((project) => project.more).map((project) => ({
+    title: project.title,
+    description: project.description,
+    tech: project.tech,
+    githubUrl: project.githubUrl,
+  })),
   {
     title: "Remote Browser Control",
     description:

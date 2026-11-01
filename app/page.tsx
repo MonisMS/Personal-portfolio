@@ -51,7 +51,7 @@ export default function HomePage() {
 
         <Section
           id="builds"
-          title="Smaller builds"
+          title="More projects"
           description="Focused tools and systems worth a look."
         >
           <BuildList builds={builds} />
