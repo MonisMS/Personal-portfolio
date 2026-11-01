@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="site-container flex min-h-dvh flex-col">
+    <div className="mx-auto flex min-h-dvh w-full max-w-[44rem] flex-col px-4 sm:px-6">
       <PageHeader />
       <main id="main" className="flex flex-1 flex-col justify-center pb-24">
         <p className="rise text-subtle font-mono text-xs">404</p>
         <h1
-          className="page-title"
+          className="rise font-display text-fg mt-3 text-[2.6rem] leading-none tracking-[-0.01em] sm:text-[3rem]"
           style={{ "--i": 1 } as React.CSSProperties}
         >
           Nothing lives here.

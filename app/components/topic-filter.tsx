@@ -2,38 +2,43 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { cn } from "@/lib/utils";
 
 interface TopicFilterProps {
   tags: Array<{ tag: string; count: number }>;
-  totalCount?: number;
-  className?: string;
 }
 
-export function TopicFilter({ tags, totalCount, className }: TopicFilterProps) {
-  const activeTag = useSearchParams().get("tag");
-  const linkClass = (active: boolean) => cn(
-    "inline-flex min-h-11 items-center gap-2 rounded-sm px-3 text-sm transition-colors",
-    active ? "bg-surface-2 text-fg" : "text-muted hover:bg-surface hover:text-fg",
-  );
+export function TopicFilter({ tags }: TopicFilterProps) {
+  const searchParams = useSearchParams();
+  const activeTag = searchParams.get("tag");
 
   return (
-    <nav aria-label="Blog topics" className={cn("flex flex-wrap gap-1", className)}>
-      <Link href="/blog" aria-current={!activeTag ? "page" : undefined} className={linkClass(!activeTag)}>
+    <div className="flex flex-wrap gap-3">
+      <Link
+        href="/blog"
+        className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+          !activeTag
+            ? "border-accent/50 bg-accent/10 text-accent hover:border-accent hover:bg-accent/20 hover:shadow-accent/5"
+            : "border-border bg-bg-secondary/50 text-text-secondary hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
+        }`}
+      >
         <span>All</span>
-        {totalCount !== undefined && <span>({totalCount})</span>}
+        <span className="text-xs text-text-muted">({tags.reduce((sum, t) => sum + t.count, 0)})</span>
       </Link>
       {tags.map(({ tag, count }) => (
         <Link
           key={tag}
-          href={`/blog?tag=${encodeURIComponent(tag)}`}
-          aria-current={activeTag === tag ? "page" : undefined}
-          className={linkClass(activeTag === tag)}
+          href={`/blog?tag=${tag}`}
+          className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+            activeTag === tag
+              ? "border-accent/50 bg-accent/10 text-accent hover:border-accent hover:bg-accent/20 hover:shadow-accent/5"
+              : "border-border bg-bg-secondary/50 text-text-secondary hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
+          }`}
         >
           <span>#{tag}</span>
-          <span>({count})</span>
+          <span className={`text-xs ${activeTag === tag ? 'text-accent/70' : 'text-text-muted'}`}>({count})</span>
         </Link>
       ))}
-    </nav>
+    </div>
   );
 }
+

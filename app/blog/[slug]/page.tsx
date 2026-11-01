@@ -1,12 +1,9 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Footer } from "@/components/site/footer";
-import { PageHeader } from "@/components/site/page-header";
-import { ReadingProgress } from "@/app/components/reading-progress";
+import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { getPostBySlug, getAllPosts, formatDate, getReadingTimeText } from "@/lib/blog";
-import { BlogContent } from "@/app/components/blog-content";
+import { BlogContent } from "../../components/blog-content";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -44,6 +41,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
+import { ReadingProgress } from "../../components/reading-progress";
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -53,44 +52,82 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <div className="site-container">
+    <main id="main" className="bg-bg-primary">
       <ReadingProgress />
-      <PageHeader backHref="/blog" backLabel="Back to blog" />
-      <main id="main">
-        <article className="mx-auto max-w-[65ch]">
-          <header className="page-intro border-line border-b pb-10">
-            <h1 className="page-title !text-[clamp(2.5rem,5vw,4rem)] !leading-[1.08]">
+      <article className="px-4 pt-24 pb-20 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-3xl">
+          {/* Back link */}
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-2 text-sm text-text-secondary hover:text-accent transition-colors mb-8"
+          >
+            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+            Back to blog
+          </Link>
+
+          {/* Header */}
+          <header className="mb-12">
+            <h1 className="text-4xl font-bold tracking-tight text-text-primary sm:text-5xl mb-6 leading-tight">
               {post.title}
             </h1>
-            <p className="page-lead mt-6">{post.description}</p>
-            <div className="text-muted mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
-              <span>{getReadingTimeText(post.readingTime)}</span>
-              <span>By {post.author}</span>
+            <p className="text-xl text-text-secondary/70 mb-8 leading-relaxed">
+              {post.description}
+            </p>
+            
+            {/* Meta - Quieter */}
+            <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted/60 mb-6">
+              <div className="flex items-center gap-2">
+                <Calendar size={16} className="text-accent/40" />
+                <span>{formatDate(post.date)}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={16} className="text-accent/40" />
+                <span>{getReadingTimeText(post.readingTime)}</span>
+              </div>
+              <div>
+                by <span className="text-text-secondary">{post.author}</span>
+              </div>
             </div>
+
+            {/* Tags - Red accent committed */}
             {post.tags.length > 0 && (
-              <ul aria-label="Topics" className="text-muted mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-accent/10 text-accent border border-accent/30 hover:bg-accent/20 hover:border-accent/50 transition-all"
+                  >
+                    <Tag size={12} />
+                    {tag}
+                  </span>
                 ))}
-              </ul>
+              </div>
             )}
           </header>
 
-          <div className="article-body py-10 sm:py-14">
+          {/* Content */}
+          <div className="prose prose-invert">
             <BlogContent content={post.content} />
           </div>
 
-          <footer className="border-line flex flex-wrap items-center justify-between gap-5 border-t py-8">
-            <Link href="/blog" className="site-button">
-              <ArrowLeft aria-hidden className="size-4" />
-              All posts
-            </Link>
-            <p className="text-muted text-sm">Written by {post.author}</p>
+          {/* Footer - Red accent committed */}
+          <footer className="mt-16 pt-8 border-t border-border">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <Link
+                href="/blog"
+                className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-card border border-accent/30 hover:border-accent hover:bg-accent/10 text-accent font-semibold transition-all duration-200"
+              >
+                <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+                All posts
+              </Link>
+              
+              <div className="text-sm text-text-muted/60">
+                Written by <span className="text-text-secondary">{post.author}</span>
+              </div>
+            </div>
           </footer>
-        </article>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </article>
+    </main>
   );
 }

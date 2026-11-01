@@ -23,14 +23,13 @@ export function ScrollAnimation({ children, delay = 0, className = "" }: ScrollA
       { threshold: 0.1 }
     );
 
-    const element = ref.current;
-    if (element) {
-      observer.observe(element);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
     return () => {
-      if (element) {
-        observer.unobserve(element);
+      if (ref.current) {
+        observer.unobserve(ref.current);
       }
     };
   }, []);

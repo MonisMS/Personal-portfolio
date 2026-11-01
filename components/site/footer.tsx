@@ -29,14 +29,14 @@ export function Footer() {
   const time = useClock(site.timeZone);
 
   return (
-    <footer className="site-footer">
-      <div className="text-muted flex flex-wrap items-end justify-between gap-4 text-sm">
+    <footer className="border-line mt-16 border-t pb-32 pt-10">
+      <div className="text-subtle flex flex-wrap items-end justify-between gap-4 text-xs">
         <p>
-          Built by <span className="text-muted">{site.shortName}</span>
+          Designed &amp; built by <span className="text-muted">{site.shortName}</span>
           <br />© {new Date().getFullYear()}
         </p>
-        <p className="text-right tabular-nums">
-          Lucknow, India<br /> {time ?? "--:--:--"} IST
+        <p className="text-right font-mono tabular-nums">
+          Lucknow, India · {time ?? "--:--:--"} IST
         </p>
       </div>
     </footer>

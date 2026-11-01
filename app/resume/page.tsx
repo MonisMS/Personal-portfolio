@@ -1,97 +1,100 @@
-import type { Metadata } from "next";
-import { Download, ExternalLink } from "lucide-react";
-import { Footer } from "@/components/site/footer";
-import { PageHeader } from "@/components/site/page-header";
-import { site } from "@/lib/site/config";
-import { pageMetadata } from "@/lib/site/seo";
+import { Metadata } from 'next';
+import { Download, ExternalLink, Calendar, FileText } from 'lucide-react';
+import { pageMetadata } from '@/lib/site/seo';
 
 export const metadata: Metadata = pageMetadata({
-  title: "Résumé",
-  description:
-    "Résumé of Syed Monis Sarwar, full-stack engineer building AI agents. View or download the PDF.",
-  path: "/resume",
+  title: 'Résumé',
+  description: 'Résumé of Syed Monis Sarwar, full-stack engineer building AI agents. View or download the PDF.',
+  path: '/resume',
 });
 
 async function getResumeMetadata() {
   try {
-    const metadata = await import("@/lib/resume-metadata.json");
+    const metadata = await import('@/lib/resume-metadata.json');
     return metadata.default;
   } catch {
     return {
-      lastUpdated: new Date().toISOString().split("T")[0],
-      version: "1.0",
-      fileName: "resume.pdf",
-      fileSize: "N/A",
+      lastUpdated: new Date().toISOString().split('T')[0],
+      version: '1.0',
+      fileName: 'resume.pdf',
+      fileSize: 'N/A'
     };
   }
 }
 
 export default async function ResumePage() {
   const metadata = await getResumeMetadata();
-  const resumePath = "/resume/resume.pdf";
-  const updated = new Date(`${metadata.lastUpdated}T00:00:00`).toLocaleDateString(
-    "en-US",
-    { year: "numeric", month: "short", day: "numeric" },
-  );
+  const resumePath = '/resume/resume.pdf';
 
   return (
-    <div className="site-container">
-      <PageHeader />
-      <main id="main">
-        <header className="page-intro">
-          <h1 className="page-title">Résumé</h1>
-          <p className="page-lead">{site.role}.</p>
-        </header>
+    <div id="main" className="min-h-screen bg-bg-primary text-text-primary py-20 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Resume</h1>
+          <p className="text-text-secondary text-lg">
+            Full Stack Back-end Developer
+          </p>
+        </div>
 
-        <div className="border-line flex flex-col gap-6 border-y py-6 sm:flex-row sm:items-center sm:justify-between">
-          <dl className="text-muted flex flex-wrap gap-x-8 gap-y-3 text-sm">
-            <div>
-              <dt className="text-subtle">Updated</dt>
-              <dd className="text-fg mt-1">
-                <time dateTime={metadata.lastUpdated}>{updated}</time>
-              </dd>
+        {/* Metadata & Actions */}
+        <div className="bg-bg-secondary border border-border rounded-lg p-6 mb-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            {/* Metadata Info */}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                <span>Updated: {new Date(metadata.lastUpdated).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric'
+                })}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4" />
+                <span>Size: {metadata.fileSize}</span>
+              </div>
             </div>
-            <div>
-              <dt className="text-subtle">PDF size</dt>
-              <dd className="text-fg mt-1">{metadata.fileSize}</dd>
-            </div>
-          </dl>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={resumePath}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="site-button"
-            >
-              Open in new tab
-              <ExternalLink aria-hidden className="size-4" />
-            </a>
-            <a
-              href={resumePath}
-              download="Monis_Sarwar_Resume.pdf"
-              className="site-button site-button-primary"
-            >
-              Download PDF
-              <Download aria-hidden className="size-4" />
-            </a>
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-bg-primary border border-border rounded-lg hover:border-accent hover:text-accent transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>Open in New Tab</span>
+              </a>
+              <a
+                href={resumePath}
+                download="Monis_Sarwar_Resume.pdf"
+                className="flex items-center gap-2 px-4 py-2 bg-accent text-bg-primary rounded-lg hover:bg-accent/90 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download PDF</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="mt-8">
-          <iframe
-            src={`${resumePath}#view=FitH`}
-            tabIndex={-1}
-            className="resume-preview bg-surface h-[80vh] min-h-[32rem] w-full rounded-sm border-0"
-            title="Résumé PDF preview"
-          />
-          <p className="text-muted mt-4 text-sm leading-relaxed md:hidden">
-            Having trouble viewing? Open the PDF in a new tab or download it
-            using the links above.
-          </p>
+        {/* PDF Preview */}
+        <div className="bg-bg-secondary border border-border rounded-lg overflow-hidden">
+          <div className="relative w-full" style={{ height: 'calc(100vh - 300px)', minHeight: '600px' }}>
+            <iframe
+              src={`${resumePath}#view=FitH`}
+              className="w-full h-full"
+              title="Resume Preview"
+            />
+          </div>
         </div>
-      </main>
-      <Footer />
+
+        {/* Mobile Fallback Message */}
+        <div className="mt-4 text-center text-sm text-text-secondary md:hidden">
+          <p>Having trouble viewing? Try opening in a new tab or downloading the PDF.</p>
+        </div>
+      </div>
     </div>
   );
 }
