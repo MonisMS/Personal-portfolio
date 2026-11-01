@@ -196,9 +196,9 @@ reduced-motion verified, (5) it looks like it belongs to the same system as ever
 
 ## Project disclosure update
 
-The home and projects pages show three featured project cards: Curio, Shikshak Saathi
-and ClaimVakeel. A keyboard-accessible "Show more" button reveals a More projects group
-with the original full cards for APIx, FieldProof and DataPilot, including screenshots,
+The home and projects pages show three featured project cards: Curio, DataPilot
+and Shikshak Saathi. A keyboard-accessible "Show more" button reveals a More projects group
+with the full cards for APIx, FieldProof and ClaimVakeel, including screenshots,
 source links and case studies. All project routes and sitemap entries remain available.
 Smaller builds remain their own compact list. ClaimVakeel uses a real local screenshot
 and describes the prototype's evaluation and limitations without implying production use.

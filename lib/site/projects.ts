@@ -104,7 +104,6 @@ const projectCatalog: Project[] = [
   },
   {
     slug: "datapilot",
-    more: true,
     title: "DataPilot",
     tagline: "Prompt in, clean dataset out",
     description:
@@ -146,6 +145,7 @@ const projectCatalog: Project[] = [
   },
   {
     slug: "claimvakeel",
+    more: true,
     title: "ClaimVakeel",
     tagline: "From insurance rejection letter to a reviewed appeal draft",
     description:

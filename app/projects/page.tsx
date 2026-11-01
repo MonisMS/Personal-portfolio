@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/site/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
-    "Projects by Syed Monis Sarwar: Curio, Shikshak Saathi and ClaimVakeel, plus more projects. Data pipelines, AI agents and backends.",
+    "Projects by Syed Monis Sarwar: Curio, DataPilot and Shikshak Saathi, plus more projects. Data pipelines, AI agents and backends.",
   path: "/projects",
 });
 
