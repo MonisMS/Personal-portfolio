@@ -4,14 +4,17 @@ import type { NextConfig } from "next";
 const RETIRED_V2_PROJECTS = ["nivora", "foldermage", "askai", "pharmaguard"];
 
 const nextConfig: NextConfig = {
-  // OG images read fonts and photos from disk; ship them with those routes.
+  // Include metadata in the initial head even for unrecognized link-preview bots.
+  htmlLimitedBots: /.*/,
+  // Project OG images read fonts and photos from disk; ship them with those routes.
   outputFileTracingIncludes: {
-    "/opengraph-image": ["./assets/og/**/*"],
     "/projects/[slug]/opengraph-image/[__metadata_id__]": ["./assets/og/**/*"],
   },
   // The old /v2 preview was public; keep its links working.
   async redirects() {
     return [
+      // Keep images in previously cached social previews working.
+      { source: "/opengraph-image", destination: "/opengraph-image.png", permanent: true },
       ...RETIRED_V2_PROJECTS.map((slug) => ({
         source: `/v2/projects/${slug}`,
         destination: "/projects",

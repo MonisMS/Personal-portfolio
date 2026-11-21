@@ -61,12 +61,21 @@ export const metadata: Metadata = {
     title: site.meta.title,
     description: site.meta.description,
     locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name}: ${site.role}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     creator: site.xHandle,
     title: site.meta.title,
     description: site.meta.description,
+    images: [{ url: "/opengraph-image.png", alt: `${site.name}: ${site.role}` }],
   },
   robots: { index: true, follow: true },
 };

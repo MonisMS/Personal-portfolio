@@ -202,3 +202,11 @@ with the full cards for APIx, FieldProof and ClaimVakeel, including screenshots,
 source links and case studies. All project routes and sitemap entries remain available.
 Smaller builds remain their own compact list. ClaimVakeel uses a real local screenshot
 and describes the prototype's evaluation and limitations without implying production use.
+
+## Social preview reliability
+
+The site-wide 1200×630 card is a static PNG using the existing real portrait,
+serif name, monochrome palette, and full-stack/AI-agents role. Its contribution
+strip is a snapshot. Project cards keep their generated case-study previews.
+Share metadata must be in the initial HTML head for every crawler; the default
+card must be fetchable without serverless image rendering or external APIs.

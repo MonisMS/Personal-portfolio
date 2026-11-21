@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { getPostBySlug, getAllPosts, formatDate, getReadingTimeText } from "@/lib/blog";
 import { BlogContent } from "../../components/blog-content";
+import { site } from "@/lib/site/config";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -26,17 +27,27 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
+  const preview = post.image ?? "/opengraph-image.png";
+
   return {
     title: post.title,
     description: post.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
+      url: `/blog/${slug}`,
       title: post.title,
       description: post.description,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
-      ...(post.image && { images: [post.image] }),
+      images: [preview],
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: site.xHandle,
+      title: post.title,
+      description: post.description,
+      images: [preview],
     },
   };
 }

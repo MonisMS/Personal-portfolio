@@ -25,7 +25,7 @@ export function pageMetadata({
 }: PageMetadataOptions): Metadata {
   const fullTitle = `${title} | ${site.shortName}`;
   const preview = {
-    url: image?.url ?? "/opengraph-image",
+    url: image?.url ?? "/opengraph-image.png",
     width: 1200,
     height: 630,
     alt: image?.alt ?? `${site.name}: ${site.role}`,

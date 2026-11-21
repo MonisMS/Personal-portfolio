@@ -1,5 +1,24 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Social previews
+
+`app/opengraph-image.png` is the 1200×630 site-wide card, with Monis's real
+portrait, name, and role. It is a static snapshot of the former generated card,
+so fetching it needs no serverless rendering, font loading, or GitHub API call.
+The contribution strip in this snapshot is not live. Update the PNG and its
+`opengraph-image.alt.txt` together when the profile changes.
+
+Open Graph and Twitter metadata use absolute URLs through `metadataBase` in the
+root layout. Page metadata falls back to this card; projects keep their own
+cards. `/opengraph-image` redirects to the PNG for previously shared links.
+Metadata streaming is disabled so unknown preview crawlers receive tags in the
+initial HTML head, too.
+
+After deployment, check the HTML with a crawler user agent and fetch its
+`og:image` URL: both must return 200, and the image must be `image/png`.
+Social services cache previews independently; already shared links may need a
+fresh scrape using the platform's preview inspector.
+
 ## Getting Started
 
 First, run the development server:
